@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Testimonials: React.FC = () => {
-  const feedbackUrl = "feedback777.vercel.app";
+  const feedbackUrl = "https://feedback777.vercel.app";
 
   return (
     <section id="feedback" className="w-full py-20 px-5 sm:px-8 bg-[#F8F6FA] text-center">
