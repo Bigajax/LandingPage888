@@ -1,5 +1,4 @@
-import React from 'react'; 
-import { Link } from 'react-router-dom';
+import React from 'react';  
 import { Link as ScrollLink } from 'react-scroll';
 import Orb from '../components/Orb';
 import Button from '../components/Button';
@@ -47,11 +46,17 @@ const HeroSection: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full px-2">
-            <Link to="/reflexao" className="w-full sm:w-auto">
+            {/* Botão atualizado para link externo */}
+            <a
+              href="https://ecofrontend888.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
               <Button className="w-full sm:w-auto text-sm px-4 py-2 rounded-full font-medium border border-white/20 backdrop-blur-md bg-white/10 text-white shadow-md transition duration-150 hover:bg-[#5F4BFF] hover:border-[#5F4BFF] hover:scale-105">
                 Obter acesso
               </Button>
-            </Link>
+            </a>
 
             <ScrollLink
               to="conheca-eco"

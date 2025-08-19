@@ -72,13 +72,15 @@ const Header: React.FC = () => {
           </ScrollLink>
         </nav>
 
-        {/* Botão Desktop */}
-        <RouterLink
-          to="/reflexao"
+        {/* Botão Desktop - atualizado */}
+        <a
+          href="https://ecofrontend888.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden md:inline-block ml-4 bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition"
         >
           Acesso Antecipado
-        </RouterLink>
+        </a>
 
         {/* Menu Mobile */}
         <button
@@ -125,13 +127,16 @@ const Header: React.FC = () => {
             Apoiar
           </ScrollLink>
 
-          <RouterLink
-            to="/reflexao"
+          {/* Botão Mobile - atualizado */}
+          <a
+            href="https://ecofrontend888.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
             className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition w-fit"
           >
             Obtenha acesso antecipado
-          </RouterLink>
+          </a>
         </div>
       )}
     </header>
