@@ -1,207 +1,141 @@
-import React, { useEffect, useState } from "react";
-import { type LucideIcon, Brain, Clock, Repeat, Compass } from "lucide-react";
+import React from "react";
+import {
+  Mic,
+  Sparkles,
+  SunDim,
+  BookOpen,
+  ChevronRight,
+  type LucideIcon,
+} from "lucide-react";
 
-/** Hook para detectar se o dispositivo suporta hover (mouse) */
-function useHoverCapable() {
-  const [canHover, setCanHover] = useState<boolean>(true);
-  useEffect(() => {
-    if (typeof window === "undefined" || !("matchMedia" in window)) return;
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setCanHover(mq.matches);
-    update();
-    mq.addEventListener?.("change", update);
-    return () => mq.removeEventListener?.("change", update);
-  }, []);
-  return canHover;
-}
-
-/** Modelo: dor + sinais + como a Eco ajuda */
-type Issue = {
-  Icon: LucideIcon;
-  title: string;
-  signals: string;
-  help: string;
-};
-
-/** 4 dores principais */
-const issues: Issue[] = [
-  {
-    Icon: Brain,
-    title: "Confusão emocional",
-    signals: "“não sei o que estou sentindo”, pensamentos em loop.",
-    help: "Nomear emoções, organizar ideias e escolher o próximo passo — em 5–7 minutos.",
-  },
-  {
-    Icon: Clock,
-    title: "Piloto automático",
-    signals: "dias iguais, reagir no impulso e só perceber depois.",
-    help: "Pausas curtas que recuperam presença e deixam a escolha mais consciente.",
-  },
-  {
-    Icon: Repeat,
-    title: "Padrões que se repetem",
-    signals: "mesmos conflitos/decisões; sensação de “voltar à estaca zero”.",
-    help: "Ver gatilho → resposta → consequência e agir com micro-ações para quebrar o ciclo.",
-  },
-  {
-    Icon: Compass,
-    title: "Transições sem clareza",
-    signals: "decisões grandes com neblina emocional.",
-    help: "Foco no essencial e serenidade para decidir com calma.",
-  },
-];
-
-/* Badge do ícone — vidro minimalista */
-const IconBadge: React.FC<{ Icon: LucideIcon; active?: boolean }> = ({ Icon, active }) => (
+/** Badge do ícone: vidro suave, sem arestas */
+const IconBadge: React.FC<{ Icon: LucideIcon }> = ({ Icon }) => (
   <span
     aria-hidden
-    className={`
-      relative overflow-hidden
-      flex items-center justify-center
-      w-11 h-11 sm:w-12 sm:h-12
-      rounded-xl sm:rounded-2xl
-      bg-[linear-gradient(to_bottom,rgba(255,255,255,0.14),rgba(255,255,255,0.05))]
-      backdrop-blur-md border border-white/12
-      shadow-[0_6px_16px_rgba(0,0,0,0.22)]
-      before:absolute before:inset-0 before:rounded-inherit before:content-['']
-      before:bg-[radial-gradient(130%_130%_at_20%_15%,rgba(255,255,255,0.35),rgba(255,255,255,0)_60%)]
-      after:absolute after:inset-0 after:rounded-inherit after:content-['']
-      after:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),inset_0_-10px_16px_rgba(0,0,0,0.16)]
-      transition-[box-shadow,border-color] duration-200
-      group-hover/card:shadow-[0_8px_20px_rgba(0,0,0,0.26)]
-      ${active ? "shadow-[0_10px_22px_rgba(0,0,0,0.28)] border-white/18" : ""}
-    `}
+    className="
+      relative flex h-12 w-12 items-center justify-center rounded-full
+      bg-[radial-gradient(130%_130%_at_20%_15%,rgba(111,93,255,0.15),rgba(255,255,255,0))]
+      border border-[#5B4BFF]/15 backdrop-blur
+      shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_14px_rgba(42,32,100,0.12)]
+    "
   >
-    <Icon
-      size={26}
-      strokeWidth={1.9}
-      absoluteStrokeWidth
-      shapeRendering="geometricPrecision"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-white"
-    />
+    <Icon size={20} className="text-[#5B4BFF]" strokeWidth={1.9} />
   </span>
 );
 
-const TargetAudienceSection: React.FC = () => {
-  const canHover = useHoverCapable();                 // ← detecção de mouse/touch
-  const hint = canHover
-    ? "Passe o mouse nos cards para ver o que muda."
-    : "Toque nos cards para ver o que muda.";
+type Step = {
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  cta?: { label: string; href: string };
+};
 
-  // No mobile (sem hover), um tap alterna o card entre “Sinais” e “O que muda”
-  const [active, setActive] = useState<number | null>(null);
+const STEPS: Step[] = [
+  {
+    icon: Mic,
+    title: "Compartilhe",
+    subtitle: "Dê forma ao que sente.",
+  },
+  {
+    icon: Sparkles,
+    title: "Reflexão guiada",
+    subtitle: "Um reflexo do seu interior.",
+  },
+  {
+    icon: SunDim,
+    title: "Clareza emocional",
+    subtitle: "Veja o invisível ganhar contorno.",
+  },
+  {
+    icon: BookOpen,
+    title: "Memórias conscientes",
+    subtitle: "Um lugar para guardar o essencial.",
+    cta: { label: "Ver relatório emocional →", href: "#relatorio" },
+  },
+];
 
-  return (
-    <section
-      id="para-quem"
-      aria-labelledby="para-quem-title"
-      className="relative overflow-hidden bg-[#0A0A0D] py-20 sm:py-24 px-5 sm:px-8"
-    >
-      {/* fundo sutil */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/3 w-[70vw] h-[70vw] rounded-full blur-[120px] opacity-20 bg-[radial-gradient(circle,#8C89FF_0%,transparent_70%)]" />
-        <div className="absolute bottom-[-25%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[120px] opacity-16 bg-[radial-gradient(circle,#AAB2FF_0%,transparent_70%)]" />
+const Card: React.FC<{
+  stepNumber: number;
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  cta?: { label: string; href: string };
+}> = ({ stepNumber, icon: Icon, title, subtitle, cta }) => (
+  <div
+    className="
+      group relative flex items-start gap-4 rounded-2xl
+      border border-[#EAEAF3] bg-white/90 p-5 sm:p-6
+      shadow-[0_2px_8px_rgba(17,24,39,0.04)]
+      transition-all duration-200 hover:shadow-[0_8px_24px_rgba(17,24,39,0.08)]
+      hover:border-[#5B4BFF]/30
+    "
+  >
+    <IconBadge Icon={Icon} />
+
+    <div className="min-w-0 flex-1">
+      <div className="flex items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-zinc-900 text-lg font-semibold tracking-tight">
+            {title}
+          </h3>
+          <p className="text-zinc-600 mt-1">{subtitle}</p>
+        </div>
+
+        {/* número à direita */}
+        <div className="select-none text-zinc-400 text-sm font-semibold pl-2">
+          {String(stepNumber).padStart(2, "0")}
+        </div>
       </div>
 
-      <div className="relative max-w-5xl mx-auto text-center mb-10 sm:mb-14">
-        <h2
-          id="para-quem-title"
-          className="text-white text-[28px] sm:text-[36px] lg:text-[44px] font-semibold leading-tight tracking-tight"
+      {cta && (
+        <a
+          href={cta.href}
+          className="
+            mt-3 inline-flex items-center gap-1 text-[15px] font-medium
+            text-[#5B4BFF] hover:text-[#4c3cff] transition-colors
+          "
         >
-          Quando a <span className="text-[#5B4BFF]">Eco</span> ajuda
+          {cta.label}
+          <ChevronRight size={16} />
+        </a>
+      )}
+    </div>
+
+    {/* halo sutil no hover */}
+    <span
+      aria-hidden
+      className="
+        pointer-events-none absolute inset-0 rounded-2xl opacity-0
+        group-hover:opacity-100 transition
+        bg-[radial-gradient(80%_80%_at_10%_10%,rgba(91,75,255,0.07),transparent)]
+      "
+    />
+  </div>
+);
+
+const ComoFunciona: React.FC = () => {
+  return (
+    <section className="relative w-full bg-[#F7F8FC] py-14 px-5 sm:py-16 sm:px-8">
+      <div className="mx-auto max-w-5xl">
+        <h2 className="mb-8 text-center text-2xl sm:text-3xl font-semibold text-zinc-900">
+          Como a <span className="text-[#5B4BFF]">Eco</span> funciona
         </h2>
-        <p className="mt-3 text-white/70 text-[15px] sm:text-[17px] max-w-2xl mx-auto">
-          4 situações comuns — {hint}
-        </p>
-      </div>
 
-      {/* GRID 2×2 (1×4 no mobile) */}
-      <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
-        {issues.map((c, i) => {
-          const isActive = active === i;
-          return (
-            <button
-              key={c.title}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActive(isActive ? null : i)}
-              className={`
-                group/card relative overflow-hidden text-left
-                rounded-2xl lg:rounded-3xl
-                bg-white/[0.03] backdrop-blur-xl
-                border border-white/10
-                shadow-[0_10px_26px_rgba(0,0,0,0.22)]
-                p-5 sm:p-6 lg:p-7
-                transition-all duration-200
-                hover:-translate-y-[1px] focus-visible:-translate-y-[1px]
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-white/15
-              `}
-            >
-              {/* highlight sutil */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-inherit bg-[radial-gradient(120%_80%_at_20%_0%,rgba(255,255,255,0.10),transparent_40%)]"
-              />
-
-              <div className="relative flex items-start gap-4 sm:gap-5">
-                <IconBadge Icon={c.Icon} active={isActive} />
-
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
-                    {c.title}
-                  </h3>
-
-                  {/* área que alterna Sinais ↔ O que muda; altura fixa p/ não pular */}
-                  <div className="relative mt-2 lg:mt-3 min-h-[44px]">
-                    {/* Sinais (default) */}
-                    <p
-                      className={`
-                        absolute inset-0 text-white/70 text-[14px] sm:text-[15px] leading-snug
-                        transition-all duration-250
-                        ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"}
-                        group-hover/card:opacity-0 group-hover/card:translate-y-1
-                      `}
-                    >
-                      <span className="text-white/50">Sinais: </span>
-                      {c.signals}
-                    </p>
-
-                    {/* O que muda (hover/active) */}
-                    <p
-                      className={`
-                        absolute inset-0 text-white/90 text-[14px] sm:text-[15px] leading-snug
-                        transition-all duration-250
-                        ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"}
-                        group-hover/card:opacity-100 group-hover/card:translate-y-0
-                      `}
-                    >
-                      <span className="text-white/60">O que muda: </span>
-                      {c.help}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* pílula dinâmica: mouse vs toque */}
-              <div
-                className="
-                  relative mt-5 inline-flex items-center gap-2 px-2.5 py-1
-                  rounded-full text-[12px] text-white/60 border border-white/10
-                  bg-white/[0.03] transition-opacity duration-200
-                  group-hover/card:opacity-70
-                "
-              >
-                <span className="">{canHover ? "Passe o mouse" : "Toque"}</span>
-                <span className="opacity-50">para ver o que muda</span>
-              </div>
-            </button>
-          );
-        })}
+        <div className="grid grid-cols-1 gap-4 sm:gap-5">
+          {STEPS.map((s, i) => (
+            <Card
+              key={s.title}
+              stepNumber={i + 1}
+              icon={s.icon}
+              title={s.title}
+              subtitle={s.subtitle}
+              cta={s.cta}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default TargetAudienceSection;
+export default ComoFunciona;
