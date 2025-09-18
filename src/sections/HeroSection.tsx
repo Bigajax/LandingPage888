@@ -14,13 +14,13 @@ const HeroSection: React.FC = () => {
       aria-labelledby="hero-title"
       className="
         relative bg-white overflow-hidden
-        /* Desktop ocupa viewport menos o header; Mobile sem min-height pra não sobrar buraco */
+        /* Desktop ocupa viewport menos o header; mobile sem min-height pra não sobrar buraco */
         sm:min-h-[calc(100svh-var(--nav-h,80px))]
       "
     >
-      {/* Halo / Orb – só em ≥ sm pra não poluir mobile */}
+      {/* Halo só em ≥ sm para não poluir o mobile */}
       <div
-        aria-hidden="true"
+        aria-hidden
         className="pointer-events-none absolute inset-0 hidden sm:flex items-center justify-center"
       >
         <div className="relative w-[92vw] max-w-[600px] aspect-square">
@@ -31,27 +31,32 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Conteúdo com RESPIRO e compensação do header fixo */}
+      {/* Conteúdo com respiro e safe-areas */}
       <div
         className={`
           relative z-10 mx-auto px-5 sm:px-6
-          max-w-[520px] sm:max-w-[860px]
+          max-w-[560px] sm:max-w-[880px]
           flex flex-col items-center text-center
-          pt-[calc(var(--nav-h,64px)+40px)] sm:pt-[calc(var(--nav-h,80px)+96px)]
-          pb-12 sm:pb-24
+          /* compensa header fixo + safe area superior */
+          pt-[calc(var(--nav-h,64px)+28px+env(safe-area-inset-top))]
+          sm:pt-[calc(var(--nav-h,80px)+96px)]
+          /* respiro inferior + safe area inferior (Instagram/iOS) */
+          pb-[calc(18px+env(safe-area-inset-bottom))]
+          sm:pb-24
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
         `}
       >
         {/* Pílula */}
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 sm:mb-6 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_rgba(0,0,0,0.06)]">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 sm:mb-6 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_rgba(0,0,0,0.06)]">
           #EcoIAdeAutoconhecimento
         </span>
 
-        {/* Título */}
+        {/* Título (com balance para quebra bonita) */}
         <h1
           id="hero-title"
           className="
+            text-balance
             text-[32px] leading-[1.18]
             sm:text-6xl sm:leading-tight lg:text-7xl
             font-extrabold text-zinc-900 tracking-tight
@@ -66,8 +71,8 @@ const HeroSection: React.FC = () => {
           IA reflexiva que analisa suas emoções e mostra padrões para você evoluir.
         </p>
 
-        {/* CTAs – mantidos e com mais respiro */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-8 sm:mb-10">
+        {/* CTAs */}
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-6 sm:mb-10">
           <a
             href="https://ecofrontend888.vercel.app"
             target="_blank"
@@ -91,13 +96,13 @@ const HeroSection: React.FC = () => {
           Beta gratuito · 7 min para testar · Vagas limitadas
         </p>
 
-        {/* Seta Apple-like (visível nos dois, porém pequena no mobile) */}
+        {/* Seta – margem menor no mobile para não criar buraco */}
         <ScrollLink
           to="como-funciona"
           smooth
           duration={600}
           offset={-80}
-          className="group mt-8 sm:mt-10 inline-flex cursor-pointer select-none"
+          className="group mt-5 sm:mt-10 inline-flex cursor-pointer select-none"
           aria-label="Ir para a próxima seção"
         >
           <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
