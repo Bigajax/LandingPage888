@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 import HeroSection from './sections/HeroSection';
 import HowItWorksSection from './sections/HowItWorksSection';
+import MentoresStrip from './sections/MentoresStrip'; // ⬅️ NOVO
 import ForWhoSection from './sections/ForWhoSection';
 import IntroducingEco from './sections/IntroducingEco';
 import EmotionalReportSection from './sections/EmotionalReportSection';
@@ -24,6 +25,7 @@ const LandingPage: React.FC = () => {
       <main>
         <HeroSection />
         <HowItWorksSection />
+        <MentoresStrip /> {/* ⬅️ FAIXA ROXA COM OS ROSTOS */}
         <ForWhoSection />
         <IntroducingEco />
         <EmotionalReportSection />
