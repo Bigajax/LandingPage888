@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MessageCircle, Brain, RefreshCw, BookOpen } from "lucide-react";
+import { Circle, Sparkles, Sun, BookOpen } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type Step = {
@@ -10,30 +10,10 @@ type Step = {
 };
 
 const steps: Step[] = [
-  {
-    id: 1,
-    title: "Compartilhe",
-    description: "Escreva como se sente, sem complicação.",
-    icon: MessageCircle,
-  },
-  {
-    id: 2,
-    title: "Reflexão guiada",
-    description: "Receba respostas cuidadosas com base no que expressou.",
-    icon: Brain,
-  },
-  {
-    id: 3,
-    title: "Clareza emocional",
-    description: "Veja padrões e insights visuais do seu momento.",
-    icon: RefreshCw,
-  },
-  {
-    id: 4,
-    title: "Memórias conscientes",
-    description: "Acompanhe sua evolução e guarde aprendizados.",
-    icon: BookOpen,
-  },
+  { id: 1, title: "Compartilhe",          description: "Dê forma ao que sente.",                 icon: Circle },
+  { id: 2, title: "Reflexão guiada",      description: "Um reflexo do seu interior.",            icon: Sparkles },
+  { id: 3, title: "Clareza emocional",    description: "Veja o invisível ganhar contorno.",      icon: Sun },
+  { id: 4, title: "Memórias conscientes", description: "Um lugar para guardar o essencial.",     icon: BookOpen },
 ];
 
 const HowItWorks: React.FC = () => {
@@ -46,13 +26,13 @@ const HowItWorks: React.FC = () => {
       return (
         <div className="space-y-3">
           <div className="text-xs sm:text-sm text-zinc-400">Sua expressão</div>
-          <div className="bg-white rounded-xl p-4 shadow border border-zinc-100">
+          <div className="bg-white rounded-xl p-4 border border-zinc-100">
             <p className="text-zinc-800 leading-relaxed">
               Hoje me sinto confuso, tentando ouvir o que está aqui dentro.
             </p>
           </div>
           <div className="mt-1 flex items-center h-11 rounded-xl px-4 text-zinc-400 bg-zinc-50 border border-zinc-200">
-            Escreva aqui…
+            Dê forma ao que sente…
           </div>
         </div>
       );
@@ -65,7 +45,7 @@ const HowItWorks: React.FC = () => {
             <div className="absolute inset-0 rounded-full border border-white/60 animate-pulse" />
           </div>
           <p className="text-center text-zinc-600 mt-4 text-sm leading-relaxed">
-            Analisando com atenção o que você disse…
+            Uma resposta nasce do que você revela.
           </p>
         </div>
       );
@@ -76,7 +56,7 @@ const HowItWorks: React.FC = () => {
           <div className="text-xs sm:text-sm text-zinc-400">Seu insight</div>
           <div className="bg-gradient-to-br from-[#5B4BFF]/10 to-[#5B4BFF]/5 rounded-xl p-4 border border-zinc-200">
             <p className="text-zinc-800 leading-relaxed">
-              Você busca clareza para entender seus movimentos internos. Vamos acompanhar quando isso aparece?
+              O que se repete começa a ganhar contorno.
             </p>
           </div>
         </div>
@@ -84,7 +64,7 @@ const HowItWorks: React.FC = () => {
 
     return (
       <div className="space-y-3">
-        <div className="text-xs sm:text-sm text-zinc-400">Suas memórias</div>
+        <div className="text-xs sm:text-sm text-zinc-400">Memória (exemplo)</div>
         <div className="bg-white rounded-xl p-4 border border-zinc-200 max-h-[240px] overflow-y-auto space-y-4">
           <div className="border-b border-zinc-200 pb-3">
             <div className="text-xs text-zinc-400">14 de julho</div>
@@ -117,7 +97,7 @@ const HowItWorks: React.FC = () => {
         Como a <span className="text-[#5B4BFF]">Eco</span> funciona
       </h2>
 
-      {/* MOBILE: cards empilhados + demo inline no card ativo  */}
+      {/* MOBILE: cards empilhados + demo inline no card ativo */}
       <div className="w-full max-w-3xl lg:hidden space-y-4">
         {steps.map((step) => {
           const Icon = step.icon;
@@ -125,32 +105,47 @@ const HowItWorks: React.FC = () => {
           return (
             <div
               key={step.id}
-              className={`w-full text-left rounded-2xl border transition-all shadow-[0_6px_18px_rgba(0,0,0,0.06)] ${
-                active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10 bg-white" : "border-white bg-white"
-              }`}
+              className={`w-full text-left rounded-2xl border transition-all
+                ${active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10 bg-white" : "border-zinc-100 bg-white"}
+                hover:border-zinc-200 hover:translate-y-[1px] active:scale-[0.995]`}
             >
               <button
                 onClick={() => setActiveStep(active ? 0 : step.id)}
                 className="w-full flex items-center gap-4 p-4"
                 aria-expanded={active}
+                aria-pressed={active}
                 aria-controls={`demo-${step.id}`}
               >
                 <div
-                  className={`flex items-center justify-center w-11 h-11 rounded-full shadow-inner ${
-                    active ? "bg-[#5B4BFF]" : "bg-zinc-100"
-                  }`}
+                  className={`flex items-center justify-center w-12 h-12 rounded-full
+                    border border-white/60 shadow-inner
+                    bg-[radial-gradient(circle_at_30%_30%,white,rgba(91,75,255,0.08)_45%,rgba(91,75,255,0.14)_80%)]
+                    ${active ? "" : "opacity-90"}`}
+                  aria-hidden
                 >
-                  <Icon size={18} strokeWidth={1.6} className={active ? "text-white" : "text-zinc-600"} />
+                  <Icon size={18} strokeWidth={1.6} className="text-zinc-700" />
                 </div>
+
                 <div className="flex-1">
-                  <h3 className="text-[16px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
-                  <p className="text-zinc-600 text-[13px] leading-relaxed">{step.description}</p>
+                  <div className="flex items-baseline gap-2">
+                    <h3 className="text-[16px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
+                    <span className="ml-auto text-[12px] text-zinc-400 tabular-nums">0{step.id}</span>
+                  </div>
+                  <p className="text-zinc-600 text-[13px] leading-snug line-clamp-2">{step.description}</p>
+
+                  {step.id === 4 && (
+                    <a
+                      href="#relatorio"
+                      className="mt-2 inline-flex items-center text-[13px] text-zinc-700 hover:underline"
+                    >
+                      Ver relatório emocional →
+                    </a>
+                  )}
                 </div>
               </button>
 
-              {/* demo inline (accordion) */}
               {active && (
-                <div id={`demo-${step.id}`} className="px-4 pb-4">
+                <div id={`demo-${step.id}`} className="px-4 pb-4 scroll-mt-24">
                   <div className="mt-1 rounded-xl border border-zinc-100 bg-white p-4">
                     <Demo step={step.id} />
                   </div>
@@ -171,29 +166,40 @@ const HowItWorks: React.FC = () => {
               <button
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
-                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all border bg-white shadow-[0_6px_18px_rgba(0,0,0,0.06)] ${
-                  active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10" : "border-white"
-                }`}
+                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all border bg-white
+                  ${active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10" : "border-zinc-100"}
+                  hover:border-zinc-200 hover:translate-y-[1px] active:scale-[0.995]`}
+                aria-pressed={active}
+                aria-controls={`demo-desktop-${step.id}`}
               >
                 <div
-                  className={`flex items-center justify-center w-12 h-12 rounded-full shadow-inner ${
-                    active ? "bg-[#5B4BFF]" : "bg-zinc-100"
-                  }`}
+                  className={`flex items-center justify-center w-12 h-12 rounded-full
+                    border border-white/60 shadow-inner
+                    bg-[radial-gradient(circle_at_30%_30%,white,rgba(91,75,255,0.08)_45%,rgba(91,75,255,0.14)_80%)]`}
+                  aria-hidden
                 >
-                  <Icon size={18} strokeWidth={1.6} className={active ? "text-white" : "text-zinc-600"} />
+                  <Icon size={18} strokeWidth={1.6} className="text-zinc-700" />
                 </div>
-                <div>
-                  <h3 className="text-[17px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
-                  <p className="text-zinc-600 text-[15px] leading-relaxed">{step.description}</p>
+                <div className="flex-1">
+                  <div className="flex items-baseline gap-2">
+                    <h3 className="text-[17px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
+                    <span className="ml-auto text-[12px] text-zinc-400 tabular-nums">0{step.id}</span>
+                  </div>
+                  <p className="text-zinc-600 text-[15px] leading-snug">{step.description}</p>
+                  {step.id === 4 && (
+                    <a href="#relatorio" className="mt-2 inline-flex items-center text-[13px] text-zinc-700 hover:underline">
+                      Ver relatório emocional →
+                    </a>
+                  )}
                 </div>
               </button>
             );
           })}
         </div>
 
-        <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl border border-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-8 min-h-[420px] overflow-hidden">
+        <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl border border-white p-8 min-h-[420px] overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_0%,rgba(91,75,255,0.06),transparent)] pointer-events-none" />
-          <div className="relative h-full">
+          <div className="relative h-full" id="demo-desktop">
             <Demo step={activeStep || 1} />
           </div>
         </div>
