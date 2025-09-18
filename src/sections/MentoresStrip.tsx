@@ -1,14 +1,20 @@
-import React from "react";
+// src/sections/MentoresStrip.tsx
+import marco   from "@/assets/mentores/marco-aurelio.png";
+import seneca  from "@/assets/mentores/seneca.png";
+import daniel  from "@/assets/mentores/daniel-kahneman.png";
+import nassim  from "@/assets/mentores/nassim-taleb.png";
+import brene   from "@/assets/mentores/brene-brown.png";
+import joe     from "@/assets/mentores/joe-dispenza.png";
 
-/** ajuste os caminhos se suas imagens estiverem em /public */
 const MENTORES = [
-  { name: "Marco Aurélio", tag: "Estoicismo", src: "/src/assets/mentores/marco-aurelio.png" },
-  { name: "Sêneca", tag: "Estoicismo", src: "/src/assets/mentores/seneca.png" },
-  { name: "Daniel Kahneman", tag: "Psicologia comportamental", src: "/src/assets/mentores/daniel-kahneman.png" },
-  { name: "Nassim Taleb", tag: "Antifragilidade", src: "/src/assets/mentores/nassim-taleb.png" },
-  { name: "Brené Brown", tag: "Vulnerabilidade & coragem", src: "/src/assets/mentores/brene-brown.png" },
-  { name: "Dr. Joe Dispenza", tag: "Neurociência aplicada", src: "/src/assets/mentores/joe-dispenza.png" },
+  { name: "Marco Aurélio", tag: "Estoicismo", src: marco },
+  { name: "Sêneca", tag: "Estoicismo", src: seneca },
+  { name: "Daniel Kahneman", tag: "Psicologia comportamental", src: daniel },
+  { name: "Nassim Taleb", tag: "Antifragilidade", src: nassim },
+  { name: "Brené Brown", tag: "Vulnerabilidade & coragem", src: brene },
+  { name: "Dr. Joe Dispenza", tag: "Neurociência aplicada", src: joe },
 ];
+
 
 const MentoresStrip: React.FC = () => {
   return (
