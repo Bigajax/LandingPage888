@@ -12,67 +12,60 @@ const HeroSection: React.FC = () => {
     <section
       ref={ref}
       aria-labelledby="hero-title"
-      className="
-        relative bg-white overflow-hidden
-        /* Desktop ocupa viewport menos o header; mobile sem min-height pra não sobrar buraco */
-        sm:min-h-[calc(100svh-var(--nav-h,80px))]
-      "
+      className={`
+        relative overflow-hidden bg-white
+        /* usa svh (iOS/Instagram) e dvh (android/desktop modernos) */
+        min-h-[calc(100svh-var(--nav-h,64px))] md:min-h-[calc(100dvh-var(--nav-h,80px))]
+      `}
     >
-      {/* Halo só em ≥ sm para não poluir o mobile */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hidden sm:flex items-center justify-center"
-      >
-        <div className="relative w-[92vw] max-w-[600px] aspect-square">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(115,91,255,0.16)_0%,_rgba(115,91,255,0.06)_45%,_transparent_70%)] blur-3xl" />
-          <div className="absolute inset-0 opacity-20">
-            <Orb hoverIntensity={0.2} rotateOnHover={false} hue={265} forceHoverState={false} />
+      {/* BG / ORB (agora também no mobile, mais sutil) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="relative w-[88vw] max-w-[560px] aspect-square">
+          {/* fallback de halo */}
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.20)_0%,rgba(115,91,255,0.10)_45%,transparent_72%)] blur-2xl" />
+          {/* orb propriamente dito – mais leve no mobile */}
+          <div className="absolute inset-0 opacity-25 sm:opacity-30 md:opacity-40 motion-reduce:opacity-0">
+            <Orb hoverIntensity={0.15} rotateOnHover={false} hue={265} forceHoverState={false} />
           </div>
         </div>
       </div>
 
-      {/* Conteúdo com respiro e safe-areas */}
+      {/* CONTEÚDO */}
       <div
         className={`
           relative z-10 mx-auto px-5 sm:px-6
           max-w-[560px] sm:max-w-[880px]
           flex flex-col items-center text-center
-          /* compensa header fixo + safe area superior */
-          pt-[calc(var(--nav-h,64px)+28px+env(safe-area-inset-top))]
-          sm:pt-[calc(var(--nav-h,80px)+96px)]
-          /* respiro inferior + safe area inferior (Instagram/iOS) */
-          pb-[calc(18px+env(safe-area-inset-bottom))]
-          sm:pb-24
+          /* compensação do header + safe area */
+          pt-[calc(var(--nav-h,64px)+18px+env(safe-area-inset-top))]
+          md:pt-[calc(var(--nav-h,80px)+72px)]
+          /* respiro inferior enxuto (evita “buraco” no Instagram) */
+          pb-[calc(12px+env(safe-area-inset-bottom))]
+          md:pb-20
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
         `}
       >
         {/* Pílula */}
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 sm:mb-6 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_rgba(0,0,0,0.06)]">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 sm:mb-5 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_rgba(0,0,0,0.06)]">
           #EcoIAdeAutoconhecimento
         </span>
 
-        {/* Título (com balance para quebra bonita) */}
+        {/* Título */}
         <h1
           id="hero-title"
-          className="
-            text-balance
-            text-[32px] leading-[1.18]
-            sm:text-6xl sm:leading-tight lg:text-7xl
-            font-extrabold text-zinc-900 tracking-tight
-            mb-5 sm:mb-6
-          "
+          className="text-balance text-[30px] leading-[1.18] sm:text-6xl sm:leading-tight lg:text-7xl font-extrabold text-zinc-900 tracking-tight mb-4 sm:mb-6"
         >
           Conheça-se melhor com a Eco
         </h1>
 
         {/* Subtítulo */}
-        <p className="text-base sm:text-xl text-zinc-600 max-w-[720px] mb-9 sm:mb-12">
+        <p className="text-[15px] sm:text-xl text-zinc-600 max-w-[720px] mb-8 sm:mb-10">
           IA reflexiva que analisa suas emoções e mostra padrões para você evoluir.
         </p>
 
         {/* CTAs */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-6 sm:mb-10">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 sm:mb-9">
           <a
             href="https://ecofrontend888.vercel.app"
             target="_blank"
@@ -96,13 +89,13 @@ const HeroSection: React.FC = () => {
           Beta gratuito · 7 min para testar · Vagas limitadas
         </p>
 
-        {/* Seta – margem menor no mobile para não criar buraco */}
+        {/* Seta */}
         <ScrollLink
           to="como-funciona"
           smooth
           duration={600}
           offset={-80}
-          className="group mt-5 sm:mt-10 inline-flex cursor-pointer select-none"
+          className="group mt-4 sm:mt-8 inline-flex cursor-pointer select-none"
           aria-label="Ir para a próxima seção"
         >
           <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
