@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 
 import HeroSection from './sections/HeroSection';
 import HowItWorksSection from './sections/HowItWorksSection';
-import MentoresStrip from './sections/MentoresStrip'; // ⬅️ NOVO
+import MentoresStrip from './sections/MentoresStrip';
 import ForWhoSection from './sections/ForWhoSection';
 import IntroducingEco from './sections/IntroducingEco';
-import EmotionalReportSection from './sections/EmotionalReportSection';
-import StressIndexSection from './sections/StressIndexSection';
+// REMOVIDO: EmotionalReportSection
+// REMOVIDO: StressIndexSection
 import PrinciplesSection from './sections/PrinciplesSection';
 import CallToActionEco from './sections/CallToActionEco';
 import Testimonials from './sections/Testimonials';
@@ -25,11 +25,11 @@ const LandingPage: React.FC = () => {
       <main>
         <HeroSection />
         <HowItWorksSection />
-        <MentoresStrip /> {/* ⬅️ FAIXA ROXA COM OS ROSTOS */}
+        <MentoresStrip />
         <ForWhoSection />
         <IntroducingEco />
-        <EmotionalReportSection />
-        <StressIndexSection />
+        {/* REMOVIDO: <EmotionalReportSection /> */}
+        {/* REMOVIDO: <StressIndexSection /> */}
         <PrinciplesSection />
         <CallToActionEco />
         <Testimonials />

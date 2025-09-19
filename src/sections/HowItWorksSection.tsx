@@ -20,7 +20,6 @@ const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
   const { ref, isVisible } = useScrollReveal();
 
-  // UI de demonstração (reusável)
   const Demo = ({ step }: { step: number }) => {
     if (step === 1)
       return (
@@ -87,15 +86,22 @@ const HowItWorks: React.FC = () => {
     <section
       id="como-funciona"
       ref={ref}
-      className="py-20 sm:py-24 px-4 sm:px-6 bg-[#F7F6FB] w-full flex flex-col items-center text-center scroll-mt-24"
+      className="py-20 sm:py-24 px-4 sm:px-6 bg-[#F7F6FB] w-full flex flex-col items-center scroll-mt-24"
     >
-      <h2
-        className={`text-[26px] sm:text-4xl md:text-[44px] font-semibold text-zinc-900 mb-10 sm:mb-14 leading-tight tracking-tight transition-all duration-700 ease-out ${
+      {/* Cabeçalho estilo “continuação” */}
+      <div
+        className={`w-full max-w-7xl mx-auto mb-10 sm:mb-14 transition-all duration-700 ease-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        Como a <span className="text-[#5B4BFF]">Eco</span> funciona
-      </h2>
+        <h2 className="text-left text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
+          <span className="text-zinc-900">Como a Eco</span>
+          <span className="text-zinc-500"> funciona.</span>
+        </h2>
+        <p className="mt-2 text-left text-zinc-500 text-[15px] sm:text-[17px]">
+          Os passos. Do primeiro registro à clareza.
+        </p>
+      </div>
 
       {/* MOBILE: cards empilhados + demo inline no card ativo */}
       <div className="w-full max-w-3xl lg:hidden space-y-4">
@@ -132,11 +138,10 @@ const HowItWorks: React.FC = () => {
                     <span className="ml-auto text-[12px] text-zinc-400 tabular-nums">0{step.id}</span>
                   </div>
                   <p className="text-zinc-600 text-[13px] leading-snug line-clamp-2">{step.description}</p>
-
                   {step.id === 4 && (
                     <a
                       href="#relatorio"
-                      className="mt-2 inline-flex items-center text-[13px] text-zinc-700 hover:underline"
+                      className="mt-2 inline-flex items-center text-[13px] text-zinc-600 hover:text-zinc-800"
                     >
                       Ver relatório emocional →
                     </a>
@@ -187,7 +192,10 @@ const HowItWorks: React.FC = () => {
                   </div>
                   <p className="text-zinc-600 text-[15px] leading-snug">{step.description}</p>
                   {step.id === 4 && (
-                    <a href="#relatorio" className="mt-2 inline-flex items-center text-[13px] text-zinc-700 hover:underline">
+                    <a
+                      href="#relatorio"
+                      className="mt-2 inline-flex items-center text-[13px] text-zinc-600 hover:text-zinc-800"
+                    >
                       Ver relatório emocional →
                     </a>
                   )}

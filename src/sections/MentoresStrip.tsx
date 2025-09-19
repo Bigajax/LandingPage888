@@ -33,25 +33,19 @@ const MentoresStrip: React.FC = () => {
     <section
       id="mentores"
       aria-labelledby="mentores-title"
-      className={`
+      className="
         relative overflow-hidden py-14 sm:py-20
-        /* gradiente inspirado na arte de referência */
         bg-[radial-gradient(120%_90%_at_20%_10%,#B59CFF_0%,#8F77FF_28%,#6E5BFF_55%,#4F46E5_78%,#2A2376_100%)]
-      `}
+      "
     >
-      {/* layers de luz/sombra do fundo */}
+      {/* layers de luz/sombra de fundo (sem alterações visuais fora do texto) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        {/* glow difuso central */}
         <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[120vw] h-[120vw] max-w-[1100px] rounded-full blur-3xl 
                         bg-[radial-gradient(circle,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.10)_45%,transparent_70%)]" />
-        {/* luz rosada (lado esquerdo) */}
         <div className="absolute top-1/3 left-[12%] w-[60vw] h-[60vw] rounded-full blur-[110px] opacity-45 
                         bg-[radial-gradient(circle,#FFB1E6_0%,transparent_65%)]" />
-        {/* luz azul fria (lado direito) */}
         <div className="absolute bottom-[-8%] right-[-6%] w-[55vw] h-[55vw] rounded-full blur-[110px] opacity-40 
                         bg-[radial-gradient(circle,#86D8FF_0%,transparent_70%)]" />
-
-        {/* light streaks */}
         <div className="absolute left-[-10%] top-[56%] w-[130%] h-[2px] -rotate-[14deg]
                         bg-gradient-to-r from-transparent via-white/55 to-transparent blur-[2px] opacity-80" />
         <div className="absolute left-[-8%] top-[58%] w-[130%] h-[1px] -rotate-[14deg]
@@ -59,16 +53,19 @@ const MentoresStrip: React.FC = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5">
-        {/* título */}
+        {/* TÍTULO “continuação”: parte forte + complemento mais suave */}
         <div className="text-center mb-8 sm:mb-12">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-white/90 bg-white/10 border border-white/20 backdrop-blur">
-            Referências da Eco
+            Referências
           </span>
-          <h2 id="mentores-title" className="text-white text-2xl sm:text-4xl font-semibold tracking-tight mt-4">
-            Inspirada por grandes mentes
+
+          <h2 id="mentores-title" className="mt-4 font-semibold tracking-tight text-2xl sm:text-4xl">
+            <span className="text-white">Grandes mentes.</span>
+            <span className="text-white/70"> As ideias que inspiram a Eco.</span>
           </h2>
-          <p className="text-white/85 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
-            Filosofia, psicologia e ciência que embasam nossas reflexões.
+
+          <p className="text-white/80 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+            Filosofia, psicologia e ciência que sustentam nossa abordagem.
           </p>
         </div>
 
@@ -114,14 +111,12 @@ const MentoresStrip: React.FC = () => {
               key={m.name}
               className="snap-center shrink-0 w-[240px] sm:w-[260px] md:w-auto md:shrink md:snap-none group"
             >
-              {/* CARD arredondado + glass */}
               <div className="
                 relative rounded-3xl overflow-hidden
                 bg-white/8 border border-white/20 backdrop-blur-md
                 shadow-[0_8px_28px_rgba(0,0,0,0.25)]
                 motion-safe:transition-transform motion-safe:duration-300 group-hover:-translate-y-1
               ">
-                {/* imagem com base alinhada */}
                 <div className="relative w-full aspect-[3/4] flex items-end justify-center">
                   <img
                     src={m.src}
@@ -131,11 +126,9 @@ const MentoresStrip: React.FC = () => {
                     fetchpriority={index === 0 ? ('high' as const) : ('auto' as const)}
                     className="w-full h-[90%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.33)]"
                   />
-                  {/* fade interno do card para casar com o fundo */}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#2A2376]/70 to-transparent" />
                 </div>
 
-                {/* legenda */}
                 <figcaption className="p-4 text-center">
                   <div className="text-white font-medium text-[15px] leading-tight">{m.name}</div>
                   <div className="text-white/80 text-[12px] mt-1">{m.tag}</div>
@@ -145,10 +138,10 @@ const MentoresStrip: React.FC = () => {
           ))}
         </div>
 
-        {/* hint: Arraste para ver mais (pill) */}
+        {/* hint */}
         <p className="md:hidden mx-auto mt-5 inline-flex items-center gap-2 px-3 py-1 rounded-full
                       bg-white/10 text-[11.5px] text-white/90 backdrop-blur-sm border border-white/20">
-          Arraste para ver mais
+          Deslize para ver mais
           <svg
             className="w-3.5 h-3.5 opacity-80 animate-[bounce-x_1.5s_infinite]"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -158,7 +151,6 @@ const MentoresStrip: React.FC = () => {
         </p>
       </div>
 
-      {/* keyframes inline (Tailwind arbitrary) */}
       <style>{`
         @keyframes bounce-x { 0%,100% { transform: translateX(0) } 50% { transform: translateX(4px) } }
       `}</style>

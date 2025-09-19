@@ -1,65 +1,168 @@
-import React from 'react';
-import StressIndexImage from '@/assets/images/mulher_meditando_transparente.png';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import StressIndexImage from "@/assets/images/mulher_meditando_transparente.png";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 18 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.2, duration: 0.6 },
+    transition: { delay: i * 0.14 + 0.06, duration: 0.45, ease: "easeOut" },
   }),
 };
 
-const StressIndexSection = () => {
+/** Pílula “Apple-like” (glass + hairline + brilho) */
+const Pill: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = "",
+}) => (
+  <span
+    className={[
+      "relative inline-flex items-center gap-2",
+      "px-3.5 py-1.5 rounded-full",
+      "text-[11px] uppercase tracking-[0.18em] text-white/85",
+      "border border-white/12",
+      "bg-white/[0.06] supports-[backdrop-filter]:backdrop-blur-xl",
+      "shadow-[inset_0_0.5px_0_rgba(255,255,255,0.55),0_8px_24px_rgba(0,0,0,0.22)]",
+      className,
+    ].join(" ")}
+  >
+    {/* pontinho */}
+    <span className="h-1.5 w-1.5 rounded-full bg-[#9B8CFF] shadow-[0_0_10px_#9B8CFF,0_0_2px_#9B8CFF_inset]" />
+    {children}
+    {/* brilho superior */}
+    <span
+      aria-hidden
+      className="
+        pointer-events-none absolute inset-0 rounded-full
+        [mask-image:linear-gradient(to_bottom,white,transparent_65%)]
+        bg-[linear-gradient(180deg,rgba(255,255,255,0.5),rgba(255,255,255,0))]
+        opacity-[.18]
+      "
+    />
+  </span>
+);
+
+const StressIndexSection: React.FC = () => {
   const frases = [
-    'A Eco escuta o que você sente, não só o que você diz.',
-    'Tensões se dissolvem, pensamentos se alinham.',
-    'Você começa a se ver com mais nitidez.',
+    "A Eco escuta o que você sente, não só o que você diz.",
+    "Tensões se dissolvem, pensamentos se alinham.",
+    "Você começa a se ver com mais nitidez.",
   ];
 
   return (
-    <section className="relative bg-black text-white py-24 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-gray-800 via-gray-900 to-black z-0" />
+    <section
+      aria-labelledby="claridade-title"
+      className="
+        relative overflow-hidden
+        bg-[#0B0E14] text-white
+        py-12 sm:py-14 lg:py-18
+        px-5 sm:px-8 lg:px-10
+      "
+    >
+      {/* fundo: halos + vinheta (sutil) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {/* halo roxo à esquerda/baixo */}
+        <div
+          className="
+            absolute -left-20 bottom-[-6%]
+            w-[45vw] h-[45vw] lg:w-[38vw] lg:h-[38vw]
+            rounded-full blur-[110px] opacity-25
+            bg-[radial-gradient(50%_50%_at_50%_50%,#7C5CFF_0%,transparent_65%)]
+          "
+        />
+        {/* halo azulado à direita/cima */}
+        <div
+          className="
+            absolute right-[-12%] -top-16
+            w-[52vw] h-[52vw] lg:w-[46vw] lg:h-[46vw]
+            rounded-full blur-[120px] opacity-20
+            bg-[radial-gradient(50%_50%_at_50%_50%,#8FB3FF_0%,transparent_70%)]
+          "
+        />
+        {/* vinheta nas bordas */}
+        <div
+          className="
+            absolute inset-0
+            bg-[radial-gradient(130%_110%_at_50%_45%,transparent_58%,rgba(0,0,0,0.42)_100%)]
+          "
+        />
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 items-center">
-        {/* Texto */}
-        <div className="pt-10 lg:pt-0">
-          <span className="uppercase text-sm tracking-wider text-gray-400 mb-4 block">
-            clareza emocional
-          </span>
+      <div className="relative z-10 mx-auto max-w-6xl grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* texto */}
+        <div className="order-2 lg:order-1">
+          <Pill>Clareza emocional</Pill>
 
           <motion.h2
-            initial={{ opacity: 0, y: 40 }}
+            id="claridade-title"
+            initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-8 leading-tight"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.4 }}
+            className="
+              mt-3
+              font-light tracking-[-0.01em]
+              leading-[1.15]
+              text-[clamp(26px,5.2vw,42px)]
+              max-w-[26ch]
+            "
           >
-            Ver a si mesmo com <span className="font-semibold text-[#6C4CFF]">nitidez</span> começa com uma boa escuta.
+            Ver a si mesmo com{" "}
+            <span
+              className="
+                font-semibold bg-clip-text text-transparent
+                bg-[linear-gradient(90deg,#D4D3FF_0%,#8E7CFF_35%,#5B4BFF_100%)]
+              "
+            >
+              nitidez
+            </span>{" "}
+            começa com uma boa escuta.
           </motion.h2>
 
-          {frases.map((frase, i) => (
-            <motion.p
-              key={i}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="text-base sm:text-lg text-gray-300 font-light mb-4 leading-relaxed"
-            >
-              {frase}
-            </motion.p>
-          ))}
+          <div className="mt-4 sm:mt-5 max-w-[62ch] space-y-2.5">
+            {frases.map((frase, i) => (
+              <motion.p
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
+                variants={fadeInUp}
+                className="text-[15px] sm:text-[16px] leading-relaxed text-white/80"
+              >
+                {frase}
+              </motion.p>
+            ))}
+          </div>
         </div>
 
-        {/* Imagem */}
-        <div className="flex justify-center items-center">
-          <img
+        {/* imagem */}
+        <div className="order-1 lg:order-2 relative flex items-center justify-center">
+          {/* glow atrás do recorte */}
+          <div
+            aria-hidden
+            className="
+              absolute inset-0 -z-[1] mx-auto my-auto
+              w-[78%] max-w-[420px] aspect-[4/5]
+              rounded-[48%] blur-2xl opacity-30
+              bg-[radial-gradient(60%_55%_at_50%_45%,#7C5CFF_0%,transparent_70%)]
+            "
+          />
+          <motion.img
             src={StressIndexImage}
-            alt="Mulher meditando - clareza emocional"
-            className="w-72 sm:w-96 lg:w-[450px] h-auto object-contain opacity-90"
+            alt="Mulher meditando, simbolizando clareza emocional"
+            loading="lazy"
+            decoding="async"
+            initial={{ opacity: 0, scale: 0.985, y: 6 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.35 }}
+            className="
+              w-[230px] sm:w-[300px] lg:w-[380px]
+              h-auto object-contain
+              drop-shadow-[0_28px_60px_rgba(0,0,0,0.45)]
+            "
           />
         </div>
       </div>
