@@ -1,11 +1,16 @@
 import React from "react";
-import { Link as ScrollLink } from "react-scroll";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const HeroSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
+
+  const handleGoToHowItWorks = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("como-funciona");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section
@@ -14,14 +19,22 @@ const HeroSection: React.FC = () => {
       className={`
         relative overflow-hidden bg-white
         min-h-[calc(100svh-var(--nav-h,64px))] md:min-h-[calc(100dvh-var(--nav-h,80px))]
+        [content-visibility:auto] [contain-intrinsic-size:1px_800px]
       `}
     >
       {/* BG / ORB */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div
+        aria-hidden
+        className="
+          pointer-events-none absolute inset-0 flex items-center justify-center
+          transform-gpu will-change-transform
+        "
+      >
         <div className="relative w-[88vw] max-w-[560px] aspect-square">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.15)_0%,rgba(115,91,255,0.08)_45%,transparent_72%)] blur-2xl" />
-          <div className="absolute inset-0 opacity-25 sm:opacity-30 md:opacity-40 motion-reduce:opacity-0">
-            <Orb hoverIntensity={0.15} rotateOnHover={false} hue={265} forceHoverState={false} />
+          {/* blur mais leve no mobile */}
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.14)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl sm:blur-2xl" />
+          <div className="absolute inset-0 opacity-20 sm:opacity-35 motion-reduce:opacity-0">
+            <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
           </div>
         </div>
       </div>
@@ -37,6 +50,7 @@ const HeroSection: React.FC = () => {
           pb-[calc(12px+env(safe-area-inset-bottom))] md:pb-20
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
+          transform-gpu will-change-[opacity,transform]
         `}
       >
         {/* Pílula */}
@@ -44,22 +58,30 @@ const HeroSection: React.FC = () => {
           Jornada de Autoconhecimento
         </span>
 
-        {/* Título */}
+        {/* Título – mais respiro no mobile */}
         <h1
           id="hero-title"
-          className="text-balance text-[28px] leading-[1.16] sm:text-6xl sm:leading-tight lg:text-7xl tracking-tight mb-4 sm:mb-6"
+          className="
+            text-balance
+            text-[30px] leading-[1.28]  /* antes: 28px / 1.16 */
+            sm:text-6xl sm:leading-tight lg:text-7xl
+            tracking-tight mb-3 sm:mb-6
+          "
         >
           <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
           <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
         </h1>
 
-        {/* Subtítulo */}
-        <p className="text-[15px] sm:text-xl text-zinc-600 max-w-[680px] mb-8 sm:mb-10">
+        {/* Subtítulo – line-height maior e espaçamento extra */}
+        <p className="
+          text-[16px] leading-[1.7] sm:text-xl sm:leading-relaxed
+          text-zinc-600 max-w-[680px] mb-9 sm:mb-10
+        ">
           Escreva, reflita e descubra padrões — simples, guiado e no seu ritmo.
         </p>
 
         {/* CTAs */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 sm:mb-9">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-6 sm:mb-9">
           <a
             href="https://ecofrontend888.vercel.app"
             target="_blank"
@@ -69,19 +91,18 @@ const HeroSection: React.FC = () => {
               relative inline-flex w-full sm:w-auto items-center justify-center gap-2
               h-12 px-6 rounded-full font-semibold text-white
               bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF]
-              shadow-[0_12px_28px_rgba(91,75,255,0.32)]
-              hover:brightness-[1.08] active:scale-[0.99] transition
+              shadow-[0_12px_24px_rgba(91,75,255,0.26)]
+              hover:brightness-[1.07] active:scale-[0.99] transition
+              transform-gpu
             "
           >
             <PlayCircle size={18} className="opacity-90" />
             Começar minha jornada
           </a>
 
-          <ScrollLink
-            to="como-funciona"
-            smooth
-            duration={600}
-            offset={-80}
+          <a
+            href="#como-funciona"
+            onClick={handleGoToHowItWorks}
             className="
               group relative inline-flex w-full sm:w-auto items-center justify-center gap-2
               h-12 px-6 rounded-full font-semibold
@@ -94,7 +115,7 @@ const HeroSection: React.FC = () => {
           >
             Ver como funciona
             <ChevronRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-          </ScrollLink>
+          </a>
         </div>
 
         {/* Micro-confiança */}
@@ -103,16 +124,14 @@ const HeroSection: React.FC = () => {
         </p>
 
         {/* Seta */}
-        <ScrollLink
-          to="como-funciona"
-          smooth
-          duration={600}
-          offset={-80}
-          className="group mt-4 sm:mt-8 inline-flex cursor-pointer select-none"
+        <a
+          href="#como-funciona"
+          onClick={handleGoToHowItWorks}
+          className="group mt-5 sm:mt-8 inline-flex cursor-pointer select-none"
           aria-label="Ir para a próxima seção"
         >
           <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
-        </ScrollLink>
+        </a>
       </div>
     </section>
   );
