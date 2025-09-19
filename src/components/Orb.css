@@ -1,6 +1,9 @@
+/* Orb.css */
 .orb-container {
   position: relative;
-  z-index: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  /* ajuda o orb a “furar” o branco translúcido da placa */
+  mix-blend-mode: screen; /* se preferir: plus-lighter (suportado em browsers modernos) */
 }

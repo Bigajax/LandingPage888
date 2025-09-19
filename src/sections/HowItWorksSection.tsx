@@ -95,8 +95,11 @@ const HowItWorks: React.FC = () => {
         }`}
       >
         <h2 className="text-left text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
-          <span className="text-zinc-900">Como a Eco</span>
-          <span className="text-zinc-500"> funciona.</span>
+  <span className="text-zinc-900">Como a Eco</span>
+  {" "}
+          <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
+    funciona.
+  </span>
         </h2>
         <p className="mt-2 text-left text-zinc-500 text-[15px] sm:text-[17px]">
           Os passos. Do primeiro registro à clareza.
@@ -112,7 +115,7 @@ const HowItWorks: React.FC = () => {
             <div
               key={step.id}
               className={`w-full text-left rounded-2xl border transition-all
-                ${active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10 bg-white" : "border-zinc-100 bg-white"}
+                ${active ? "border-[#E6E1F9] ring-2 ring-[#7C5CFF]/15 bg-white" : "border-zinc-100 bg-white"}
                 hover:border-zinc-200 hover:translate-y-[1px] active:scale-[0.995]`}
             >
               <button
@@ -172,7 +175,7 @@ const HowItWorks: React.FC = () => {
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
                 className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all border bg-white
-                  ${active ? "border-[#E8E3F5] ring-2 ring-[#5B4BFF]/10" : "border-zinc-100"}
+                  ${active ? "border-[#E6E1F9] ring-2 ring-[#7C5CFF]/15" : "border-zinc-100"}
                   hover:border-zinc-200 hover:translate-y-[1px] active:scale-[0.995]`}
                 aria-pressed={active}
                 aria-controls={`demo-desktop-${step.id}`}

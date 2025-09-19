@@ -19,7 +19,7 @@ const HeroSection: React.FC = () => {
       {/* BG / ORB */}
       <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="relative w-[88vw] max-w-[560px] aspect-square">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.20)_0%,rgba(115,91,255,0.10)_45%,transparent_72%)] blur-2xl" />
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.15)_0%,rgba(115,91,255,0.08)_45%,transparent_72%)] blur-2xl" />
           <div className="absolute inset-0 opacity-25 sm:opacity-30 md:opacity-40 motion-reduce:opacity-0">
             <Orb hoverIntensity={0.15} rotateOnHover={false} hue={265} forceHoverState={false} />
           </div>
@@ -40,32 +40,31 @@ const HeroSection: React.FC = () => {
         `}
       >
         {/* Pílula */}
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 sm:mb-5 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_rgba(0,0,0,0.06)]">
-          #EcoIAdeAutoconhecimento
+        <span className="inline-flex items-center px-4 py-1.5 rounded-full mb-4 sm:mb-5 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-sm">
+          Jornada de Autoconhecimento
         </span>
 
-        {/* Título – palavra forte + frase suave */}
+        {/* Título */}
         <h1
           id="hero-title"
-          className="text-balance text-[30px] leading-[1.16] sm:text-6xl sm:leading-tight lg:text-7xl tracking-tight mb-4 sm:mb-6"
+          className="text-balance text-[28px] leading-[1.16] sm:text-6xl sm:leading-tight lg:text-7xl tracking-tight mb-4 sm:mb-6"
         >
           <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
-          <span className="font-semibold text-zinc-600">O melhor jeito de se ouvir.</span>
+          <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
         </h1>
 
         {/* Subtítulo */}
-        <p className="text-[15px] sm:text-xl text-zinc-600 max-w-[720px] mb-8 sm:mb-10">
-          Anote, reflita e veja padrões — simples, visual e no seu tempo.
+        <p className="text-[15px] sm:text-xl text-zinc-600 max-w-[680px] mb-8 sm:mb-10">
+          Escreva, reflita e descubra padrões — simples, guiado e no seu ritmo.
         </p>
 
-        {/* CTAs – estilo “Apple” */}
+        {/* CTAs */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-5 sm:mb-9">
-          {/* Primário (gloss + glow sutil) */}
           <a
             href="https://ecofrontend888.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Junte-se ao Beta"
+            aria-label="Começar minha jornada"
             className="
               relative inline-flex w-full sm:w-auto items-center justify-center gap-2
               h-12 px-6 rounded-full font-semibold text-white
@@ -75,12 +74,9 @@ const HeroSection: React.FC = () => {
             "
           >
             <PlayCircle size={18} className="opacity-90" />
-            Junte-se ao Beta
-            {/* brilho de topo (a la gloss) */}
-            <span className="pointer-events-none absolute inset-[1px] rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,255,255,0))]" />
+            Começar minha jornada
           </a>
 
-          {/* Secundário (ghost com borda fantasma) */}
           <ScrollLink
             to="como-funciona"
             smooth
@@ -91,25 +87,19 @@ const HeroSection: React.FC = () => {
               h-12 px-6 rounded-full font-semibold
               bg-white text-zinc-900
               ring-1 ring-[#E6E9F6]
-              shadow-[0_6px_16px_rgba(0,0,0,0.06)]
-              hover:bg-[#F8FAFF] active:scale-[0.99] transition
+              shadow-sm hover:bg-[#F8FAFF] active:scale-[0.99] transition
               cursor-pointer
             "
             aria-label="Ver como funciona"
           >
             Ver como funciona
-            <ChevronRight
-              size={18}
-              className="translate-x-0 transition-transform duration-200 group-hover:translate-x-0.5"
-            />
-            {/* borda-gradiente só no hover (bem sutil) */}
-            <span className="pointer-events-none absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,rgba(124,92,255,.35),rgba(91,75,255,.35))_border-box] [border:1px_solid_transparent]" />
+            <ChevronRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </ScrollLink>
         </div>
 
         {/* Micro-confiança */}
         <p className="text-[12px] sm:text-sm text-zinc-500 tracking-wide">
-          Beta gratuito · 7 min para testar · Vagas limitadas
+          Beta gratuito · Teste em minutos · Vagas limitadas
         </p>
 
         {/* Seta */}

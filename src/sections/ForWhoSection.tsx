@@ -26,14 +26,14 @@ type Issue = {
   };
 };
 
-/** Quatro “tiles” com acentos inspirados nos cartões da Apple — textos mais concisos */
+/** Quatro “tiles” harmônicos com a paleta do CTA (roxo suave) */
 const issues: Issue[] = [
   {
     Icon: Brain,
     title: "Confusão emocional",
     signals: "Não saber o que sente, pensamentos em loop.",
-    help: "Nomeia emoções, organiza ideias e aponta o próximo passo — em 5–7 min.",
-    accent: { tintBg: "#F4F3FF", tintBorder: "#E6E4FF", color: "#5B4BFF" },
+    help: "Nomeia emoções, organiza ideias e aponta o próximo passo.",
+    accent: { tintBg: "#F1EFFF", tintBorder: "#E6E1F9", color: "#7C5CFF" },
   },
   {
     Icon: Clock,
@@ -46,7 +46,7 @@ const issues: Issue[] = [
     Icon: Repeat,
     title: "Padrões que voltam",
     signals: "Mesmos conflitos/decisões; sensação de voltar à estaca zero.",
-    help: "Mostra gatilho → resposta → consequência e sugere micro-ações para quebrar o ciclo.",
+    help: "Mostra gatilho → resposta → consequência e sugere micro-ações.",
     accent: { tintBg: "#ECFDF5", tintBorder: "#D1FAE5", color: "#16A34A" },
   },
   {
@@ -87,44 +87,39 @@ const IconBadge: React.FC<{ Icon: LucideIcon; accent: Issue["accent"] }> = ({
 const TargetAudienceSection: React.FC = () => {
   const canHover = useHoverCapable();
   const sub = `${canHover ? "Passe o mouse" : "Toque"} em um card para ver como a Eco traz clareza.`;
-
   const [active, setActive] = useState<number | null>(null);
 
   return (
     <section
       id="para-quem"
       aria-labelledby="para-quem-title"
-      className="
-        relative overflow-hidden
-        bg-[#F6F7FB]
-        py-16 sm:py-18 px-5 sm:px-8
-      "
+      className="relative overflow-hidden bg-[#F7F6FB] py-16 sm:py-20 px-5 sm:px-8"
     >
-      {/* Halos clarinhos no fundo */}
+      {/* Halos clarinhos */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-[-10%] w-[55vw] h-[55vw] rounded-full blur-[120px] opacity-40 bg-[radial-gradient(circle,#E9E7FF_0%,transparent_65%)]" />
-        <div className="absolute right-[-18%] bottom-[-18%] w-[60vw] h-[60vw] rounded-full blur-[130px] opacity-35 bg-[radial-gradient(circle,#E6F0FF_0%,transparent_70%)]" />
+        <div className="absolute -left-24 top-[-10%] w-[55vw] h-[55vw] rounded-full blur-[120px] opacity-35 bg-[radial-gradient(circle,#E9E7FF_0%,transparent_65%)]" />
+        <div className="absolute right-[-18%] bottom-[-18%] w-[60vw] h-[60vw] rounded-full blur-[130px] opacity-30 bg-[radial-gradient(circle,#E6F0FF_0%,transparent_70%)]" />
       </div>
 
-      {/* Título + subtítulo no estilo “continuação” */}
-      <div className="relative max-w-5xl mx-auto text-center mb-8 sm:mb-10">
+      {/* Header alinhado à esquerda (como o "como funciona") */}
+      <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
         <h2
           id="para-quem-title"
-          className="text-[28px] sm:text-[36px] lg:text-[42px] font-semibold leading-tight tracking-tight"
+          className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight"
         >
-          <span className="text-[#1D1D1F]">
-            Quando a <span className="text-[#5B4BFF]">Eco</span>
+          <span className="text-zinc-900">Quando a </span>
+          <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
+            Eco
           </span>
-          <span className="text-[#6E6E73]"> ajuda.</span>
+          <span className="text-zinc-900"> ajuda.</span>
         </h2>
-
-        <p className="mt-3 text-[#6E6E73] text-[15px] sm:text-[17px] max-w-2xl mx-auto">
+        <p className="mt-2 text-zinc-900 text-[15px] sm:text-[17px] max-w-2xl">
           Quatro situações do dia a dia. {sub}
         </p>
       </div>
 
-      {/* Grid de cards */}
-      <div className="relative max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-7">
+      {/* Grid de cards (mesma largura da seção de referência) */}
+      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7">
         {issues.map((c, i) => {
           const isActive = active === i;
           return (
@@ -133,46 +128,24 @@ const TargetAudienceSection: React.FC = () => {
               type="button"
               aria-pressed={isActive}
               onClick={() => setActive(isActive ? null : i)}
-              className="
-                group relative text-left rounded-[22px]
-                bg-white border border-[#E7EAF2]
-                p-5 sm:p-6 lg:p-7
-                shadow-[0_8px_24px_rgba(17,24,39,0.06)]
-                transition-all duration-300
-                hover:-translate-y-[1px]
-                hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)]
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5B4BFF]/25
-              "
+              className="group relative text-left rounded-[22px] bg-white border border-[#E7EAF2] p-5 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(17,24,39,0.06)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/20"
             >
               <div className="relative flex items-start gap-4 sm:gap-5">
                 <IconBadge Icon={c.Icon} accent={c.accent} />
-
                 <div className="flex-1 min-w-0">
                   <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
                     {c.title}
                   </h3>
-
                   {/* Sinais ↔ O que muda (altura fixa) */}
                   <div className="relative mt-2 lg:mt-3 min-h-[44px]">
                     <p
-                      className={`
-                        absolute inset-0 text-[#6E6E73] text-[14px] sm:text-[15px] leading-snug
-                        transition-all duration-200
-                        ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"}
-                        group-hover:opacity-0 group-hover:translate-y-1
-                      `}
+                      className={`absolute inset-0 text-[#6E6E73] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"} group-hover:opacity-0 group-hover:translate-y-1`}
                     >
                       <span className="text-[#8E8E93]">Sinais: </span>
                       {c.signals}
                     </p>
-
                     <p
-                      className={`
-                        absolute inset-0 text-[#1D1D1F] text-[14px] sm:text-[15px] leading-snug
-                        transition-all duration-200
-                        ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"}
-                        group-hover:opacity-100 group-hover:translate-y-0
-                      `}
+                      className={`absolute inset-0 text-[#1D1D1F] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"} group-hover:opacity-100 group-hover:translate-y-0`}
                     >
                       <span className="text-[#7B7F8C]">O que muda: </span>
                       {c.help}
