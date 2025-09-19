@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Sparkles, Smile, BarChart2 } from "lucide-react";
 import RelatorioMemoriasImg from "@/assets/images/relatorio+memorias.png";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const COLOR = "#5B4BFF";
 
