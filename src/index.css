@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===== Globais de UX/Performance ===== */
+html {
+  /* rolagem suave nativa p/ anchors */
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* evita scroll horizontal involuntário */
+}
+
+/* Renderize seções só quando visíveis (scroll + leve) */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px; /* fallback de altura p/ layout */
+}
+
+/* opcional: experiência de “encaixe” suave entre seções
+html, body { scroll-snap-type: y proximity; }
+section { scroll-snap-align: start; }
+*/
