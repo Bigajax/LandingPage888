@@ -117,23 +117,27 @@ const IntroducingEco: React.FC = () => {
           </p>
         </div>
 
-        {/* PHONE — apenas halo + orb (sem “segunda placa”) */}
+        {/* PHONE — orb circular completo */}
         <div className="order-1 lg:order-2 relative flex items-center justify-center">
-          {/* Halo roxo suave (não parece card) */}
+          {/* Halo roxo totalmente circular */}
           <div aria-hidden className="absolute inset-0 z-0 flex items-center justify-center">
             <div
               className="
                 w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px]
-                rounded-full blur-[48px] opacity-70
-                bg-[radial-gradient(circle,rgba(155,140,255,0.35)_0%,rgba(124,92,255,0.18)_42%,transparent_72%)]
+                rounded-full blur-[60px] opacity-60
+                bg-[radial-gradient(circle,rgba(155,140,255,0.35)_0%,rgba(124,92,255,0.18)_45%,transparent_75%)]
               "
             />
           </div>
 
-          {/* ORB (cor roxa viva) */}
+          {/* ORB central — 1:1, sem cortes */}
           <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px] pointer-events-none">
-              {/* Sem mix-blend; o shader já tem alpha correto */}
+            <div
+              className="
+                w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px]
+                aspect-square rounded-full overflow-visible pointer-events-none
+              "
+            >
               <Orb hue={265} hoverIntensity={0.45} forceHoverState />
             </div>
           </div>
@@ -161,7 +165,7 @@ const IntroducingEco: React.FC = () => {
                 <span
                   className="
                     absolute -top-6 -left-10 h-[160%] w-[60%] rotate-[-18deg]
-                    bg-[linear-gradient(90deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.35)_45%,rgba(255,255,255,0.06)_70%,rgba(255,255,255,0.00)_100%)]
+                    bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.35)_45%,rgba(255,255,255,0.06)_70%,rgba(255,255,255,0)_100%)]
                     opacity-70 group-hover:opacity-90 transition-opacity duration-500 rounded-3xl
                   "
                 />

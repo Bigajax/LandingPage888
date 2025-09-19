@@ -18,9 +18,9 @@ const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({
       w-9 h-9 sm:w-10 sm:h-10 rounded-lg
       bg-[linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06))]
       backdrop-blur-md border border-white/20
-      shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_1px_3px_rgba(0,0,0,0.08)]
+      shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]
       data-[active=true]:border-[rgba(91,75,255,0.35)]
-      data-[active=true]:shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_8px_20px_rgba(91,75,255,0.16)]
+      data-[active=true]:shadow-[inset_0_1px_0_rgba(255,255,255,0.55)]
       transition-all duration-200
     "
     aria-hidden
@@ -50,9 +50,6 @@ const TabButton: React.FC<{
       transition-all duration-200
       focus:outline-none focus-visible:ring-2 focus-visible:ring-[${COLOR}] focus-visible:ring-opacity-20
       data-[active=true]:bg-white data-[active=true]:border-transparent
-      shadow-[0_1px_2px_rgba(0,0,0,0.04)]
-      hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]
-      data-[active=true]:shadow-[0_8px_24px_rgba(91,75,255,0.10)]
     `}
   >
     <span
@@ -136,62 +133,141 @@ const EmotionalReportSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-gradient-to-br from-[#F7F9FC] to-[#EEF3FF] py-16 px-4 sm:px-6 md:px-8 flex flex-col items-center overflow-hidden"
+      className="
+        relative w-full overflow-hidden
+        bg-gradient-to-br from-[#F7F9FC] to-[#EEF3FF]
+        py-16 sm:py-20 px-4 sm:px-6 md:px-8
+      "
     >
-      <h2
-        className={`text-[28px] sm:text-[34px] lg:text-[40px] font-semibold text-[#0F111A] text-center mb-4 transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
-        <span className="font-bold text-black">Explore os recursos da </span>
-        <span className="font-bold text-[#5B4BFF]">Eco</span>
-      </h2>
-
-      <p
-        className={`text-sm sm:text-base text-[#4B4F5C] text-center max-w-2xl mb-8 transition-all duration-700 delay-100 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
-        Memórias, perfil e relatórios — tudo em um só lugar, simples e visual.
-      </p>
-
-      <div className="mt-4 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center z-10">
-        {/* Tabs + description */}
-        <div className="flex flex-col items-center lg:items-start text-gray-800">
-          <div className="flex flex-col space-y-3 mb-6 w-full max-w-md">
-            {TABS.map((tab) => (
-              <TabButton
-                key={tab.id}
-                title={tab.title}
-                active={activeTab === tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                Icon={tab.Icon}
-              />
-            ))}
-          </div>
-
-          <div
-            className={`transition-all duration-500 ease-out max-w-md text-center lg:text-left ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-            }`}
-          >
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700">
-              {active?.description}
-            </p>
-          </div>
-        </div>
-
-        {/* Preview image */}
-        <div
-          className={`flex justify-center items-center w-full transition-all duration-700 ease-out delay-150 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-          }`}
+      <div className="mx-auto w-full max-w-7xl">
+        {/* Título e subtítulo */}
+        <h2
+          className={`
+            text-[26px] sm:text-4xl md:text-[44px] font-semibold tracking-tight
+            text-neutral-900 text-center lg:text-left
+            transition-all duration-700 mb-3
+            ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+          `}
         >
-          <img
-            src={RelatorioMemoriasImg}
-            alt="Relatório emocional e memórias"
-            className="w-full max-w-[420px] sm:max-w-[460px] md:max-w-[500px] lg:max-w-[520px] drop-shadow-xl"
-          />
+          Explore os recursos da{" "}
+          <span className="bg-gradient-to-r from-[#5B4BFF] to-[#8F77FF] bg-clip-text text-transparent">
+            Eco
+          </span>
+        </h2>
+
+        <p
+          className={`
+            text-[15px] sm:text-[17px] lg:text-[18px] leading-relaxed
+            text-neutral-600 max-w-3xl
+            text-center lg:text-left mb-8
+            transition-all duration-700 delay-100
+            ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+          `}
+        >
+          Memórias, perfil e relatórios — organizados de forma clara e visual, para
+          acompanhar sua jornada emocional com simplicidade.
+        </p>
+
+        {/* Conteúdo */}
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 md:gap-10">
+          {/* Tabs + descrição */}
+          <div className="flex flex-col items-center lg:items-start text-gray-800">
+            <div className="flex flex-col space-y-3 mb-6 w-full max-w-md">
+              {TABS.map((tab) => (
+                <TabButton
+                  key={tab.id}
+                  title={tab.title}
+                  active={activeTab === tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  Icon={tab.Icon}
+                />
+              ))}
+            </div>
+
+            <div
+              className={`
+                transition-all duration-500 ease-out
+                max-w-md text-center lg:text-left
+                ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+              `}
+            >
+              <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700">
+                {active?.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Preview – CARD Apple-like SEM SOMBRA */}
+          <div
+            className={`
+              relative group flex justify-center items-center w-full
+              transition-all duration-700 ease-out delay-150
+              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+            `}
+          >
+            {/* Moldura minimalista (sem shadow) */}
+            <div
+              className="
+                relative w-full max-w-[620px]
+                rounded-[30px] p-0.5
+                bg-[conic-gradient(from_180deg_at_50%_0%,#ffffff_0%,#f7f9ff_40%,#eef2ff_60%,#ffffff_100%)]
+              "
+            >
+              {/* Corpo de vidro (sem shadow) */}
+              <div
+                className="
+                  rounded-[28px] relative overflow-hidden
+                  bg-white/70 supports-[backdrop-filter]:bg-white/55
+                  backdrop-blur-2xl ring-1 ring-black/5
+                "
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(150% 120% at 50% 0%, #000 60%, rgba(0,0,0,0) 100%)",
+                  maskImage:
+                    "radial-gradient(150% 120% at 50% 0%, #000 60%, rgba(0,0,0,0) 100%)",
+                }}
+              >
+                {/* brilho sutil no topo */}
+                <span
+                  aria-hidden
+                  className="
+                    pointer-events-none absolute inset-x-6 -top-2 h-10
+                    rounded-[20px]
+                    bg-[linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0))]
+                  "
+                />
+
+                {/* halos bem discretos */}
+                <div aria-hidden className="pointer-events-none absolute inset-0">
+                  <div className="absolute -left-16 -top-20 w-64 h-64 rounded-full blur-3xl opacity-25 bg-[radial-gradient(circle,#EAE8FF_0%,transparent_65%)]" />
+                  <div className="absolute -right-16 -bottom-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-[radial-gradient(circle,#E6F0FF_0%,transparent_65%)]" />
+                </div>
+
+                {/* Conteúdo */}
+                <figure className="relative grid place-items-center px-4 sm:px-5 py-5 sm:py-6">
+                  <img
+                    src={RelatorioMemoriasImg}
+                    alt="Relatório emocional e memórias"
+                    className="
+                      w-full max-w-[560px]
+                      select-none pointer-events-none
+                      contrast-[1.02] saturate-[1.02]
+                      transition-transform duration-500 ease-out
+                      group-hover:translate-y-[-1px]
+                    "
+                    style={{
+                      // recorte suave se o PNG tiver fundo claro
+                      WebkitMaskImage:
+                        "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
+                      maskImage:
+                        "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
+                    }}
+                  />
+                </figure>
+              </div>
+            </div>
+          </div>
+          {/* /Preview */}
         </div>
       </div>
     </section>

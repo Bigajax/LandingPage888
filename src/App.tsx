@@ -1,3 +1,4 @@
+// src/sections/App.tsx (ou src/App.tsx, conforme seu projeto)
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -7,11 +8,10 @@ import Footer from './components/Footer';
 
 import HeroSection from './sections/HeroSection';
 import HowItWorksSection from './sections/HowItWorksSection';
-import MentoresStrip from './sections/MentoresStrip';
 import ForWhoSection from './sections/ForWhoSection';
 import IntroducingEco from './sections/IntroducingEco';
-// REMOVIDO: EmotionalReportSection
-// REMOVIDO: StressIndexSection
+import EmotionalReportSection from './sections/EmotionalReportSection'; // ✅ importa aqui
+import MentoresStrip from './sections/MentoresStrip';
 import PrinciplesSection from './sections/PrinciplesSection';
 import CallToActionEco from './sections/CallToActionEco';
 import Testimonials from './sections/Testimonials';
@@ -25,11 +25,14 @@ const LandingPage: React.FC = () => {
       <main>
         <HeroSection />
         <HowItWorksSection />
-        <MentoresStrip />
         <ForWhoSection />
         <IntroducingEco />
-        {/* REMOVIDO: <EmotionalReportSection /> */}
-        {/* REMOVIDO: <StressIndexSection /> */}
+
+        {/* ✅ AGORA SIM: embaixo do “Conheça a Eco” */}
+        <EmotionalReportSection />
+
+        {/* Pode deixar o carrossel de mentores depois, se quiser */}
+        <MentoresStrip />
         <PrinciplesSection />
         <CallToActionEco />
         <Testimonials />
