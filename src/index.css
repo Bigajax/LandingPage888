@@ -6,21 +6,48 @@
 html {
   /* rolagem suave nativa p/ anchors */
   scroll-behavior: smooth;
+
+  /* NOVO: compensa o header fixo e evita “pulo” no anchor */
+  scroll-padding-top: calc(var(--nav-h, 64px) + 8px);
+}
+
+/* NOVO: respeita usuários que preferem menos animação */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden; /* evita scroll horizontal involuntário */
+
+  /* NOVO: reduz “bounce”/efeitos que geram jank em iOS/Chrome */
+  overscroll-behavior-y: none;
 }
 
 /* Renderize seções só quando visíveis (scroll + leve) */
-section {
+section, main {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 1000px; /* fallback de altura p/ layout */
+
+  /* ajuste o número conforme sua média de altura de seção,
+     maior = menos reflow ao entrar na viewport */
+  contain-intrinsic-size: 1px 900px; /* antes 1000px */
 }
 
-/* opcional: experiência de “encaixe” suave entre seções
+/* OPCIONAL: Snap leve entre seções (descomente se quiser esse efeito) */
+/*
 html, body { scroll-snap-type: y proximity; }
 section { scroll-snap-align: start; }
 */
+
+/* OPCIONAL: para containers com overflow (carrossel, modal, lista) */
+.scroll-area {
+  -webkit-overflow-scrolling: touch; /* momentum no iOS */
+  overscroll-behavior: contain;      /* não propaga scroll p/ body */
+}
+
+/* OPCIONAL: use em elementos animados grandes (fundos/Orb) */
+.gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
