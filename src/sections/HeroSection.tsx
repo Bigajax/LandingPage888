@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -84,9 +84,9 @@ const HeroSection: React.FC = () => {
 
         {/* CTAs */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
-          {/* CTA com o link solicitado */}
+          {/* CTA com o link ajustado */}
           <a
-            href="http://ecofrontend888-esggahziy-rafaels-projects-f3ef53c3.vercel.app/login"
+            href="https://ecofrontend888.vercel.app/login"
             aria-label="Começar minha jornada"
             className="
               relative inline-flex w-full sm:w-auto items-center justify-center gap-2
