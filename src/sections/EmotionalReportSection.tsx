@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Sparkles, Smile, BarChart2 } from "lucide-react";
+import { Sparkles, Smile, BarChart2, Mic, Volume2, Waves, Play, Square, StopCircle } from "lucide-react";
 import RelatorioMemoriasImg from "@/assets/images/relatorio+memorias.png";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const COLOR = "#5B4BFF";
 
 /* ---------- UI atoms ---------- */
-const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({
-  active,
-  children,
-}) => (
+const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({ active, children }) => (
   <span
     data-active={active}
     className="
@@ -76,8 +73,9 @@ const TabButton: React.FC<{
 );
 
 /* ---------- Content ---------- */
+type TabId = "memorias" | "perfil" | "relatorio" | "voz" | "tts" | "conversa";
 type Tab = {
-  id: "memorias" | "perfil" | "relatorio";
+  id: TabId;
   title: string;
   Icon: LucideIcon;
   description: React.ReactNode;
@@ -121,14 +119,64 @@ const TABS: Tab[] = [
       </>
     ),
   },
+
+  /* -------- Novas abas de VOZ -------- */
+  {
+    id: "voz",
+    title: "Diário por voz",
+    Icon: Mic,
+    description: (
+      <>
+        Fale com a Eco e <strong className="text-[#5B4BFF]">registre por voz</strong>. Nós transcrevemos,
+        analisamos a emoção e salvamos como memória — perfeito para quem prefere falar a digitar.
+      </>
+    ),
+  },
+  {
+    id: "tts",
+    title: "Voz da Eco",
+    Icon: Volume2,
+    description: (
+      <>
+        Ouça as respostas da Eco em <strong className="text-[#5B4BFF]">áudio natural</strong> com
+        entonação suave (ElevenLabs). Ideal para reflexões no caminho, na academia ou antes de dormir.
+      </>
+    ),
+  },
+  {
+    id: "conversa",
+    title: "Conversa em voz",
+    Icon: Waves,
+    description: (
+      <>
+        Um modo contínuo de <strong className="text-[#5B4BFF]">fala ↔ escuta</strong>: você fala, a Eco
+        transcreve, responde e lê em voz alta — uma experiência fluida de conversa.
+      </>
+    ),
+  },
 ];
 
 /* ---------- Section ---------- */
 const EmotionalReportSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
-  const [activeTab, setActiveTab] = useState<Tab["id"]>("memorias");
+  const [activeTab, setActiveTab] = useState<TabId>("memorias");
 
   const active = TABS.find((t) => t.id === activeTab);
+
+  // placeholders para você plugar nas suas funções reais
+  const startRecording = () => {
+    // conectar ao seu VoiceRecorder/AssemblyAI/Whisper
+    console.log("startRecording()");
+  };
+  const stopRecording = () => {
+    console.log("stopRecording()");
+  };
+  const playTTS = () => {
+    // chamar sua rota /tts (ElevenLabs)
+    console.log("playTTS()");
+  };
+
+  const isVoicePreview = activeTab === "voz" || activeTab === "tts" || activeTab === "conversa";
 
   return (
     <section
@@ -164,8 +212,8 @@ const EmotionalReportSection: React.FC = () => {
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
           `}
         >
-          Memórias, perfil e relatórios — organizados de forma clara e visual, para
-          acompanhar sua jornada emocional com simplicidade.
+          Memórias, perfil, relatórios e voz — organizados de forma clara e visual, para acompanhar sua
+          jornada emocional com simplicidade.
         </p>
 
         {/* Conteúdo */}
@@ -194,10 +242,61 @@ const EmotionalReportSection: React.FC = () => {
               <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700">
                 {active?.description}
               </p>
+
+              {/* CTA contextual (opcional) */}
+              {activeTab === "voz" && (
+                <div className="mt-4 flex items-center gap-2">
+                  <button
+                    onClick={startRecording}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
+                    aria-label="Iniciar gravação por voz"
+                  >
+                    <Mic size={16} /> Gravar agora
+                  </button>
+                  <button
+                    onClick={stopRecording}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
+                    aria-label="Parar gravação"
+                  >
+                    <Square size={16} /> Parar
+                  </button>
+                </div>
+              )}
+
+              {activeTab === "tts" && (
+                <div className="mt-4">
+                  <button
+                    onClick={playTTS}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
+                    aria-label="Ouvir resposta em áudio"
+                  >
+                    <Play size={16} /> Ouvir resposta
+                  </button>
+                </div>
+              )}
+
+              {activeTab === "conversa" && (
+                <div className="mt-4 flex items-center gap-2">
+                  <button
+                    onClick={startRecording}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
+                    aria-label="Iniciar conversa por voz"
+                  >
+                    <Waves size={16} /> Iniciar conversa
+                  </button>
+                  <button
+                    onClick={stopRecording}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
+                    aria-label="Encerrar conversa"
+                  >
+                    <StopCircle size={16} /> Encerrar
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Preview – CARD Apple-like SEM SOMBRA */}
+          {/* Preview – Moldura Apple-like */}
           <div
             className={`
               relative group flex justify-center items-center w-full
@@ -205,7 +304,6 @@ const EmotionalReportSection: React.FC = () => {
               ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
             `}
           >
-            {/* Moldura minimalista (sem shadow) */}
             <div
               className="
                 relative w-full max-w-[620px]
@@ -213,7 +311,6 @@ const EmotionalReportSection: React.FC = () => {
                 bg-[conic-gradient(from_180deg_at_50%_0%,#ffffff_0%,#f7f9ff_40%,#eef2ff_60%,#ffffff_100%)]
               "
             >
-              {/* Corpo de vidro (sem shadow) */}
               <div
                 className="
                   rounded-[28px] relative overflow-hidden
@@ -237,32 +334,103 @@ const EmotionalReportSection: React.FC = () => {
                   "
                 />
 
-                {/* halos bem discretos */}
+                {/* halos discretos */}
                 <div aria-hidden className="pointer-events-none absolute inset-0">
                   <div className="absolute -left-16 -top-20 w-64 h-64 rounded-full blur-3xl opacity-25 bg-[radial-gradient(circle,#EAE8FF_0%,transparent_65%)]" />
                   <div className="absolute -right-16 -bottom-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-[radial-gradient(circle,#E6F0FF_0%,transparent_65%)]" />
                 </div>
 
-                {/* Conteúdo */}
+                {/* Conteúdo da moldura */}
                 <figure className="relative grid place-items-center px-4 sm:px-5 py-5 sm:py-6">
-                  <img
-                    src={RelatorioMemoriasImg}
-                    alt="Relatório emocional e memórias"
-                    className="
-                      w-full max-w-[560px]
-                      select-none pointer-events-none
-                      contrast-[1.02] saturate-[1.02]
-                      transition-transform duration-500 ease-out
-                      group-hover:translate-y-[-1px]
-                    "
-                    style={{
-                      // recorte suave se o PNG tiver fundo claro
-                      WebkitMaskImage:
-                        "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
-                      maskImage:
-                        "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
-                    }}
-                  />
+                  {!isVoicePreview ? (
+                    <img
+                      src={RelatorioMemoriasImg}
+                      alt="Relatório emocional e memórias"
+                      className="
+                        w-full max-w-[560px]
+                        select-none pointer-events-none
+                        contrast-[1.02] saturate-[1.02]
+                        transition-transform duration-500 ease-out
+                        group-hover:translate-y-[-1px]
+                      "
+                      style={{
+                        WebkitMaskImage:
+                          "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
+                        maskImage:
+                          "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
+                      }}
+                    />
+                  ) : (
+                    /* Preview de voz (rec/tts) dentro da moldura */
+                    <div
+                      className="
+                        w-full max-w-[520px]
+                        rounded-2xl border border-black/5 bg-white/60 backdrop-blur-xl
+                        px-5 py-4
+                      "
+                      role="group"
+                      aria-label="Controles de voz"
+                    >
+                      {/* título + legenda dinâmica */}
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-[15px] font-medium text-neutral-900">
+                            {activeTab === "voz" && "Diário por voz"}
+                            {activeTab === "tts" && "Voz da Eco"}
+                            {activeTab === "conversa" && "Conversa em voz"}
+                          </p>
+                          <p className="text-[12px] text-neutral-500">
+                            {activeTab === "voz" && "Grave, transcreva e salve como memória."}
+                            {activeTab === "tts" && "Ouça a resposta da Eco em áudio natural."}
+                            {activeTab === "conversa" && "Fale e escute em fluxo contínuo."}
+                          </p>
+                        </div>
+                        {activeTab === "voz" && <Mic className="text-[#5B4BFF]" size={18} />}
+                        {activeTab === "tts" && <Volume2 className="text-[#5B4BFF]" size={18} />}
+                        {activeTab === "conversa" && <Waves className="text-[#5B4BFF]" size={18} />}
+                      </div>
+
+                      {/* barra/onda ilustrativa */}
+                      <div className="mt-4 h-16 rounded-xl bg-gradient-to-r from-[#F1EEFF] to-[#EAF0FF] relative overflow-hidden">
+                        <div className="absolute inset-0 animate-pulse opacity-60" />
+                        <div className="absolute inset-0 grid grid-cols-24 gap-1 px-2">
+                          {Array.from({ length: 24 }).map((_, i) => (
+                            <span
+                              key={i}
+                              className="self-end w-full rounded-t bg-[#5B4BFF]/30"
+                              style={{ height: `${12 + ((i * 37) % 40)}%` }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* controles */}
+                      <div className="mt-4 flex items-center gap-2">
+                        {activeTab !== "tts" && (
+                          <>
+                            <button
+                              onClick={startRecording}
+                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
+                            >
+                              <Mic size={16} /> Gravar
+                            </button>
+                            <button
+                              onClick={stopRecording}
+                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
+                            >
+                              <Square size={16} /> Parar
+                            </button>
+                          </>
+                        )}
+                        <button
+                          onClick={playTTS}
+                          className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
+                        >
+                          <Play size={16} /> Reproduzir
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </figure>
               </div>
             </div>

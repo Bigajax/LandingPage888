@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
       <div
         className={`
           relative z-10 mx-auto px-5 sm:px-6
-          max-w-[520px] sm:max-w-[880px]  /* ↓ força quebra de linha + respiro no mobile */
+          max-w-[520px] sm:max-w-[880px]
           flex flex-col items-center text-center
           pt-[calc(var(--nav-h,64px)+22px+env(safe-area-inset-top))]
           md:pt-[calc(var(--nav-h,80px)+72px)]
@@ -57,26 +57,26 @@ const HeroSection: React.FC = () => {
           Jornada de Autoconhecimento
         </span>
 
-        {/* Título — ainda mais respiro */}
+        {/* Título */}
         <h1
           id="hero-title"
           className="
             text-balance
-            text-[32px] leading-[1.36]  /* ↑ */
+            text-[32px] leading-[1.36]
             sm:text-6xl sm:leading-tight lg:text-7xl
-            tracking-tight mb-4 sm:mb-6       /* ↑ */
+            tracking-tight mb-4 sm:mb-6
           "
         >
           <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
           <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
         </h1>
 
-        {/* Subtítulo — respiração maior e mais leve */}
+        {/* Subtítulo */}
         <p
           className="
             text-[17px] leading-[1.85] sm:text-xl sm:leading-relaxed
-            text-zinc-600 max-w-[46ch] sm:max-w-[680px]   /* limita largura em caracteres no mobile */
-            mb-12 sm:mb-10                                /* ↑ */
+            text-zinc-600 max-w-[46ch] sm:max-w-[680px]
+            mb-12 sm:mb-10
           "
         >
           Escreva, reflita e descubra padrões — simples, guiado e no seu ritmo.
@@ -84,10 +84,9 @@ const HeroSection: React.FC = () => {
 
         {/* CTAs */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
+          {/* CTA com o link solicitado */}
           <a
-            href="https://ecofrontend888.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="http://ecofrontend888-esggahziy-rafaels-projects-f3ef53c3.vercel.app/login"
             aria-label="Começar minha jornada"
             className="
               relative inline-flex w-full sm:w-auto items-center justify-center gap-2
