@@ -1,188 +1,115 @@
 import React from "react";
-import { PenLine, Sparkles, RefreshCw, Sprout, PlayCircle } from "lucide-react";
+import { PenLine, Sparkles, RefreshCw, Sprout } from "lucide-react";
 import EcoChat from "@/assets/images/Eco_chat.png";
-import Orb from "../components/Orb";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-/** Card compacto — igual ao restante do site */
-function FeatureCard({
-  Icon,
-  title,
-  desc,
-}: {
+interface FeatureCardProps {
   Icon: React.ElementType;
   title: string;
-  desc: string;
-}) {
-  return (
-    <div
-      className="
-        group rounded-2xl bg-white/95
-        ring-1 ring-[#DCDFFB]
-        shadow-[0_6px_18px_rgba(17,24,39,0.06)]
-        hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)]
-        hover:ring-[#7C5CFF]/30
-        transition-all duration-300 p-5
-      "
-      role="article"
-      aria-label={title}
-    >
-      <div className="relative h-10 w-10 grid place-items-center rounded-xl bg-gradient-to-br from-[#F1EFFF] to-[#FAFAFF] ring-1 ring-[#E6E1F9]">
-        <div className="absolute inset-0 rounded-xl bg-[radial-gradient(80%_80%_at_30%_20%,rgba(124,92,255,0.18),transparent_55%)]" />
-        <Icon size={20} strokeWidth={2} className="relative z-10 text-[#7C5CFF]" />
-      </div>
-      <h4 className="mt-3 text-[15px] font-semibold text-[#0F111A]">{title}</h4>
-      <p className="mt-1.5 text-[13.5px] leading-relaxed text-[#4B5166]">{desc}</p>
-    </div>
-  );
+  description: string;
 }
 
+const features: FeatureCardProps[] = [
+  {
+    Icon: PenLine,
+    title: "Escrita expressiva",
+    description: "Dar forma ao que sente, aliviar tensões.",
+  },
+  {
+    Icon: Sparkles,
+    title: "Reflexão guiada",
+    description: "Perguntas que funcionam como espelho.",
+  },
+  {
+    Icon: RefreshCw,
+    title: "Padrões revelados",
+    description: "Emoções recorrentes ficam nítidas no tempo.",
+  },
+  {
+    Icon: Sprout,
+    title: "Jornada pessoal",
+    description: "Pequenas doses no seu ritmo, evolução real.",
+  },
+];
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ Icon, title, description }) => (
+  <div className="rounded-2xl border border-white/30 bg-white/40 p-5 backdrop-blur-md transition-transform duration-500 ease-out hover:-translate-y-1">
+    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/50 text-violet-500">
+      <Icon size={20} strokeWidth={2} />
+    </div>
+    <h3 className="mt-4 text-base font-semibold text-slate-900">{title}</h3>
+    <p className="mt-2 text-sm text-slate-600">{description}</p>
+  </div>
+);
+
 const IntroducingEco: React.FC = () => {
+  const { ref: leftRef, isVisible: leftVisible } = useScrollReveal();
+  const { ref: rightRef, isVisible: rightVisible } = useScrollReveal();
+
   return (
     <section
       id="conheca-eco"
-      className="
-        relative overflow-hidden w-full
-        bg-gradient-to-b from-white via-[#F7F9FF] to-white
-        px-6 sm:px-10 lg:px-24 py-14 sm:py-18 lg:py-20
-      "
+      className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(168,141,255,0.28),_transparent_55%),_radial-gradient(circle_at_bottom_right,_rgba(111,196,255,0.2),_transparent_60%)] py-20 sm:py-24"
     >
-      {/* brilho sutil de fundo */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 right-1/3 w-[60vw] h-[60vw] rounded-full blur-[120px] opacity-70 bg-[radial-gradient(circle,#E9E8FF_0%,transparent_70%)]" />
-      </div>
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,_#f7f4ff_0%,_#f2f9ff_50%,_#ffffff_100%)]" />
+      <div className="absolute -left-32 top-1/3 h-64 w-64 rounded-full bg-violet-300/30 blur-3xl" aria-hidden />
+      <div className="absolute -right-28 bottom-10 h-72 w-72 rounded-full bg-sky-200/30 blur-[120px]" aria-hidden />
 
-      {/* Título + subtítulo */}
-      <div className="relative w-full max-w-7xl mx-auto text-left mb-8 sm:mb-12">
-        <h2 className="heading-lg font-semibold">
-          <span className="text-zinc-900">Conheça a </span>
-          <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">Eco</span>
-        </h2>
-        <p className="mt-2 subheading text-zinc-500 max-w-3xl">
-          Um espaço simples e guiado para escrever, refletir e enxergar padrões — criando condições reais para mudança.
-        </p>
-      </div>
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:items-center">
+        <div
+          ref={leftRef}
+          className={`space-y-8 font-sans transition-all duration-700 ease-out ${
+            leftVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          <div className="space-y-4">
+            <span className="inline-flex items-center rounded-full border border-white/40 bg-white/30 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-slate-700">
+              Eco
+            </span>
+            <h2 className="text-4xl font-semibold text-slate-900 sm:text-5xl">Conheça a Eco.</h2>
+            <p className="max-w-xl text-base leading-relaxed text-slate-600">
+              Um espaço simples e guiado para escrever, refletir e enxergar padrões — criando condições reais para mudança.
+            </p>
+          </div>
 
-      {/* Grid principal */}
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-        {/* Texto */}
-        <div className="order-2 lg:order-1">
-          <p className="text-2xl sm:text-[28px] font-semibold text-[#0F111A] leading-snug">
-            Você muda. <span className="text-zinc-900">A </span>
-            <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">Eco</span>
-            <span className="text-zinc-900"> cria as condições.</span>
-          </p>
-          <p className="mt-2 text-[#2A2F3D] text-lg">Escreva. Reflita. Veja-se com mais clareza.</p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {features.map((feature) => (
+              <FeatureCard key={feature.title} {...feature} />
+            ))}
+          </div>
 
-          <ul className="mt-6 space-y-3 text-[15.5px] leading-relaxed text-[#40465A]">
-            <li>
-              <span className="font-medium text-[#0F111A]">Ato de escrita expressiva:</span> dar forma ao que sente já
-              organiza a mente e alivia tensões.
-            </li>
-            <li>
-              <span className="font-medium text-[#0F111A]">Reflexão guiada & insights:</span> perguntas que funcionam
-              como espelho, revelando o que estava oculto.
-            </li>
-            <li>
-              <span className="font-medium text-[#0F111A]">Padrões que se revelam:</span> emoções recorrentes, ciclos e
-              mudanças ficam nítidos ao longo do tempo.
-            </li>
-            <li>
-              <span className="font-medium text-[#0F111A]">Jornada de autoconhecimento:</span> pequenas pílulas, no seu
-              ritmo, somando evolução real.
-            </li>
-          </ul>
-
-          {/* CTA */}
-          <div className="mt-7">
+          <div>
             <a
               href="https://ecofrontend888.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                relative inline-flex items-center justify-center rounded-full
-                h-12 px-6 text-[14px] font-semibold text-white
-                bg-gradient-to-b from-[#9B8CFF] to-[#7C5CFF]
-                shadow-[0_12px_28px_rgba(124,92,255,0.28)]
-                hover:brightness-[1.08] active:scale-[0.99] transition
-              "
+              className="relative inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 via-violet-500 to-fuchsia-500 px-7 py-3 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(139,92,246,0.35)] transition-transform duration-300 hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
             >
-              <PlayCircle size={18} className="mr-2 opacity-90" />
               Começar minha jornada
-              <span className="pointer-events-none absolute -inset-0.5 rounded-full bg-[radial-gradient(60%_60%_at_50%_50%,rgba(124,92,255,0.35),transparent)] blur-md" />
+              <span className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-white/40 via-transparent to-white/30 blur" aria-hidden />
             </a>
           </div>
-
-          <p className="mt-3 text-[12px] text-[#6B7280]">
-            Não é sobre mudar de uma vez. É sobre criar condições para que você mude no seu tempo.
-          </p>
         </div>
 
-        {/* PHONE — orb circular completo */}
-        <div className="order-1 lg:order-2 relative flex items-center justify-center">
-          {/* Halo roxo totalmente circular */}
-          <div aria-hidden className="absolute inset-0 z-0 flex items-center justify-center">
-            <div
-              className="
-                w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px]
-                rounded-full blur-[60px] opacity-60
-                bg-[radial-gradient(circle,rgba(155,140,255,0.35)_0%,rgba(124,92,255,0.18)_45%,transparent_75%)]
-              "
-            />
-          </div>
-
-          {/* ORB central — 1:1, sem cortes */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <div
-              className="
-                w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px]
-                aspect-square rounded-full overflow-visible pointer-events-none
-              "
-            >
-              <Orb hue={265} hoverIntensity={0.45} forceHoverState />
-            </div>
-          </div>
-
-          {/* Telefone */}
-          <div className="group relative z-20 [perspective:1200px]">
-            <div
-              className="
-                relative rounded-[32px]
-                transition-transform duration-500 ease-out
-                group-hover:-translate-y-0.5 group-hover:scale-[1.012]
-                group-hover:[transform:rotateX(2deg)_rotateY(-2deg)]
-                shadow-[0_20px_60px_rgba(17,24,39,0.18)]
-              "
-            >
+        <div
+          ref={rightRef}
+          className={`relative flex justify-center font-sans transition-all duration-700 ease-out ${
+            rightVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          <div className="absolute -top-10 right-6 h-64 w-64 rounded-full bg-violet-400/40 blur-3xl" aria-hidden />
+          <div className="absolute -bottom-12 left-8 h-72 w-72 rounded-full bg-purple-300/30 blur-[120px]" aria-hidden />
+          <div className="relative">
+            <div className="absolute -inset-6 rounded-[36px] bg-gradient-to-br from-violet-400/40 via-violet-500/40 to-fuchsia-400/30 blur-2xl" aria-hidden />
+            <div className="relative overflow-hidden rounded-[36px] border border-white/20 bg-white/20 shadow-[0_30px_80px_rgba(76,29,149,0.35)] backdrop-blur-xl">
               <img
                 src={EcoChat}
-                alt="App Eco — tela inicial"
-                className="w-[260px] sm:w-[300px] lg:w-[340px] h-auto rounded-[32px] ring-1 ring-black/5 block"
+                alt="Interface do app Eco"
+                className="h-auto w-[280px] sm:w-[320px] lg:w-[360px]"
                 draggable={false}
               />
-
-              {/* brilho / vinheta */}
-              <span aria-hidden className="pointer-events-none absolute inset-0 rounded-[32px] overflow-hidden">
-                <span
-                  className="
-                    absolute -top-6 -left-10 h-[160%] w-[60%] rotate-[-18deg]
-                    bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.35)_45%,rgba(255,255,255,0.06)_70%,rgba(255,255,255,0)_100%)]
-                    opacity-70 group-hover:opacity-90 transition-opacity duration-500 rounded-3xl
-                  "
-                />
-                <span className="absolute inset-0 rounded-[32px] bg-[radial-gradient(125%_110%_at_50%_0%,rgba(0,0,0,0.06),transparent_60%)]" />
-              </span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Cards – 4 pilares */}
-      <div className="relative max-w-7xl mx-auto mt-12 sm:mt-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <FeatureCard Icon={PenLine} title="Escrita expressiva" desc="Escrever com honestidade organiza pensamentos e reduz a névoa emocional." />
-          <FeatureCard Icon={Sparkles} title="Reflexão guiada" desc="Respostas sensíveis com perguntas que fazem pensar e revelam novos ângulos." />
-          <FeatureCard Icon={RefreshCw} title="Padrões no tempo" desc="Veja emoções que se repetem, ciclos e mudanças sutis — de forma simples." />
-          <FeatureCard Icon={Sprout} title="Jornada contínua" desc="Pequenas pílulas no seu ritmo, gerando clareza e evolução prática." />
         </div>
       </div>
     </section>
