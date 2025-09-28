@@ -94,14 +94,14 @@ const HowItWorks: React.FC = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <h2 className="text-left text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
-  <span className="text-zinc-900">Como a Eco</span>
-  {" "}
+        <h2 className="text-left heading-lg font-semibold">
+          <span className="text-zinc-900">Como a Eco</span>
+          {" "}
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
-    funciona.
-  </span>
+            funciona.
+          </span>
         </h2>
-        <p className="mt-2 text-left text-zinc-500 text-[15px] sm:text-[17px]">
+        <p className="mt-2 subheading text-left text-zinc-500">
           Os passos. Do primeiro registro à clareza.
         </p>
       </div>

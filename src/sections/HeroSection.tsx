@@ -58,32 +58,18 @@ const HeroSection: React.FC = () => {
         </span>
 
         {/* Título */}
-        <h1
-          id="hero-title"
-          className="
-            text-balance
-            text-[32px] leading-[1.36]
-            sm:text-6xl sm:leading-tight lg:text-7xl
-            tracking-tight mb-4 sm:mb-6
-          "
-        >
+        <h1 id="hero-title" className="text-balance heading-xl mb-4 sm:mb-6">
           <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
           <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
         </h1>
 
         {/* Subtítulo */}
-        <p
-          className="
-            text-[17px] leading-[1.85] sm:text-xl sm:leading-relaxed
-            text-zinc-600 max-w-[46ch] sm:max-w-[680px]
-            mb-12 sm:mb-10
-          "
-        >
+        <p className="subheading text-zinc-600 max-w-[48ch] sm:max-w-[680px] mb-12 sm:mb-10">
           Escreva, reflita e descubra padrões — simples, guiado e no seu ritmo.
         </p>
 
         {/* CTAs */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
+        <div className="w-full flex flex-col sm:flex-row sm:flex-wrap md:flex-nowrap items-center justify-center gap-4 sm:gap-5 md:gap-6 mb-7 sm:mb-9">
           {/* CTA com o link ajustado */}
           <a
             href="https://ecofrontend888.vercel.app/login"

@@ -67,13 +67,13 @@ const PrinciplesSection: React.FC = () => {
 
       {/* Título + subtítulo */}
       <div className="relative max-w-4xl mx-auto text-center mb-10 sm:mb-12">
-        <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] font-semibold leading-tight tracking-tight">
+        <h2 className="heading-lg font-semibold">
           <span className="text-[#1D1D1F]">Nossos </span>
           <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
             Princípios
           </span>
         </h2>
-        <p className="mt-3 text-[#6E6E73] text-[15px] sm:text-[17px] max-w-2xl mx-auto">
+        <p className="mt-3 subheading text-[#6E6E73] max-w-2xl mx-auto">
           Segurança, presença e profundidade para oferecer um espaço confiável
           onde você possa se ouvir com clareza.
         </p>

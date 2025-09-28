@@ -107,7 +107,7 @@ const MentoresStrip: React.FC = () => {
             Referências • Base das respostas
           </span>
 
-          <h2 id="mentores-title" className="mt-4 font-semibold tracking-tight text-2xl sm:text-4xl">
+          <h2 id="mentores-title" className="mt-4 heading-lg font-semibold text-white">
             <span className="text-white">Grandes mentes.</span>
             <span className="text-white/70"> As ideias que inspiram a Eco.</span>
           </h2>
