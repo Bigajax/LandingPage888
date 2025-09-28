@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Orb from '../components/Orb';
 import { enviarFormulario } from '../lib/enviarFormulario';
 
 const AcessoAntecipadoPage: React.FC = () => {
@@ -78,33 +77,47 @@ const AcessoAntecipadoPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white pt-28 font-sans">
+    <div className="flex min-h-screen flex-col bg-[#F3F4F6] pt-28">
       <Header />
 
-      <main className="relative flex-grow px-6 py-12 flex flex-col-reverse lg:flex-row items-center justify-center">
-        <div className="absolute inset-0 -z-10 flex justify-center lg:justify-start items-start lg:items-center pointer-events-none">
-          <div className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] opacity-40">
-            <Orb hoverIntensity={0.8} rotateOnHover={true} hue={270} forceHoverState={false} />
-          </div>
+      <main className="relative z-0 mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-6 pb-16 pt-12 lg:flex-row lg:items-start lg:gap-12">
+        <div className="absolute inset-0 -z-10">
+          <div className="pointer-events-none absolute right-[-10%] top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.16),transparent_68%)] blur-3xl" />
+          <div className="pointer-events-none absolute left-[-12%] top-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.12),transparent_70%)] blur-3xl" />
         </div>
 
-        <div className="relative z-10 w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 text-center lg:text-left">
-            Convite para o Acesso Antecipado à <span className="text-indigo-400">Eco</span>
+        <section className="glass max-w-xl space-y-4 p-8 text-left">
+          <span className="inline-flex items-center rounded-full bg-white/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+            Acesso antecipado
+          </span>
+          <h1 className="text-3xl font-semibold leading-tight text-[#111827] md:text-4xl">
+            Convite para viver a experiência delicada da Eco
           </h1>
-          <p className="text-gray-300 mb-8 text-center lg:text-left leading-relaxed">
-            Ajude a construir a IA que não responde por responder — mas te devolve a si mesmo.
+          <p className="text-base text-[#6B7280]">
+            Ajude a desenhar uma companhia emocional que escuta com atenção e devolve clareza. Conte para a Eco quem é você e como deseja ser acompanhado.
           </p>
+          <div className="rounded-[16px] border border-[#D1D5DB] bg-white/80 p-5 text-sm text-[#4B5563] shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+            <p>
+              <strong className="font-semibold text-[#111827]">Como funciona:</strong> nós analisamos cada pedido com carinho. Selecione os canais pelos quais deseja ser avisado e, assim que o acesso estiver disponível, você será notificado.
+            </p>
+          </div>
+        </section>
 
+        <section className="glass flex-1 p-8">
           {enviado ? (
-            <div className="bg-green-900 text-green-200 rounded-lg p-6 text-center">
-              ✅ Pronto! Recebemos seu pedido. Assim que o acesso antecipado estiver disponível, você será notificado por e-mail.
+            <div className="rounded-[16px] border border-[#BBF7D0] bg-[#ECFDF5] px-5 py-6 text-center text-[#166534] shadow-[0_10px_24px_rgba(22,101,52,0.12)]">
+              <p className="text-base font-semibold">Tudo certo! 🌱</p>
+              <p className="mt-2 text-sm leading-relaxed">
+                Recebemos seu pedido de acesso antecipado. Entraremos em contato assim que houver novidades.
+              </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
-              <div>
-                <p className="text-sm text-gray-300 mb-3">Informações pessoais</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <fieldset className="space-y-4">
+                <legend className="text-sm font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+                  Informações pessoais
+                </legend>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <input
                     type="text"
                     name="nome"
@@ -112,7 +125,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     required
                     value={formData.nome}
                     onChange={handleChange}
-                    className="bg-transparent text-white placeholder-white p-3 rounded-xl w-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
                   />
                   <input
                     type="text"
@@ -121,7 +134,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     required
                     value={formData.sobrenome}
                     onChange={handleChange}
-                    className="bg-transparent text-white placeholder-white p-3 rounded-xl w-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
                   />
                 </div>
                 <input
@@ -131,7 +144,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-4 bg-transparent text-white placeholder-white p-3 rounded-xl w-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                  className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
                 />
                 <InputMask
                   mask="(99) 99999-9999"
@@ -143,94 +156,99 @@ const AcessoAntecipadoPage: React.FC = () => {
                       {...inputProps}
                       type="tel"
                       name="telefone"
-                      placeholder="Seu telefone"
+                      placeholder="Telefone com DDD"
                       required
-                      className="mt-4 bg-transparent text-white placeholder-white p-3 rounded-xl w-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                      className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
                     />
                   )}
                 </InputMask>
-              </div>
+              </fieldset>
 
-              <div>
-                <p className="text-sm text-gray-300 mb-3">Quando você pensa em conversar com a Eco, qual dessas opções te descreve melhor?</p>
+              <fieldset className="space-y-3">
+                <legend className="text-sm font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+                  Sua relação com a Eco
+                </legend>
                 <div className="space-y-2">
                   {[
-                    'Estou vivendo algo emocionalmente difícil',
-                    'Quero entender melhor o que estou sentindo',
-                    'Tenho curiosidade sobre mim mesmo(a)',
-                    'Apenas quero experimentar a Eco'
+                    "Estou vivendo algo emocionalmente difícil",
+                    "Quero entender melhor o que estou sentindo",
+                    "Tenho curiosidade sobre mim mesmo(a)",
+                    "Apenas quero experimentar a Eco",
                   ].map((opcao) => (
-                    <label key={opcao} className="flex items-center gap-2 text-white hover:text-indigo-300 cursor-pointer transition text-sm">
+                    <label key={opcao} className="flex items-start gap-3 rounded-[14px] border border-transparent bg-white/60 px-4 py-3 text-sm text-[#4B5563] shadow-[0_4px_16px_rgba(15,23,42,0.04)] transition hover:border-[#D1D5DB]">
                       <input
                         type="radio"
                         name="motivacao"
                         value={opcao}
-                        onChange={() => handleRadioChange('motivacao', opcao)}
-                        className="accent-indigo-400 w-4 h-4"
+                        onChange={() => handleRadioChange("motivacao", opcao)}
+                        className="mt-1 h-4 w-4 accent-[#3B82F6]"
                         required
                       />
-                      {opcao}
+                      <span className="leading-relaxed">{opcao}</span>
                     </label>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
-              <div>
-                <p className="text-sm text-gray-300 mb-3">Você sente que tem facilidade em nomear suas emoções?</p>
+              <fieldset className="space-y-3">
+                <legend className="text-sm font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+                  Como você nomeia emoções hoje?
+                </legend>
                 <div className="space-y-2">
-                  {['Sim', 'Às vezes', 'Não sei bem o que sinto'].map((opcao) => (
-                    <label key={opcao} className="flex items-center gap-2 text-white hover:text-indigo-300 cursor-pointer transition text-sm">
+                  {["Sim", "Às vezes", "Não sei bem o que sinto"].map((opcao) => (
+                    <label key={opcao} className="flex items-center gap-3 rounded-[14px] border border-transparent bg-white/60 px-4 py-3 text-sm text-[#4B5563] shadow-[0_4px_16px_rgba(15,23,42,0.04)] transition hover:border-[#D1D5DB]">
                       <input
                         type="radio"
                         name="emocao"
                         value={opcao}
-                        onChange={() => handleRadioChange('emocao', opcao)}
-                        className="accent-indigo-400 w-4 h-4"
+                        onChange={() => handleRadioChange("emocao", opcao)}
+                        className="h-4 w-4 accent-[#3B82F6]"
                         required
                       />
-                      {opcao}
+                      <span>{opcao}</span>
                     </label>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
-              <div className="space-y-3 text-sm text-white mt-6">
-                <label className="flex items-center gap-2">
+              <div className="space-y-3 text-sm text-[#4B5563]">
+                <p className="font-medium text-[#6B7280]">Como prefere ser avisado?</p>
+                <label className="flex items-center gap-3">
                   <input
                     type="checkbox"
                     name="consentimento_email"
                     checked={formData.consentimento_email}
                     onChange={handleChange}
-                    className="accent-indigo-400"
+                    className="h-4 w-4 accent-[#3B82F6]"
                   />
-                  Concordo em receber o link de acesso por e-mail
+                  <span>Concordo em receber o link de acesso por e-mail</span>
                 </label>
-                <label className="flex items-center gap-2">
+                <label className="flex items-center gap-3">
                   <input
                     type="checkbox"
                     name="consentimento_whatsapp"
                     checked={formData.consentimento_whatsapp}
                     onChange={handleChange}
-                    className="accent-indigo-400"
+                    className="h-4 w-4 accent-[#3B82F6]"
                   />
-                  Concordo em receber o link de acesso por WhatsApp
+                  <span>Concordo em receber o link de acesso por WhatsApp</span>
                 </label>
               </div>
 
               <button
                 type="submit"
                 disabled={!formData.consentimento_email && !formData.consentimento_whatsapp}
-                className={`w-full font-medium py-3 rounded-xl transition-all duration-300 shadow-md ${
+                className={`w-full rounded-full px-6 py-3 text-sm font-semibold shadow-[0_16px_32px_rgba(59,130,246,0.22)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   formData.consentimento_email || formData.consentimento_whatsapp
-                    ? 'bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-lg active:scale-[0.98]'
-                    : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                    ? "bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                    : "cursor-not-allowed bg-[#E5E7EB] text-[#9CA3AF] shadow-none"
                 }`}
               >
-                Obtenha acesso antecipado 
+                Enviar pedido de acesso
               </button>
             </form>
           )}
-        </div>
+        </section>
       </main>
 
       <Footer />

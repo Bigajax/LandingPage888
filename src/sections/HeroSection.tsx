@@ -73,7 +73,7 @@ const HeroSection: React.FC = () => {
           <a
             href="https://ecofrontend888.vercel.app/login"
             aria-label="Começar minha jornada"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#6366F1] px-8 py-3 text-base font-semibold text-white shadow-[0_18px_36px_rgba(99,102,241,0.28)] transition duration-300 ease-out hover:shadow-[0_22px_44px_rgba(99,102,241,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-8 py-3 text-base font-semibold text-white shadow-[0_16px_32px_rgba(59,130,246,0.28)] transition duration-300 ease-out hover:bg-[#2563EB] hover:shadow-[0_22px_44px_rgba(59,130,246,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
           >
             <PlayCircle size={18} className="opacity-90" />
             Começar minha jornada
@@ -82,7 +82,7 @@ const HeroSection: React.FC = () => {
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E0E7FF] bg-white/80 px-8 py-3 text-base font-semibold text-[#4F46E5] shadow-sm transition duration-300 ease-out hover:border-[#C7D2FE] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#D1D5DB] bg-white/80 px-8 py-3 text-base font-semibold text-[#3B82F6] shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition duration-300 ease-out hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
             aria-label="Ver como funciona"
           >
             Ver como funciona
