@@ -125,26 +125,20 @@ section { scroll-snap-align: start; }
 
 @layer components {
   .glass {
-    @apply rounded-2xl border border-white/30 bg-white/40 backdrop-blur-xl shadow-sm;
+    @apply bg-white/55 backdrop-blur-xl border border-white/60 rounded-3xl shadow-sm;
   }
 
   .glass-hover {
-    @apply transform transition duration-300 ease-out hover:-translate-y-1 hover:bg-white/60 hover:shadow-lg;
+    @apply transform transition duration-300 ease-out hover:shadow-lg hover:bg-white/65 hover:-translate-y-1;
   }
 
   .liquid-bg {
     position: relative;
+    background: radial-gradient(1200px 600px at 80% -20%, rgba(99, 102, 241, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 0%, rgba(167, 139, 250, 0.14), transparent 55%);
     background-color: #ffffff;
   }
 
-  .liquid-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(167, 139, 250, 0.13), rgba(99, 102, 241, 0.07));
-    pointer-events: none;
-    z-index: 0;
-  }
 }
 
 @layer utilities {
@@ -164,5 +158,12 @@ section { scroll-snap-align: start; }
     font-size: var(--subheading);
     line-height: 1.65;
     letter-spacing: -0.01em;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
