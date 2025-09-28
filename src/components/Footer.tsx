@@ -1,130 +1,77 @@
 import React from "react";
-import { MessageSquare, Shield, Heart } from "lucide-react";
+import { MessageSquare, ShieldCheck, Sparkles } from "lucide-react";
+
+const utilityLinks = [
+  { icon: MessageSquare, label: "Fale com a Eco", href: "#" },
+  { icon: ShieldCheck, label: "Privacidade & termos", href: "#" },
+  { icon: Sparkles, label: "Nosso propósito", href: "#" },
+];
+
+const socials = [
+  { label: "Instagram", href: "#", d: "M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6zm4.4-.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" },
+  { label: "LinkedIn", href: "#", d: "M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h3.96v12H3zM10.5 9H14v1.8h.06c.48-.9 1.64-1.86 3.38-1.86 3.62 0 4.29 2.38 4.29 5.47V21H17.7v-5.4c0-1.29-.03-2.95-1.8-2.95-1.81 0-2.09 1.41-2.09 2.86V21H10.5z" },
+  { label: "YouTube", href: "#", d: "M10 7l6 4-6 4zM21.8 6.2a3 3 0 0 0-2.1-2.1C17.8 3.5 12 3.5 12 3.5s-5.8 0-7.7.6a3 3 0 0 0-2.1 2.1C1.5 8.1 1.5 12 1.5 12s0 3.9.7 5.8a3 3 0 0 0 2.1 2.1c1.9.6 7.7.6 7.7.6s5.8 0 7.7-.6a3 3 0 0 0 2.1-2.1c.6-1.9.6-5.8.6-5.8s0-3.9-.6-5.8z" },
+];
+
+const columns = [
+  { title: "Produto", items: ["Versão beta", "Funcionalidades", "Roadmap", "Preços"] },
+  { title: "Suporte", items: ["Central de ajuda", "Contato", "Guia rápido", "Tutoriais"] },
+  { title: "Empresa", items: ["Sobre", "Blog", "Carreiras", "Imprensa"] },
+];
 
 const Footer: React.FC = () => {
-  const socials = [
-    {
-      label: "Twitter",
-      href: "#",
-      d: "M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4 1.64a9.09 9.09 0 0 1-2.88 1.1A4.52 4.52 0 0 0 16.6 0c-2.5 0-4.51 2.28-3.95 4.7A12.94 12.94 0 0 1 3 1.6a4.48 4.48 0 0 0-.61 2.27c0 1.57.8 2.96 2 3.77a4.48 4.48 0 0 1-2-.55v.06a4.53 4.53 0 0 0 3.6 4.44 4.52 4.52 0 0 1-2 .08 4.5 4.5 0 0 0 4.2 3.13A9.06 9.06 0 0 1 1 19.54a12.8 12.8 0 0 0 7 2.05c8.38 0 12.96-7.43 12.67-14.1A9.18 9.18 0 0 0 23 3z",
-    },
-    {
-      label: "GitHub",
-      href: "#",
-      d: "M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.02c-3.338.725-4.033-1.61-4.033-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.834 2.81 1.304 3.495.997.107-.776.418-1.305.76-1.605-2.665-.3-5.467-1.33-5.467-5.933 0-1.31.465-2.38 1.235-3.22-.135-.3-.54-1.52.105-3.165 0 0 1.005-.322 3.3 1.23a11.48 11.48 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.645.24 2.865.12 3.165.765.84 1.23 1.91 1.23 3.22 0 4.615-2.805 5.63-5.475 5.92.435.375.81 1.11.81 2.24v3.32c0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z",
-    },
-    {
-      label: "YouTube",
-      href: "#",
-      d: "M19.615 3.184C21.165 3.66 22.34 4.83 22.82 6.385 23.75 9.255 23.75 12 23.75 12s0 2.745-.93 5.615c-.48 1.555-1.655 2.725-3.205 3.2-2.87.93-9.615.93-9.615.93s-6.745 0-9.615-.93C1.655 20.34.48 19.17 0 17.615-.93 14.745-.93 12-.93 12s0-2.745.93-5.615C1.41 4.83 2.585 3.66 4.135 3.185 7.005 2.255 13.75 2.255 13.75 2.255s6.745 0 9.615.93zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z",
-    },
-  ];
-
-  const columns = [
-    { title: "Produto", items: ["Versão Beta", "Funcionalidades", "Roadmap", "Preços"] },
-    { title: "Suporte", items: ["FAQ", "Contato", "Documentação", "Tutoriais"] },
-    { title: "Empresa", items: ["Sobre nós", "Blog", "Carreiras", "Imprensa"] },
-  ];
-
   return (
-    <footer
-      className="
-        relative overflow-hidden
-        bg-white
-        border-t border-slate-200/60
-        px-6 pt-16 pb-10
-      "
-    >
-      {/* light halo no topo */}
+    <footer className="relative overflow-hidden border-t border-white/60 bg-[#F9FAFB] px-6 pb-12 pt-16">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1000px] h-[160px] rounded-full blur-[80px] bg-[radial-gradient(60%_80%_at_50%_0%,#EAE9FF_0%,transparent_70%)]" />
+        <div className="absolute inset-x-0 top-0 mx-auto h-40 max-w-5xl rounded-full bg-[radial-gradient(60%_80%_at_50%_0%,rgba(148,163,184,0.18),transparent_72%)]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* faixa de utilidades (suporte/privacidade/missão) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
-          {[
-            {
-              icon: MessageSquare,
-              label: "Fale com a Eco",
-              href: "#",
-            },
-            {
-              icon: Shield,
-              label: "Privacidade e termos",
-              href: "#",
-            },
-            {
-              icon: Heart,
-              label: "Nosso propósito",
-              href: "#",
-            },
-          ].map(({ icon: Icon, label, href }) => (
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {utilityLinks.map(({ icon: Icon, label, href }) => (
             <a
               key={label}
               href={href}
-              className="
-                group inline-flex items-center justify-center gap-2
-                rounded-full h-10 px-4
-                bg-white/80 backdrop-blur
-                ring-1 ring-slate-200 hover:ring-slate-300
-                text-slate-700 hover:text-slate-900
-                transition
-              "
+              className="glass glass-hover inline-flex h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-[#6B7280]"
             >
-              <Icon size={16} className="opacity-70 group-hover:opacity-100" />
-              <span className="text-sm font-medium">{label}</span>
+              <Icon size={16} className="text-[#3B82F6]" />
+              <span>{label}</span>
             </a>
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-8 mb-14">
-          {/* Marca + descrição + redes */}
-          <div className="md:max-w-sm">
-            <div className="flex items-center mb-4">
-              <div className="mr-2 grid place-items-center">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#7C5CFF] to-[#5B4BFF] p-[2px]">
-                  <div className="w-full h-full rounded-full bg-white/90 grid place-items-center">
-                    <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#7C5CFF] to-[#5B4BFF]" />
-                  </div>
-                </div>
-              </div>
-              <span className="text-xl tracking-tight text-slate-900">eco</span>
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-md space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/60 bg-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.08)]">
+                <span className="text-[18px] font-semibold tracking-tight text-[#3B82F6]">E</span>
+              </span>
+              <span className="text-2xl font-semibold tracking-tight text-[#111827]">eco</span>
             </div>
-
-            <p className="text-sm leading-relaxed text-slate-600">
-              Inteligência emocional que entende a essência por trás das suas palavras.
+            <p className="text-sm leading-relaxed text-[#6B7280]">
+              Inteligência emocional que te devolve para dentro, com delicadeza e clareza em cada conversa.
             </p>
-
-            <div className="mt-5 flex items-center gap-2">
-              {socials.map((s) => (
+            <div className="flex items-center gap-3">
+              {socials.map((item) => (
                 <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="
-                    h-9 w-9 rounded-full
-                    bg-white text-slate-500
-                    ring-1 ring-slate-200
-                    grid place-items-center
-                    hover:text-slate-900 hover:ring-slate-300
-                    transition
-                  "
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-[#6B7280] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition hover:text-[#111827]"
                 >
-                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d={s.d} />
+                  <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={item.d} />
                   </svg>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Navegação */}
           <nav aria-label="Rodapé" className="flex-1">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
               {columns.map((col) => (
-                <div key={col.title}>
-                  <h3 className="text-[12px] font-medium uppercase tracking-wider text-slate-500 mb-3">
+                <div key={col.title} className="space-y-3">
+                  <h3 className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
                     {col.title}
                   </h3>
                   <ul className="space-y-2.5">
@@ -132,10 +79,7 @@ const Footer: React.FC = () => {
                       <li key={item}>
                         <a
                           href="#"
-                          className="
-                            text-[14px] text-slate-600 hover:text-slate-900
-                            transition
-                          "
+                          className="text-[14px] font-medium text-[#4B5563] transition hover:text-[#111827]"
                         >
                           {item}
                         </a>
@@ -148,12 +92,11 @@ const Footer: React.FC = () => {
           </nav>
         </div>
 
-        {/* base inferior */}
-        <div className="border-t border-slate-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-slate-500">
+        <div className="flex flex-col items-start gap-4 border-t border-white/60 pt-6 text-[13px] text-[#6B7280] md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Eco. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-5">
-            {["Termos de Serviço", "Privacidade", "Cookies"].map((item) => (
-              <a key={item} href="#" className="hover:text-slate-900 transition">
+          <div className="flex flex-wrap items-center gap-4">
+            {["Termos", "Privacidade", "Cookies"].map((item) => (
+              <a key={item} href="#" className="transition hover:text-[#111827]">
                 {item}
               </a>
             ))}
