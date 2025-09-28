@@ -14,86 +14,67 @@ function useHoverCapable() {
   return canHover;
 }
 
-type Issue = {
+type Chip = {
   Icon: LucideIcon;
-  title: string;
-  signals: string;
-  help: string;
+  label: string;
+  subtitle: string;
+  tooltip: string;
+  ariaLabel: string;
   accent: {
-    tintBg: string;
-    tintBorder: string;
-    color: string;
+    icon: string;
+    tint: string;
   };
 };
 
-/** Quatro “tiles” harmônicos com a paleta do CTA (roxo suave) */
-const issues: Issue[] = [
+const chips: Chip[] = [
   {
     Icon: Brain,
-    title: "Confusão emocional",
-    signals: "Não saber o que sente, pensamentos em loop.",
-    help: "Nomeia emoções, organiza ideias e aponta o próximo passo.",
-    accent: { tintBg: "#F1EFFF", tintBorder: "#E6E1F9", color: "#7C5CFF" },
+    label: "Confusão emocional",
+    subtitle: "Nomeia emoções, organiza ideias e aponta o próximo passo.",
+    tooltip: "Sinais: Não saber o que sente, pensamentos em loop.",
+    ariaLabel:
+      "Confusão emocional — Nomeia emoções, organiza ideias e aponta o próximo passo.",
+    accent: { icon: "#7C5CFF", tint: "rgba(124,92,255,0.12)" },
   },
   {
     Icon: Clock,
-    title: "Piloto automático",
-    signals: "Dias iguais, reagir no impulso e só perceber depois.",
-    help: "Cria pausas curtas para recuperar presença e escolher melhor.",
-    accent: { tintBg: "#EFF6FF", tintBorder: "#DBEAFE", color: "#2563EB" },
+    label: "Piloto automático",
+    subtitle: "Cria pausas curtas para recuperar presença e escolher melhor.",
+    tooltip: "Sinais: Dias iguais, reagir no impulso e só perceber depois.",
+    ariaLabel:
+      "Piloto automático — Cria pausas curtas para recuperar presença e escolher melhor.",
+    accent: { icon: "#2563EB", tint: "rgba(37,99,235,0.12)" },
   },
   {
     Icon: Repeat,
-    title: "Padrões que voltam",
-    signals: "Mesmos conflitos/decisões; sensação de voltar à estaca zero.",
-    help: "Mostra gatilho → resposta → consequência e sugere micro-ações.",
-    accent: { tintBg: "#ECFDF5", tintBorder: "#D1FAE5", color: "#16A34A" },
+    label: "Padrões que voltam",
+    subtitle: "Mostra gatilho, resposta e consequência com micro-ações.",
+    tooltip:
+      "Sinais: Mesmos conflitos ou decisões com sensação de voltar à estaca zero.",
+    ariaLabel:
+      "Padrões que voltam — Mostra gatilho, resposta e consequência com micro-ações.",
+    accent: { icon: "#16A34A", tint: "rgba(22,163,74,0.12)" },
   },
   {
     Icon: Compass,
-    title: "Transições sem clareza",
-    signals: "Decisões grandes com neblina emocional.",
-    help: "Foca no essencial e dá serenidade para decidir com calma.",
-    accent: { tintBg: "#FFF7ED", tintBorder: "#FFEDD5", color: "#F97316" },
+    label: "Transições sem clareza",
+    subtitle: "Foca no essencial e dá serenidade para decidir com calma.",
+    tooltip: "Sinais: Decisões grandes acompanhadas de neblina emocional.",
+    ariaLabel:
+      "Transições sem clareza — Foca no essencial e dá serenidade para decidir com calma.",
+    accent: { icon: "#F97316", tint: "rgba(249,115,22,0.12)" },
   },
 ];
 
-/** Cápsula do ícone (branquinho + tint sutil) */
-const IconBadge: React.FC<{ Icon: LucideIcon; accent: Issue["accent"] }> = ({
-  Icon,
-  accent,
-}) => (
-  <span
-    aria-hidden
-    className="relative grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl"
-    style={{
-      background:
-        "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1))",
-      boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(17,24,39,0.06)",
-      border: `1px solid ${accent.tintBorder}`,
-    }}
-  >
-    <span
-      className="absolute inset-0 rounded-xl"
-      style={{
-        background: `radial-gradient(60% 60% at 50% 50%, ${accent.tintBg} 0%, transparent 70%)`,
-      }}
-    />
-    <Icon size={20} strokeWidth={2} style={{ color: accent.color }} />
-  </span>
-);
-
 const TargetAudienceSection: React.FC = () => {
   const canHover = useHoverCapable();
-  const sub = `${canHover ? "Passe o mouse" : "Toque"} em um card para ver como a Eco traz clareza.`;
-  const [active, setActive] = useState<number | null>(null);
+  const sub = `${canHover ? "Passe o mouse" : "Arraste"} pelos sinais que a Eco acolhe.`;
 
   return (
     <section
       id="para-quem"
       aria-labelledby="para-quem-title"
-      className="relative overflow-hidden bg-[#F7F6FB] py-16 sm:py-20 px-5 sm:px-8"
+      className="relative overflow-hidden bg-[#F7F6FB] py-12 px-5 sm:px-8"
     >
       {/* Halos clarinhos */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -102,7 +83,7 @@ const TargetAudienceSection: React.FC = () => {
       </div>
 
       {/* Header alinhado à esquerda (como o "como funciona") */}
-      <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
+      <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-10 text-left">
         <h2 id="para-quem-title" className="heading-lg font-semibold">
           <span className="text-zinc-900">Quando a </span>
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
@@ -115,44 +96,51 @@ const TargetAudienceSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Grid de cards (mesma largura da seção de referência) */}
-      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7">
-        {issues.map((c, i) => {
-          const isActive = active === i;
-          return (
-            <button
-              key={c.title}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActive(isActive ? null : i)}
-              className="group relative text-left rounded-[22px] bg-white border border-[#E7EAF2] p-5 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(17,24,39,0.06)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/20"
-            >
-              <div className="relative flex items-start gap-4 sm:gap-5">
-                <IconBadge Icon={c.Icon} accent={c.accent} />
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
-                    {c.title}
-                  </h3>
-                  {/* Sinais ↔ O que muda (altura fixa) */}
-                  <div className="relative mt-2 lg:mt-3 min-h-[44px]">
-                    <p
-                      className={`absolute inset-0 text-[#6E6E73] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"} group-hover:opacity-0 group-hover:translate-y-1`}
+      <div className="relative w-full max-w-7xl mx-auto">
+        <div
+          className="relative -mx-5 px-5 lg:mx-0 lg:px-0 overflow-x-auto overflow-y-visible snap-x snap-mandatory lg:snap-none"
+          style={{ scrollbarWidth: "none" }}
+        >
+          <div className="flex min-w-fit gap-3 pb-1 lg:gap-4 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            {chips.map((chip, index) => {
+              const tooltipId = `chip-tooltip-${index}`;
+              const Icon = chip.Icon;
+              return (
+                <button
+                  key={chip.label}
+                  type="button"
+                  className="group relative flex min-h-[48px] snap-start flex-shrink-0 items-center gap-3 rounded-full border border-white/50 bg-white/70 px-4 sm:px-5 text-left font-sans text-sm font-medium text-[#1D1D1F] shadow-[0_6px_18px_rgba(17,24,39,0.08)] backdrop-blur-[14px] transition duration-200 ease-out hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(17,24,39,0.12)] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b5cf6]/40"
+                  aria-label={chip.ariaLabel}
+                  aria-describedby={canHover ? tooltipId : undefined}
+                  title={chip.label}
+                >
+                  <span
+                    aria-hidden
+                    className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full"
+                    style={{ backgroundColor: chip.accent.tint }}
+                  >
+                    <Icon size={22} strokeWidth={2} style={{ color: chip.accent.icon }} />
+                  </span>
+                  <span className="flex min-w-0 flex-col text-left">
+                    <span className="truncate">{chip.label}</span>
+                    <span className="text-xs font-normal text-[#6E6E73]">
+                      {chip.subtitle}
+                    </span>
+                  </span>
+                  {canHover && (
+                    <span
+                      id={tooltipId}
+                      role="tooltip"
+                      className="pointer-events-none absolute left-1/2 top-0 z-10 w-max max-w-xs -translate-x-1/2 -translate-y-[calc(100%+14px)] scale-95 rounded-2xl border border-white/60 bg-white/90 px-4 py-2 text-[13px] font-normal text-[#3F3F46] opacity-0 shadow-[0_12px_32px_rgba(17,24,39,0.15)] backdrop-blur-[16px] transition duration-200 group-hover:-translate-y-[calc(100%+18px)] group-hover:scale-100 group-hover:opacity-100"
                     >
-                      <span className="text-[#8E8E93]">Sinais: </span>
-                      {c.signals}
-                    </p>
-                    <p
-                      className={`absolute inset-0 text-[#1D1D1F] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"} group-hover:opacity-100 group-hover:translate-y-0`}
-                    >
-                      <span className="text-[#7B7F8C]">O que muda: </span>
-                      {c.help}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </button>
-          );
-        })}
+                      {chip.tooltip}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
