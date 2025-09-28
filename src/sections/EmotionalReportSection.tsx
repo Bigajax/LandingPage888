@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Sparkles, Smile, BarChart2, Mic, Volume2, Waves, Play, Square, StopCircle } from "lucide-react";
+import {
+  Sparkles,
+  Smile,
+  BarChart2,
+  Mic,
+  Volume2,
+  Waves,
+  Play,
+  Square,
+  StopCircle,
+} from "lucide-react";
 import RelatorioMemoriasImg from "@/assets/images/relatorio+memorias.png";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-
-const COLOR = "#5B4BFF";
 
 /* ---------- UI atoms ---------- */
 const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({ active, children }) => (
@@ -45,7 +53,7 @@ const TabButton: React.FC<{
       bg-white/75 border border-white/40
       hover:bg-white/90
       transition-all duration-200
-      focus:outline-none focus-visible:ring-2 focus-visible:ring-[${COLOR}] focus-visible:ring-opacity-20
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5B4BFF] focus-visible:ring-opacity-20
       data-[active=true]:bg-white data-[active=true]:border-transparent
     `}
   >
@@ -157,6 +165,62 @@ const TABS: Tab[] = [
 ];
 
 /* ---------- Section ---------- */
+type VoiceTabMeta = {
+  title: string;
+  subtitle: string;
+  Icon: LucideIcon;
+};
+
+const VOICE_TAB_META: Record<"voz" | "tts" | "conversa", VoiceTabMeta> = {
+  voz: {
+    title: "Diário por voz",
+    subtitle: "Grave, transcreva e salve como memória.",
+    Icon: Mic,
+  },
+  tts: {
+    title: "Voz da Eco",
+    subtitle: "Ouça a resposta da Eco em áudio natural.",
+    Icon: Volume2,
+  },
+  conversa: {
+    title: "Conversa em voz",
+    subtitle: "Fale e escute em fluxo contínuo.",
+    Icon: Waves,
+  },
+};
+
+type ActionButtonVariant = "primary" | "secondary";
+
+const ACTION_BUTTON_BASE =
+  "inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#5B4BFF]/40";
+
+const getActionButtonClasses = (variant: ActionButtonVariant) =>
+  `${ACTION_BUTTON_BASE} ${
+    variant === "primary"
+      ? "bg-neutral-900 text-white hover:bg-neutral-800"
+      : "bg-white border border-black/10 text-neutral-800 hover:bg-neutral-50"
+  }`;
+
+const ActionButton: React.FC<{
+  label: string;
+  Icon: LucideIcon;
+  onClick: () => void;
+  variant?: ActionButtonVariant;
+  ariaLabel: string;
+}> = ({ label, Icon, onClick, ariaLabel, variant = "primary" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={getActionButtonClasses(variant)}
+    aria-label={ariaLabel}
+  >
+    <Icon size={16} /> {label}
+  </button>
+);
+
+const isVoiceTab = (tabId: TabId): tabId is "voz" | "tts" | "conversa" =>
+  tabId === "voz" || tabId === "tts" || tabId === "conversa";
+
 const EmotionalReportSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
   const [activeTab, setActiveTab] = useState<TabId>("memorias");
@@ -176,7 +240,50 @@ const EmotionalReportSection: React.FC = () => {
     console.log("playTTS()");
   };
 
-  const isVoicePreview = activeTab === "voz" || activeTab === "tts" || activeTab === "conversa";
+  const isVoicePreview = isVoiceTab(activeTab);
+  const activeVoiceMeta = isVoicePreview ? VOICE_TAB_META[activeTab] : null;
+  const VoiceIcon = activeVoiceMeta?.Icon;
+
+  const renderContextualCTA = () => {
+    if (!isVoiceTab(activeTab)) {
+      return null;
+    }
+
+    if (activeTab === "tts") {
+      return (
+        <div className="mt-4">
+          <ActionButton
+            onClick={playTTS}
+            Icon={Play}
+            label="Ouvir resposta"
+            ariaLabel="Ouvir resposta em áudio"
+          />
+        </div>
+      );
+    }
+
+    const isConversation = activeTab === "conversa";
+
+    return (
+      <div className="mt-4 flex items-center gap-2">
+        <ActionButton
+          onClick={startRecording}
+          Icon={isConversation ? Waves : Mic}
+          label={isConversation ? "Iniciar conversa" : "Gravar agora"}
+          ariaLabel={
+            isConversation ? "Iniciar conversa por voz" : "Iniciar gravação por voz"
+          }
+        />
+        <ActionButton
+          onClick={stopRecording}
+          Icon={isConversation ? StopCircle : Square}
+          variant="secondary"
+          label={isConversation ? "Encerrar" : "Parar"}
+          ariaLabel={isConversation ? "Encerrar conversa" : "Parar gravação"}
+        />
+      </div>
+    );
+  };
 
   return (
     <section
@@ -243,55 +350,7 @@ const EmotionalReportSection: React.FC = () => {
               </p>
 
               {/* CTA contextual (opcional) */}
-              {activeTab === "voz" && (
-                <div className="mt-4 flex items-center gap-2">
-                  <button
-                    onClick={startRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Iniciar gravação por voz"
-                  >
-                    <Mic size={16} /> Gravar agora
-                  </button>
-                  <button
-                    onClick={stopRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                    aria-label="Parar gravação"
-                  >
-                    <Square size={16} /> Parar
-                  </button>
-                </div>
-              )}
-
-              {activeTab === "tts" && (
-                <div className="mt-4">
-                  <button
-                    onClick={playTTS}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Ouvir resposta em áudio"
-                  >
-                    <Play size={16} /> Ouvir resposta
-                  </button>
-                </div>
-              )}
-
-              {activeTab === "conversa" && (
-                <div className="mt-4 flex items-center gap-2">
-                  <button
-                    onClick={startRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Iniciar conversa por voz"
-                  >
-                    <Waves size={16} /> Iniciar conversa
-                  </button>
-                  <button
-                    onClick={stopRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                    aria-label="Encerrar conversa"
-                  >
-                    <StopCircle size={16} /> Encerrar
-                  </button>
-                </div>
-              )}
+              {renderContextualCTA()}
             </div>
           </div>
 
@@ -374,19 +433,11 @@ const EmotionalReportSection: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-[15px] font-medium text-neutral-900">
-                            {activeTab === "voz" && "Diário por voz"}
-                            {activeTab === "tts" && "Voz da Eco"}
-                            {activeTab === "conversa" && "Conversa em voz"}
+                            {activeVoiceMeta?.title}
                           </p>
-                          <p className="text-[12px] text-neutral-500">
-                            {activeTab === "voz" && "Grave, transcreva e salve como memória."}
-                            {activeTab === "tts" && "Ouça a resposta da Eco em áudio natural."}
-                            {activeTab === "conversa" && "Fale e escute em fluxo contínuo."}
-                          </p>
+                          <p className="text-[12px] text-neutral-500">{activeVoiceMeta?.subtitle}</p>
                         </div>
-                        {activeTab === "voz" && <Mic className="text-[#5B4BFF]" size={18} />}
-                        {activeTab === "tts" && <Volume2 className="text-[#5B4BFF]" size={18} />}
-                        {activeTab === "conversa" && <Waves className="text-[#5B4BFF]" size={18} />}
+                        {VoiceIcon && <VoiceIcon className="text-[#5B4BFF]" size={18} />}
                       </div>
 
                       {/* barra/onda ilustrativa */}
@@ -405,28 +456,34 @@ const EmotionalReportSection: React.FC = () => {
 
                       {/* controles */}
                       <div className="mt-4 flex items-center gap-2">
-                        {activeTab !== "tts" && (
+                        {isVoiceTab(activeTab) && (
                           <>
-                            <button
-                              onClick={startRecording}
-                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                            >
-                              <Mic size={16} /> Gravar
-                            </button>
-                            <button
-                              onClick={stopRecording}
-                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                            >
-                              <Square size={16} /> Parar
-                            </button>
+                            {activeTab !== "tts" && (
+                              <>
+                                <ActionButton
+                                  onClick={startRecording}
+                                  Icon={Mic}
+                                  label="Gravar"
+                                  ariaLabel="Iniciar gravação"
+                                />
+                                <ActionButton
+                                  onClick={stopRecording}
+                                  Icon={Square}
+                                  label="Parar"
+                                  ariaLabel="Parar gravação"
+                                  variant="secondary"
+                                />
+                              </>
+                            )}
+                            <ActionButton
+                              onClick={playTTS}
+                              Icon={Play}
+                              label="Reproduzir"
+                              ariaLabel="Reproduzir áudio"
+                              variant="secondary"
+                            />
                           </>
                         )}
-                        <button
-                          onClick={playTTS}
-                          className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                        >
-                          <Play size={16} /> Reproduzir
-                        </button>
                       </div>
                     </div>
                   )}
