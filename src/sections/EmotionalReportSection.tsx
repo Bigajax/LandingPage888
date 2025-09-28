@@ -191,7 +191,7 @@ const EmotionalReportSection: React.FC = () => {
         {/* Título e subtítulo */}
         <h2
           className={`
-            text-[26px] sm:text-4xl md:text-[44px] font-semibold tracking-tight
+            heading-lg font-semibold
             text-neutral-900 text-center lg:text-left
             transition-all duration-700 mb-3
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
@@ -205,8 +205,7 @@ const EmotionalReportSection: React.FC = () => {
 
         <p
           className={`
-            text-[15px] sm:text-[17px] lg:text-[18px] leading-relaxed
-            text-neutral-600 max-w-3xl
+            subheading text-neutral-600 max-w-3xl
             text-center lg:text-left mb-8
             transition-all duration-700 delay-100
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}

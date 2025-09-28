@@ -7,7 +7,7 @@ const CallToActionEco: React.FC = () => {
       id="convite"
       className="
         relative overflow-hidden
-        w-full py-16 sm:py-20 px-6
+        w-full py-16 sm:py-20 px-5 sm:px-8 md:px-12
         flex flex-col items-center text-center
         mx-auto max-w-5xl
         rounded-[32px] border border-white/60
@@ -22,8 +22,8 @@ const CallToActionEco: React.FC = () => {
       </div>
 
       {/* Título + subtítulo */}
-      <div className="relative max-w-3xl">
-        <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0A0C18]">
+      <div className="relative max-w-3xl md:max-w-2xl">
+        <h2 className="heading-lg font-semibold text-[#0A0C18]">
           Descubra a{" "}
           <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
             Eco
@@ -31,7 +31,7 @@ const CallToActionEco: React.FC = () => {
           antes de todo mundo
         </h2>
 
-        <p className="mt-4 text-[15px] sm:text-[17px] text-[#505467]">
+        <p className="mt-4 subheading text-[#505467]">
           Acesse gratuitamente a versão beta — uma jornada de autoconhecimento
           com IA, feita para quem quer se escutar com profundidade.
         </p>

@@ -53,11 +53,11 @@ const IntroducingEco: React.FC = () => {
 
       {/* Título + subtítulo */}
       <div className="relative w-full max-w-7xl mx-auto text-left mb-8 sm:mb-12">
-        <h2 className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
+        <h2 className="heading-lg font-semibold">
           <span className="text-zinc-900">Conheça a </span>
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">Eco</span>
         </h2>
-        <p className="mt-2 text-zinc-500 text-[15px] sm:text-[17px] max-w-3xl">
+        <p className="mt-2 subheading text-zinc-500 max-w-3xl">
           Um espaço simples e guiado para escrever, refletir e enxergar padrões — criando condições reais para mudança.
         </p>
       </div>

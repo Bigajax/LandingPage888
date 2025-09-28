@@ -148,13 +148,13 @@ const Testimonials: React.FC = () => {
       <div className="relative max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0F111A]">
+          <h2 className="heading-lg font-semibold text-[#0F111A]">
             O que as pessoas sentem com a{" "}
             <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
               Eco
             </span>
           </h2>
-          <p className="mt-3 text-[15px] sm:text-[17px] text-[#565A66] max-w-xl">
+          <p className="mt-3 subheading text-[#565A66] max-w-xl">
             Feedbacks reais de quem experimentou. Simples, seguros e anônimos.
           </p>
         </div>

@@ -103,17 +103,14 @@ const TargetAudienceSection: React.FC = () => {
 
       {/* Header alinhado à esquerda (como o "como funciona") */}
       <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
-        <h2
-          id="para-quem-title"
-          className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight"
-        >
+        <h2 id="para-quem-title" className="heading-lg font-semibold">
           <span className="text-zinc-900">Quando a </span>
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
             Eco
           </span>
           <span className="text-zinc-900"> ajuda.</span>
         </h2>
-        <p className="mt-2 text-zinc-900 text-[15px] sm:text-[17px] max-w-2xl">
+        <p className="mt-2 subheading text-zinc-900 max-w-2xl">
           Quatro situações do dia a dia. {sub}
         </p>
       </div>
