@@ -22,27 +22,27 @@ const Header: React.FC = () => {
   }, []);
 
   const isHome = location.pathname === "/";
+  const useDarkOnLight = isHome && !scrolled;
 
-  const linkCls = scrolled
+  const linkCls = scrolled || useDarkOnLight
     ? "text-neutral-800 hover:text-black"
     : "text-white/90 hover:text-white";
 
-  const ctaCls = scrolled
+  const ctaCls = scrolled || useDarkOnLight
     ? "bg-neutral-900 text-white hover:bg-black"
     : "bg-white/10 text-white ring-1 ring-white/30 hover:bg-white/20";
 
-  const iconColor = scrolled ? "text-neutral-900" : "text-white";
+  const iconColor = scrolled || useDarkOnLight ? "text-neutral-900" : "text-white";
+  const containerToneCls = useDarkOnLight || scrolled
+    ? "bg-white/80 text-neutral-900 border-white/60 shadow-[0_6px_24px_rgba(0,0,0,0.12)] backdrop-blur-md"
+    : "bg-transparent text-white border-white/15 backdrop-blur-[2px]";
 
   return (
     <header className="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 md:px-6 w-full max-w-full">
       <div
         className={`rounded-full px-4 py-3 md:px-6 md:py-2 flex items-center justify-between border transition-all duration-700 ease-out
         ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-        ${
-          scrolled
-            ? "bg-white/80 text-neutral-900 border-white/60 shadow-[0_6px_24px_rgba(0,0,0,0.12)] backdrop-blur-md"
-            : "bg-transparent text-white border-white/15 backdrop-blur-[2px]"
-        }`}
+        ${containerToneCls}`}
       >
         {/* Logo */}
         {isHome ? (
