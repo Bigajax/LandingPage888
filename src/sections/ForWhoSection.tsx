@@ -26,6 +26,53 @@ type Issue = {
   };
 };
 
+const issueCardBaseClasses =
+  "group relative text-left rounded-[22px] bg-white border border-[#E7EAF2] p-5 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(17,24,39,0.06)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_16px_40px_rgba(17,24,39,0.1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/20";
+
+const IssueTile: React.FC<{
+  issue: Issue;
+  index: number;
+  activeIndex: number | null;
+  onToggle: (index: number) => void;
+}> = ({ issue, index, activeIndex, onToggle }) => {
+  const isActive = activeIndex === index;
+  return (
+    <button
+      type="button"
+      aria-pressed={isActive}
+      onClick={() => onToggle(isActive ? -1 : index)}
+      className={issueCardBaseClasses}
+    >
+      <div className="relative flex items-start gap-3.5 sm:gap-4">
+        <IconBadge Icon={issue.Icon} accent={issue.accent} />
+        <div className="min-w-0 flex-1">
+          <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[17px] sm:text-[18px] lg:text-[19px]">
+            {issue.title}
+          </h3>
+          <div className="relative mt-2 lg:mt-2.5 min-h-[40px]">
+            <p
+              className={`absolute inset-0 text-[#6E6E73] text-[13px] sm:text-[14px] leading-snug transition-all duration-200 ${
+                isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
+              } group-hover:opacity-0 group-hover:translate-y-1`}
+            >
+              <span className="text-[#8E8E93]">Sinais: </span>
+              {issue.signals}
+            </p>
+            <p
+              className={`absolute inset-0 text-[#1D1D1F] text-[13px] sm:text-[14px] leading-snug transition-all duration-200 ${
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+              } group-hover:opacity-100 group-hover:translate-y-0`}
+            >
+              <span className="text-[#7B7F8C]">O que muda: </span>
+              {issue.help}
+            </p>
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+};
+
 /** Quatro “tiles” harmônicos com a paleta do CTA (roxo suave) */
 const issues: Issue[] = [
   {
@@ -65,22 +112,27 @@ const IconBadge: React.FC<{ Icon: LucideIcon; accent: Issue["accent"] }> = ({
 }) => (
   <span
     aria-hidden
-    className="relative grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl"
+    className="relative grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-[14px]"
     style={{
       background:
         "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1))",
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(17,24,39,0.06)",
+        "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(17,24,39,0.04)",
       border: `1px solid ${accent.tintBorder}`,
     }}
   >
     <span
-      className="absolute inset-0 rounded-xl"
+      className="absolute inset-0 rounded-[14px]"
       style={{
-        background: `radial-gradient(60% 60% at 50% 50%, ${accent.tintBg} 0%, transparent 70%)`,
+        background: `radial-gradient(58% 58% at 50% 45%, ${accent.tintBg} 0%, transparent 70%)`,
       }}
     />
-    <Icon size={20} strokeWidth={2} style={{ color: accent.color }} />
+    <Icon
+      size={15}
+      strokeWidth={1.9}
+      className="text-[inherit]"
+      style={{ color: accent.color }}
+    />
   </span>
 );
 
@@ -117,42 +169,15 @@ const TargetAudienceSection: React.FC = () => {
 
       {/* Grid de cards (mesma largura da seção de referência) */}
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7">
-        {issues.map((c, i) => {
-          const isActive = active === i;
-          return (
-            <button
-              key={c.title}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActive(isActive ? null : i)}
-              className="group relative text-left rounded-[22px] bg-white border border-[#E7EAF2] p-5 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(17,24,39,0.06)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/20"
-            >
-              <div className="relative flex items-start gap-4 sm:gap-5">
-                <IconBadge Icon={c.Icon} accent={c.accent} />
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
-                    {c.title}
-                  </h3>
-                  {/* Sinais ↔ O que muda (altura fixa) */}
-                  <div className="relative mt-2 lg:mt-3 min-h-[44px]">
-                    <p
-                      className={`absolute inset-0 text-[#6E6E73] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"} group-hover:opacity-0 group-hover:translate-y-1`}
-                    >
-                      <span className="text-[#8E8E93]">Sinais: </span>
-                      {c.signals}
-                    </p>
-                    <p
-                      className={`absolute inset-0 text-[#1D1D1F] text-[14px] sm:text-[15px] leading-snug transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"} group-hover:opacity-100 group-hover:translate-y-0`}
-                    >
-                      <span className="text-[#7B7F8C]">O que muda: </span>
-                      {c.help}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </button>
-          );
-        })}
+        {issues.map((issue, index) => (
+          <IssueTile
+            key={issue.title}
+            issue={issue}
+            index={index}
+            activeIndex={active}
+            onToggle={(nextIndex) => setActive(nextIndex === -1 ? null : nextIndex)}
+          />
+        ))}
       </div>
     </section>
   );
