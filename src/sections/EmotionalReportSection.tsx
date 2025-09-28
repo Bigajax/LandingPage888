@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Sparkles, Smile, BarChart2, Mic, Volume2, Waves, Play, Square, StopCircle } from "lucide-react";
+import {
+  Sparkles,
+  Smile,
+  BarChart2,
+  Mic,
+  Volume2,
+  Waves,
+  Play,
+  Square,
+  StopCircle,
+} from "lucide-react";
 import RelatorioMemoriasImg from "@/assets/images/relatorio+memorias.png";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-
-const COLOR = "#5B4BFF";
 
 /* ---------- UI atoms ---------- */
 const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({ active, children }) => (
@@ -12,17 +20,15 @@ const IconBadge: React.FC<{ active?: boolean; children: React.ReactNode }> = ({ 
     data-active={active}
     className="
       relative grid place-items-center
-      w-9 h-9 sm:w-10 sm:h-10 rounded-lg
-      bg-[linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06))]
-      backdrop-blur-md border border-white/20
-      shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]
-      data-[active=true]:border-[rgba(91,75,255,0.35)]
-      data-[active=true]:shadow-[inset_0_1px_0_rgba(255,255,255,0.55)]
-      transition-all duration-200
+      h-9 w-9 sm:h-10 sm:w-10 rounded-[12px]
+      border border-white/50 bg-white/60
+      shadow-[inset_0_1px_0_rgba(255,255,255,0.65)]
+      backdrop-blur-xl transition-all duration-200
+      data-[active=true]:border-[#5B4BFF]/60 data-[active=true]:bg-white
     "
     aria-hidden
   >
-    <i className="pointer-events-none absolute inset-0 rounded-lg opacity-70 bg-[radial-gradient(120%_120%_at_15%_10%,rgba(255,255,255,0.55),rgba(255,255,255,0)_55%)]" />
+    <i className="pointer-events-none absolute inset-0 rounded-[12px] bg-[radial-gradient(130%_130%_at_15%_12%,rgba(139,122,255,0.28),rgba(255,255,255,0))]" />
     {children}
   </span>
 );
@@ -38,37 +44,35 @@ const TabButton: React.FC<{
     aria-pressed={active}
     onClick={onClick}
     data-active={active}
-    className={`
-      group relative flex items-center gap-3
-      w-full px-4 py-2.5 sm:px-5 sm:py-3
-      rounded-xl text-[15px] sm:text-base font-medium
-      bg-white/75 border border-white/40
-      hover:bg-white/90
-      transition-all duration-200
-      focus:outline-none focus-visible:ring-2 focus-visible:ring-[${COLOR}] focus-visible:ring-opacity-20
-      data-[active=true]:bg-white data-[active=true]:border-transparent
-    `}
+    className="
+      group relative flex w-full items-center gap-3
+      rounded-2xl border border-white/40 bg-white/60 px-4 py-2.5
+      text-left text-[15px] font-medium text-neutral-700 transition-all duration-200
+      hover:border-[#5B4BFF]/30 hover:bg-white focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-[#5B4BFF]/30 focus-visible:ring-offset-1
+      data-[active=true]:border-[#5B4BFF]/40 data-[active=true]:bg-white data-[active=true]:text-[#5046FF]
+      sm:px-5 sm:py-3 sm:text-base
+    "
   >
     <span
       className="
-        absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl
-        bg-gradient-to-b from-[#7C6BFF] to-[#B3AEFF]
-        opacity-0 data-[active=true]:opacity-100 transition-opacity duration-200
+        absolute inset-y-2 left-2 w-[3px] rounded-full
+        bg-gradient-to-b from-[#6F60FF] to-[#B4AEFF]
+        opacity-0 transition-opacity duration-200
+        data-[active=true]:opacity-100
       "
     />
     <IconBadge active={active}>
       <Icon
         size={18}
-        strokeWidth={1.75}
+        strokeWidth={1.6}
         absoluteStrokeWidth
         shapeRendering="geometricPrecision"
-        className={active ? "text-[#5B4BFF]" : "text-neutral-700"}
+        className={active ? "text-[#5B4BFF]" : "text-neutral-600"}
       />
     </IconBadge>
 
-    <span className={`truncate ${active ? "text-[#5B4BFF]" : "text-neutral-800"}`}>
-      {title}
-    </span>
+    <span className="truncate pl-1">{title}</span>
   </button>
 );
 
@@ -79,6 +83,11 @@ type Tab = {
   title: string;
   Icon: LucideIcon;
   description: React.ReactNode;
+  voice?: {
+    headline: string;
+    subheadline: string;
+    actions: VoiceActionKey[];
+  };
 };
 
 const TABS: Tab[] = [
@@ -120,7 +129,7 @@ const TABS: Tab[] = [
     ),
   },
 
-  /* -------- Novas abas de VOZ -------- */
+  /* -------- Abas de voz -------- */
   {
     id: "voz",
     title: "Diário por voz",
@@ -131,6 +140,11 @@ const TABS: Tab[] = [
         analisamos a emoção e salvamos como memória — perfeito para quem prefere falar a digitar.
       </>
     ),
+    voice: {
+      headline: "Diário por voz",
+      subheadline: "Grave, transcreva e salve como memória.",
+      actions: ["record", "stop", "playback"],
+    },
   },
   {
     id: "tts",
@@ -142,6 +156,11 @@ const TABS: Tab[] = [
         entonação suave (ElevenLabs). Ideal para reflexões no caminho, na academia ou antes de dormir.
       </>
     ),
+    voice: {
+      headline: "Voz da Eco",
+      subheadline: "Respostas naturais para te acompanhar.",
+      actions: ["listen"],
+    },
   },
   {
     id: "conversa",
@@ -153,10 +172,55 @@ const TABS: Tab[] = [
         transcreve, responde e lê em voz alta — uma experiência fluida de conversa.
       </>
     ),
+    voice: {
+      headline: "Conversa em voz",
+      subheadline: "Fale, escute e continue o fluxo.",
+      actions: ["conversationStart", "conversationStop", "playback"],
+    },
   },
 ];
 
 /* ---------- Section ---------- */
+type ActionButtonVariant = "primary" | "secondary";
+
+const ACTION_BUTTON_BASE =
+  "inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#5B4BFF]/40";
+
+const getActionButtonClasses = (variant: ActionButtonVariant) =>
+  `${ACTION_BUTTON_BASE} ${
+    variant === "primary"
+      ? "bg-neutral-900 text-white hover:bg-neutral-800"
+      : "bg-white border border-black/10 text-neutral-800 hover:bg-neutral-50"
+  }`;
+
+const ActionButton: React.FC<{
+  label: string;
+  Icon: LucideIcon;
+  onClick: () => void;
+  variant?: ActionButtonVariant;
+  ariaLabel: string;
+}> = ({ label, Icon, onClick, ariaLabel, variant = "primary" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={getActionButtonClasses(variant)}
+    aria-label={ariaLabel}
+  >
+    <Icon size={16} /> {label}
+  </button>
+);
+
+const isVoiceTab = (tabId: TabId): tabId is "voz" | "tts" | "conversa" =>
+  tabId === "voz" || tabId === "tts" || tabId === "conversa";
+
+type VoiceActionKey =
+  | "record"
+  | "stop"
+  | "playback"
+  | "listen"
+  | "conversationStart"
+  | "conversationStop";
+
 const EmotionalReportSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
   const [activeTab, setActiveTab] = useState<TabId>("memorias");
@@ -176,24 +240,72 @@ const EmotionalReportSection: React.FC = () => {
     console.log("playTTS()");
   };
 
-  const isVoicePreview = activeTab === "voz" || activeTab === "tts" || activeTab === "conversa";
+  const voiceActions: Record<
+    VoiceActionKey,
+    Omit<React.ComponentProps<typeof ActionButton>, "Icon"> & { Icon: LucideIcon }
+  > = {
+    record: {
+      label: "Gravar",
+      ariaLabel: "Iniciar gravação",
+      Icon: Mic,
+      onClick: startRecording,
+      variant: "primary",
+    },
+    stop: {
+      label: "Parar",
+      ariaLabel: "Parar gravação",
+      Icon: Square,
+      onClick: stopRecording,
+      variant: "secondary",
+    },
+    playback: {
+      label: "Reproduzir",
+      ariaLabel: "Reproduzir áudio",
+      Icon: Play,
+      onClick: playTTS,
+      variant: "secondary",
+    },
+    listen: {
+      label: "Ouvir resposta",
+      ariaLabel: "Ouvir resposta em áudio",
+      Icon: Play,
+      onClick: playTTS,
+      variant: "primary",
+    },
+    conversationStart: {
+      label: "Iniciar conversa",
+      ariaLabel: "Iniciar conversa por voz",
+      Icon: Waves,
+      onClick: startRecording,
+      variant: "primary",
+    },
+    conversationStop: {
+      label: "Encerrar",
+      ariaLabel: "Encerrar conversa",
+      Icon: StopCircle,
+      onClick: stopRecording,
+      variant: "secondary",
+    },
+  };
+
+  const isVoicePreview = isVoiceTab(activeTab);
+  const activeVoice = isVoicePreview ? active?.voice : undefined;
+  const VoiceIcon = isVoicePreview ? TABS.find((tab) => tab.id === activeTab)?.Icon : undefined;
 
   return (
     <section
       ref={ref}
       className="
         relative w-full overflow-hidden
-        bg-gradient-to-br from-[#F7F9FC] to-[#EEF3FF]
-        py-16 sm:py-20 px-4 sm:px-6 md:px-8
+        bg-[radial-gradient(circle_at_top,#FFFFFF_0%,#F4F5FF_42%,#ECF0FF_100%)]
+        px-4 py-16 sm:px-6 sm:py-20 md:px-10
       "
     >
       <div className="mx-auto w-full max-w-7xl">
         {/* Título e subtítulo */}
         <h2
           className={`
-            heading-lg font-semibold
-            text-neutral-900 text-center lg:text-left
-            transition-all duration-700 mb-3
+            heading-lg mb-3 text-center font-semibold text-neutral-900 transition-all duration-700 lg:text-left
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
           `}
         >
@@ -205,10 +317,9 @@ const EmotionalReportSection: React.FC = () => {
 
         <p
           className={`
-            subheading text-neutral-600 max-w-3xl
-            text-center lg:text-left mb-8
-            transition-all duration-700 delay-100
+            subheading mx-auto mb-10 max-w-3xl text-center text-neutral-600 transition-all duration-700 delay-100
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+            lg:mx-0 lg:text-left
           `}
         >
           Memórias, perfil, relatórios e voz — organizados de forma clara e visual, para acompanhar sua
@@ -216,10 +327,10 @@ const EmotionalReportSection: React.FC = () => {
         </p>
 
         {/* Conteúdo */}
-        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 md:gap-10">
+        <div className="mt-6 grid grid-cols-1 items-start gap-10 lg:grid-cols-[320px_minmax(0,1fr)]">
           {/* Tabs + descrição */}
-          <div className="flex flex-col items-center lg:items-start text-gray-800">
-            <div className="flex flex-col space-y-3 mb-6 w-full max-w-md">
+          <div className="mx-auto w-full max-w-md lg:mx-0">
+            <div className="flex flex-col gap-2.5">
               {TABS.map((tab) => (
                 <TabButton
                   key={tab.id}
@@ -233,63 +344,28 @@ const EmotionalReportSection: React.FC = () => {
 
             <div
               className={`
-                transition-all duration-500 ease-out
-                max-w-md text-center lg:text-left
+                mt-6 max-w-md text-center text-[15px] text-neutral-600 transition-all duration-500 ease-out
                 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+                lg:text-left
               `}
             >
-              <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700">
-                {active?.description}
-              </p>
+              <p className="leading-relaxed">{active?.description}</p>
 
-              {/* CTA contextual (opcional) */}
-              {activeTab === "voz" && (
-                <div className="mt-4 flex items-center gap-2">
-                  <button
-                    onClick={startRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Iniciar gravação por voz"
-                  >
-                    <Mic size={16} /> Gravar agora
-                  </button>
-                  <button
-                    onClick={stopRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                    aria-label="Parar gravação"
-                  >
-                    <Square size={16} /> Parar
-                  </button>
-                </div>
-              )}
-
-              {activeTab === "tts" && (
-                <div className="mt-4">
-                  <button
-                    onClick={playTTS}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Ouvir resposta em áudio"
-                  >
-                    <Play size={16} /> Ouvir resposta
-                  </button>
-                </div>
-              )}
-
-              {activeTab === "conversa" && (
-                <div className="mt-4 flex items-center gap-2">
-                  <button
-                    onClick={startRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                    aria-label="Iniciar conversa por voz"
-                  >
-                    <Waves size={16} /> Iniciar conversa
-                  </button>
-                  <button
-                    onClick={stopRecording}
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                    aria-label="Encerrar conversa"
-                  >
-                    <StopCircle size={16} /> Encerrar
-                  </button>
+              {isVoicePreview && activeVoice && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {activeVoice.actions.map((actionKey) => {
+                    const action = voiceActions[actionKey];
+                    return (
+                      <ActionButton
+                        key={actionKey}
+                        onClick={action.onClick}
+                        Icon={action.Icon}
+                        label={action.label}
+                        ariaLabel={action.ariaLabel}
+                        variant={action.variant}
+                      />
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -298,21 +374,21 @@ const EmotionalReportSection: React.FC = () => {
           {/* Preview – Moldura Apple-like */}
           <div
             className={`
-              relative group flex justify-center items-center w-full
+              relative flex w-full justify-center
               transition-all duration-700 ease-out delay-150
               ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
             `}
           >
             <div
               className="
-                relative w-full max-w-[620px]
-                rounded-[30px] p-0.5
-                bg-[conic-gradient(from_180deg_at_50%_0%,#ffffff_0%,#f7f9ff_40%,#eef2ff_60%,#ffffff_100%)]
+                relative w-full max-w-[640px]
+                rounded-[32px] border border-white/60 bg-white/40 p-0.5
+                shadow-[0_40px_80px_rgba(112,118,255,0.18)]
               "
             >
               <div
                 className="
-                  rounded-[28px] relative overflow-hidden
+                  relative overflow-hidden rounded-[30px]
                   bg-white/70 supports-[backdrop-filter]:bg-white/55
                   backdrop-blur-2xl ring-1 ring-black/5
                 "
@@ -340,7 +416,7 @@ const EmotionalReportSection: React.FC = () => {
                 </div>
 
                 {/* Conteúdo da moldura */}
-                <figure className="relative grid place-items-center px-4 sm:px-5 py-5 sm:py-6">
+                <figure className="relative grid place-items-center px-5 py-6 sm:px-6">
                   {!isVoicePreview ? (
                     <img
                       src={RelatorioMemoriasImg}
@@ -348,9 +424,8 @@ const EmotionalReportSection: React.FC = () => {
                       className="
                         w-full max-w-[560px]
                         select-none pointer-events-none
-                        contrast-[1.02] saturate-[1.02]
+                        contrast-[1.04] saturate-[1.04]
                         transition-transform duration-500 ease-out
-                        group-hover:translate-y-[-1px]
                       "
                       style={{
                         WebkitMaskImage:
@@ -364,70 +439,48 @@ const EmotionalReportSection: React.FC = () => {
                     <div
                       className="
                         w-full max-w-[520px]
-                        rounded-2xl border border-black/5 bg-white/60 backdrop-blur-xl
-                        px-5 py-4
+                        rounded-3xl border border-black/5 bg-white/70 px-6 py-5 shadow-[0_25px_60px_rgba(109,115,255,0.16)]
                       "
                       role="group"
                       aria-label="Controles de voz"
                     >
-                      {/* título + legenda dinâmica */}
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-[15px] font-medium text-neutral-900">
-                            {activeTab === "voz" && "Diário por voz"}
-                            {activeTab === "tts" && "Voz da Eco"}
-                            {activeTab === "conversa" && "Conversa em voz"}
-                          </p>
-                          <p className="text-[12px] text-neutral-500">
-                            {activeTab === "voz" && "Grave, transcreva e salve como memória."}
-                            {activeTab === "tts" && "Ouça a resposta da Eco em áudio natural."}
-                            {activeTab === "conversa" && "Fale e escute em fluxo contínuo."}
-                          </p>
+                          <p className="text-[16px] font-medium text-neutral-900">{activeVoice?.headline}</p>
+                          <p className="text-[12px] text-neutral-500">{activeVoice?.subheadline}</p>
                         </div>
-                        {activeTab === "voz" && <Mic className="text-[#5B4BFF]" size={18} />}
-                        {activeTab === "tts" && <Volume2 className="text-[#5B4BFF]" size={18} />}
-                        {activeTab === "conversa" && <Waves className="text-[#5B4BFF]" size={18} />}
+                        {VoiceIcon && <VoiceIcon className="text-[#5B4BFF]" size={18} />}
                       </div>
 
-                      {/* barra/onda ilustrativa */}
-                      <div className="mt-4 h-16 rounded-xl bg-gradient-to-r from-[#F1EEFF] to-[#EAF0FF] relative overflow-hidden">
-                        <div className="absolute inset-0 animate-pulse opacity-60" />
-                        <div className="absolute inset-0 grid grid-cols-24 gap-1 px-2">
-                          {Array.from({ length: 24 }).map((_, i) => (
+                      <div className="mt-6 h-[72px] rounded-2xl bg-gradient-to-r from-[#F2EEFF] to-[#E8F0FF] p-3">
+                        <div className="flex h-full items-center gap-1 overflow-hidden">
+                          {Array.from({ length: 28 }).map((_, index) => (
                             <span
-                              key={i}
-                              className="self-end w-full rounded-t bg-[#5B4BFF]/30"
-                              style={{ height: `${12 + ((i * 37) % 40)}%` }}
+                              key={index}
+                              className="w-1 rounded-full bg-[#5B4BFF]/30"
+                              style={{ height: `${40 + ((index * 23) % 45)}%` }}
                             />
                           ))}
                         </div>
                       </div>
 
-                      {/* controles */}
-                      <div className="mt-4 flex items-center gap-2">
-                        {activeTab !== "tts" && (
-                          <>
-                            <button
-                              onClick={startRecording}
-                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm hover:bg-neutral-800 transition"
-                            >
-                              <Mic size={16} /> Gravar
-                            </button>
-                            <button
-                              onClick={stopRecording}
-                              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                            >
-                              <Square size={16} /> Parar
-                            </button>
-                          </>
-                        )}
-                        <button
-                          onClick={playTTS}
-                          className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white border text-sm hover:bg-neutral-50 transition"
-                        >
-                          <Play size={16} /> Reproduzir
-                        </button>
-                      </div>
+                      {activeVoice && (
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {activeVoice.actions.map((actionKey) => {
+                            const action = voiceActions[actionKey];
+                            return (
+                              <ActionButton
+                                key={actionKey}
+                                onClick={action.onClick}
+                                Icon={action.Icon}
+                                label={action.label}
+                                ariaLabel={action.ariaLabel}
+                                variant={action.variant}
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   )}
                 </figure>
