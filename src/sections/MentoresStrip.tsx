@@ -1,251 +1,209 @@
 // src/sections/MentoresStrip.tsx
-import React, { useRef } from "react";
-import marco   from "@/assets/mentores/marco-aurelio.png";
-import seneca  from "@/assets/mentores/seneca.png";
-import daniel  from "@/assets/mentores/daniel-kahneman.png";
-import nassim  from "@/assets/mentores/nassim-taleb.png";
-import brene   from "@/assets/mentores/brene-brown.png";
-import joe     from "@/assets/mentores/joe-dispenza.png";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import marco from "@/assets/mentores/marco-aurelio.png";
+import seneca from "@/assets/mentores/seneca.png";
+import daniel from "@/assets/mentores/daniel-kahneman.png";
+import nassim from "@/assets/mentores/nassim-taleb.png";
+import brene from "@/assets/mentores/brene-brown.png";
+import joe from "@/assets/mentores/joe-dispenza.png";
 
-type Mentor = {
+interface Mentor {
   name: string;
-  tag: string;
-  src: string;
-  pillar: "Filosofia" | "Psicologia" | "Ciência";
-  use: string; // como isso aparece nas respostas
-};
+  discipline: "Filosofia" | "Psicologia" | "Ciência";
+  area: string;
+  description: string;
+  image: string;
+  alt: string;
+}
 
-const MENTORES: Mentor[] = [
+const MENTORS: Mentor[] = [
   {
     name: "Marco Aurélio",
-    tag: "Estoicismo",
-    src: marco,
-    pillar: "Filosofia",
-    use: "Princípios estoicos para lidar com emoções e foco no que depende de você.",
+    discipline: "Filosofia",
+    area: "Estoicismo",
+    description: "Stoicism principles for daily clarity.",
+    image: marco,
+    alt: "Busto de Marco Aurélio",
   },
   {
     name: "Sêneca",
-    tag: "Estoicismo",
-    src: seneca,
-    pillar: "Filosofia",
-    use: "Perspectiva prática sobre adversidades e serenidade no cotidiano.",
+    discipline: "Filosofia",
+    area: "Estoicismo",
+    description: "Practical serenity for adversity.",
+    image: seneca,
+    alt: "Busto de Sêneca",
   },
   {
     name: "Daniel Kahneman",
-    tag: "Psicologia comportamental",
-    src: daniel,
-    pillar: "Psicologia",
-    use: "Reconhecer vieses e padrões mentais para escolhas mais conscientes.",
+    discipline: "Psicologia",
+    area: "Psicologia comportamental",
+    description: "Spot biases for wiser choices.",
+    image: daniel,
+    alt: "Busto de Daniel Kahneman",
   },
   {
     name: "Brené Brown",
-    tag: "Vulnerabilidade & coragem",
-    src: brene,
-    pillar: "Psicologia",
-    use: "Convites à autenticidade, autocompaixão e coragem emocional.",
+    discipline: "Psicologia",
+    area: "Vulnerabilidade",
+    description: "Authenticity & emotional courage.",
+    image: brene,
+    alt: "Busto de Brené Brown",
   },
   {
     name: "Nassim Taleb",
-    tag: "Antifragilidade",
-    src: nassim,
-    pillar: "Ciência",
-    use: "Transformar incerteza em crescimento: micro-ações que fortalecem no tempo.",
+    discipline: "Ciência",
+    area: "Antifragilidade",
+    description: "Micro-actions that build antifragility.",
+    image: nassim,
+    alt: "Busto de Nassim Taleb",
   },
   {
     name: "Dr. Joe Dispenza",
-    tag: "Neurociência aplicada",
-    src: joe,
-    pillar: "Ciência",
-    use: "Hábitos e atenção como alavancas para reconfigurar estados emocionais.",
+    discipline: "Ciência",
+    area: "Neurociência aplicada",
+    description: "Habits + attention to reconfigure states.",
+    image: joe,
+    alt: "Busto de Dr. Joe Dispenza",
   },
 ];
 
-const PILLAR_ICON: Record<Mentor["pillar"], string> = {
-  Filosofia: "📜",
-  Psicologia: "🧠",
-  Ciência: "🔬",
+interface MentorCardProps {
+  mentor: Mentor;
+  index: number;
+  isVisible: boolean;
+  setRef: (element: HTMLElement | null) => void;
+}
+
+const badgeStyles: Record<Mentor["discipline"], string> = {
+  Filosofia: "bg-white/70 text-[#4F46E5]",
+  Psicologia: "bg-white/70 text-[#4F46E5]",
+  Ciência: "bg-white/70 text-[#4F46E5]",
 };
 
-const MentoresStrip: React.FC = () => {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = (delta: number) => railRef.current?.scrollBy({ left: delta, behavior: "smooth" });
-
-  const onKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (e.key === "ArrowRight") scrollBy(280);
-    if (e.key === "ArrowLeft")  scrollBy(-280);
-  };
+const MentorCard: React.FC<MentorCardProps> = ({ mentor, index, isVisible, setRef }) => {
+  const revealClass = isVisible
+    ? "motion-safe:opacity-100 motion-safe:translate-y-0"
+    : "motion-safe:opacity-0 motion-safe:translate-y-3";
+  const delay = Math.min(120, 80 + index * 20);
 
   return (
-    <section
-      id="mentores"
-      aria-labelledby="mentores-title"
-      className="
-        relative overflow-hidden py-14 sm:py-20
-        bg-[radial-gradient(120%_90%_at_20%_10%,#B59CFF_0%,#8F77FF_28%,#6E5BFF_55%,#4F46E5_78%,#2A2376_100%)]
-      "
+    <article
+      ref={setRef}
+      data-index={index}
+      tabIndex={0}
+      className={`group h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] ${revealClass} motion-safe:duration-500 motion-safe:ease-out motion-safe:transition-all`}
+      style={{ transitionDelay: isVisible ? `${delay}ms` : undefined }}
     >
-      {/* halos decorativos */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[120vw] h-[120vw] max-w-[1100px] rounded-full blur-3xl 
-                        bg-[radial-gradient(circle,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.10)_45%,transparent_70%)]" />
-        <div className="absolute top-1/3 left-[12%] w-[60vw] h-[60vw] rounded-full blur-[110px] opacity-45 
-                        bg-[radial-gradient(circle,#FFB1E6_0%,transparent_65%)]" />
-        <div className="absolute bottom-[-8%] right-[-6%] w-[55vw] h-[55vw] rounded-full blur-[110px] opacity-40 
-                        bg-[radial-gradient(circle,#86D8FF_0%,transparent_70%)]" />
-        <div className="absolute left-[-10%] top-[56%] w-[130%] h-[2px] -rotate-[14deg]
-                        bg-gradient-to-r from-transparent via-white/55 to-transparent blur-[2px] opacity-80" />
-        <div className="absolute left-[-8%] top-[58%] w-[130%] h-[1px] -rotate-[14deg]
-                        bg-gradient-to-r from-transparent via-[#B58CFF]/50 to-transparent blur-[3px] opacity-60" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-5">
-        {/* Título + mensagem de valor */}
-        <div className="text-center mb-8 sm:mb-12">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-white/90 bg-white/10 border border-white/20 backdrop-blur">
-            Referências • Base das respostas
-          </span>
-
-          <h2 id="mentores-title" className="mt-4 heading-lg font-semibold text-white">
-            <span className="text-white">Grandes mentes.</span>
-            <span className="text-white/70"> As ideias que inspiram a Eco.</span>
-          </h2>
-
-          <p className="text-white/90 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
-            A Eco não dá respostas genéricas: usa princípios de <span className="font-medium">filosofia</span>,{" "}
-            <span className="font-medium">psicologia</span> e <span className="font-medium">ciência</span> para orientar reflexões
-            mais humanas, profundas e confiáveis.
-          </p>
-        </div>
-
-        {/* SETAS mobile */}
-        <div className="md:hidden relative h-0">
-          <div className="absolute inset-x-0 -top-10 flex justify-between px-2">
-            <button
-              type="button"
-              onClick={() => scrollBy(-280)}
-              aria-label="Ver anteriores"
-              className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-white backdrop-blur hover:bg-white/25 active:scale-95"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(280)}
-              aria-label="Ver próximos"
-              className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-white backdrop-blur hover:bg-white/25 active:scale-95"
-            >
-              <ChevronRight size={18} />
-            </button>
+      <div
+        className="flex h-full flex-col items-center rounded-3xl border border-white/60 bg-white/55 px-8 pb-10 pt-8 text-center text-[#111827]
+          shadow-sm backdrop-blur-xl transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-lg"
+      >
+        <div className="relative w-full max-w-[220px]">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-white/60">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/30 to-white/10" aria-hidden />
+            <img
+              src={mentor.image}
+              alt={mentor.alt}
+              loading="lazy"
+              decoding="async"
+              className="relative z-10 h-full w-full object-contain p-6"
+            />
           </div>
         </div>
 
-        {/* CARDS: carrossel mobile / grid desktop */}
-        <div
-          ref={railRef}
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Mentores e referências"
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          className="
-            md:grid md:grid-cols-6 md:gap-6
-            flex gap-6 overflow-x-auto md:overflow-visible
-            snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0
-            scroll-smooth
-          "
-        >
-          {MENTORES.map((m, index) => (
-            <figure
-              key={m.name}
-              className="snap-center shrink-0 w-[240px] sm:w-[260px] md:w-auto md:shrink md:snap-none group"
-            >
-              <div
-                className="
-                  relative rounded-3xl overflow-hidden
-                  bg-white/8 border border-white/20 backdrop-blur-md
-                  shadow-[0_8px_28px_rgba(0,0,0,0.25)]
-                  motion-safe:transition-transform motion-safe:duration-300 group-hover:-translate-y-1
-                "
-              >
-                <div className="relative w-full aspect-[3/4] flex items-end justify-center">
-                  <img
-                    src={m.src}
-                    alt={m.name}
-                    decoding="async"
-                    loading={index < 2 ? undefined : "lazy"}
-                    fetchpriority={index === 0 ? ("high" as const) : ("auto" as const)}
-                    className="w-full h-[90%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.33)]"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#2A2376]/70 to-transparent" />
-                </div>
-
-                <figcaption className="p-4 text-center">
-                  {/* badge pilar */}
-                  <div className="mb-1 flex items-center justify-center gap-1 text-[11px] text-white/85">
-                    <span className="px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur">
-                      {PILLAR_ICON[m.pillar]} {m.pillar}
-                    </span>
-                  </div>
-
-                  <div className="text-white font-medium text-[15px] leading-tight">{m.name}</div>
-                  <div className="text-white/80 text-[12px]">{m.tag}</div>
-
-                  {/* como aparece nas respostas */}
-                  <p className="mt-2 text-[11.5px] leading-snug text-white/80">
-                    {m.use}
-                  </p>
-                </figcaption>
-              </div>
-            </figure>
-          ))}
-        </div>
-
-        {/* HINT mobile */}
-        <p
-          className="md:hidden mx-auto mt-5 inline-flex items-center gap-2 px-3 py-1 rounded-full
-                      bg-white/10 text-[11.5px] text-white/90 backdrop-blur-sm border border-white/20"
-        >
-          Deslize para ver mais
-          <svg
-            className="w-3.5 h-3.5 opacity-80 animate-[bounce-x_1.5s_infinite]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
+        <div className="mt-8 flex w-full flex-col items-center gap-2">
+          <span
+            className={`inline-flex items-center rounded-full border border-white/70 px-3 py-1 text-xs font-medium shadow-sm backdrop-blur ${badgeStyles[mentor.discipline]}`}
           >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </p>
-
-        {/* Caixinha de explicação — “Como a Eco usa isso” */}
-        <div
-          className="
-            mt-8 sm:mt-10 rounded-2xl px-4 sm:px-6 py-4 sm:py-5
-            bg-white/10 text-white/90 backdrop-blur border border-white/20
-            max-w-3xl mx-auto
-          "
-          aria-label="Como a Eco usa essas referências nas respostas"
-        >
-          <h3 className="font-medium mb-2">Como isso aparece na sua experiência</h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm">
-            <li>
-              <span className="font-medium">Perguntas e reflexões guiadas</span> inspiradas em filosofia e psicologia — nada de respostas vazias.
-            </li>
-            <li>
-              <span className="font-medium">Reconhecimento de padrões</span> e vieses (Kahneman) para decisões mais conscientes.
-            </li>
-            <li>
-              <span className="font-medium">Micro-ações práticas</span> (antifragilidade & neurociência) para transformar insight em mudança real.
-            </li>
-          </ul>
+            {mentor.discipline}
+          </span>
+          <h3 className="text-lg font-semibold text-[#111827]">{mentor.name}</h3>
+          <p className="text-sm font-medium text-[#6B7280]">{mentor.area}</p>
+          <p className="mt-2 text-sm text-[#6B7280]">{mentor.description}</p>
         </div>
       </div>
+    </article>
+  );
+};
 
-      <style>{`
-        @keyframes bounce-x { 0%,100% { transform: translateX(0) } 50% { transform: translateX(4px) } }
-      `}</style>
+const MentoresStrip: React.FC = () => {
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(() => MENTORS.map(() => false));
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setVisibleCards(MENTORS.map(() => true));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-index"));
+            setVisibleCards((prev) => {
+              if (prev[index]) return prev;
+              const next = [...prev];
+              next[index] = true;
+              return next;
+            });
+          }
+        });
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -80px" }
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+      <section
+        id="mentores"
+        aria-labelledby="mentores-title"
+        className="relative isolate overflow-hidden bg-[#F9FAFF] py-24"
+      >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+      >
+        <div className="absolute -top-40 right-[15%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_65%)]" />
+        <div className="absolute bottom-[-20%] left-[8%] h-[44rem] w-[44rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(79,70,229,0.12),transparent_70%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center justify-center rounded-full border border-white/60 bg-white/40 px-4 py-1 text-xs font-medium text-[#4F46E5] backdrop-blur">
+            Referências • Base das respostas
+          </span>
+          <h2 id="mentores-title" className="mt-6 text-3xl font-semibold leading-tight tracking-tight text-[#111827] sm:text-4xl">
+            Grandes mentes, orientações humanas.
+          </h2>
+          <p className="mt-4 text-base text-[#6B7280] sm:text-lg">
+            Filosofia, psicologia e ciência convergem para respostas calmas, aplicáveis e feitas sob medida para você.
+          </p>
+        </div>
+
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6">
+          {MENTORS.map((mentor, index) => (
+            <MentorCard
+              key={mentor.name}
+              mentor={mentor}
+              index={index}
+              isVisible={visibleCards[index]}
+              setRef={(element) => {
+                cardRefs.current[index] = element;
+              }}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
