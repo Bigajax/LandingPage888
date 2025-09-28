@@ -1,55 +1,93 @@
-// src/sections/App.tsx (ou src/App.tsx, conforme seu projeto)
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// src/App.tsx
+import React, { Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 
-import Layout from './components/Layout';
-import Header from './components/Header';
-import Footer from './components/Footer';
+// ⚠️ side-effect: registra os Code Components (crie src/plasmic-register.tsx)
+import "./plasmic-register";
 
-import HeroSection from './sections/HeroSection';
-import HowItWorksSection from './sections/HowItWorksSection';
-import ForWhoSection from './sections/ForWhoSection';
-import IntroducingEco from './sections/IntroducingEco';
-import EmotionalReportSection from './sections/EmotionalReportSection'; // ✅ importa aqui
-import MentoresStrip from './sections/MentoresStrip';
-import PrinciplesSection from './sections/PrinciplesSection';
-import CallToActionEco from './sections/CallToActionEco';
-import Testimonials from './sections/Testimonials';
 
-import ReflexaoPage from './pages/ReflexaoPage';
 
-const LandingPage: React.FC = () => {
-  return (
-    <Layout>
-      <Header />
-      <main>
-        <HeroSection />
-        <HowItWorksSection />
-        <ForWhoSection />
-        <IntroducingEco />
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-        {/* ✅ AGORA SIM: embaixo do “Conheça a Eco” */}
-        <EmotionalReportSection />
+// Sections
+import HeroSection from "./sections/HeroSection";
+import HowItWorksSection from "./sections/HowItWorksSection";
+import ForWhoSection from "./sections/ForWhoSection";
+import IntroducingEco from "./sections/IntroducingEco";
+import EmotionalReportSection from "./sections/EmotionalReportSection";
+import MentoresStrip from "./sections/MentoresStrip";
+import PrinciplesSection from "./sections/PrinciplesSection";
+import CallToActionEco from "./sections/CallToActionEco";
+import Testimonials from "./sections/Testimonials";
 
-        {/* Pode deixar o carrossel de mentores depois, se quiser */}
-        <MentoresStrip />
-        <PrinciplesSection />
-        <CallToActionEco />
-        <Testimonials />
-      </main>
-      <Footer />
-    </Layout>
-  );
-};
+// Pages
+import ReflexaoPage from "./pages/ReflexaoPage";
+
+// Plasmic preview + host
+import PlasmicPage from "./PlasmicPage";
+import PlasmicHost from "./components/PlasmicHost";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
+  return null;
+}
+
+const LandingPage: React.FC = () => (
+  <>
+    <Header />
+    <main id="content" className="min-h-screen">
+      <HeroSection />
+      <HowItWorksSection />
+      <ForWhoSection />
+      <IntroducingEco />
+      {/* logo após “Conheça a Eco” */}
+      <EmotionalReportSection />
+      <MentoresStrip />
+      <PrinciplesSection />
+      <CallToActionEco />
+      <Testimonials />
+    </main>
+    <Footer />
+  </>
+);
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/reflexao" element={<ReflexaoPage />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Suspense fallback={<div className="p-8 text-center text-zinc-500">Carregando…</div>}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/reflexao" element={<ReflexaoPage />} />
+
+          {/* Plasmic preview (renderiza a página feita no Studio, ex.: "Homepage" ou "Landing") */}
+          <Route path="/plasmic" element={<PlasmicPage />} />
+
+          {/* Plasmic Canvas Host — use esta URL no Studio: http://localhost:5173/plasmic-host */}
+          <Route path="/plasmic-host" element={<PlasmicHost />} />
+
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen grid place-items-center">
+                <div className="text-center">
+                  <h1 className="text-3xl font-semibold text-zinc-900">Página não encontrada</h1>
+                  <p className="mt-2 text-zinc-600">O link pode ter mudado ou expirado.</p>
+                  <a href="/" className="mt-6 inline-block rounded-full bg-zinc-900 text-white px-5 py-3">
+                    Voltar para início
+                  </a>
+                </div>
+              </div>
+            }
+          />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 };
 
