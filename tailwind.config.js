@@ -4,7 +4,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: [
+          'SF Pro Display',
+          'SF Pro Text',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'system-ui',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
       },
       colors: {
         purple: {

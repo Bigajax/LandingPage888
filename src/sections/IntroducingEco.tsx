@@ -30,7 +30,7 @@ function FeatureCard({
         <div className="absolute inset-0 rounded-xl bg-[radial-gradient(80%_80%_at_30%_20%,rgba(124,92,255,0.18),transparent_55%)]" />
         <Icon size={20} strokeWidth={2} className="relative z-10 text-[#7C5CFF]" />
       </div>
-      <h4 className="mt-3 text-[15px] font-semibold text-[#0F111A]">{title}</h4>
+      <h4 className="mt-3 text-[15px] font-heading text-[#0F111A]">{title}</h4>
       <p className="mt-1.5 text-[13.5px] leading-relaxed text-[#4B5166]">{desc}</p>
     </div>
   );
@@ -53,7 +53,7 @@ const IntroducingEco: React.FC = () => {
 
       {/* Título + subtítulo */}
       <div className="relative w-full max-w-7xl mx-auto text-left mb-8 sm:mb-12">
-        <h2 className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
+        <h2 className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight font-heading-strong">
           <span className="text-zinc-900">Conheça a </span>
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">Eco</span>
         </h2>
@@ -66,7 +66,7 @@ const IntroducingEco: React.FC = () => {
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         {/* Texto */}
         <div className="order-2 lg:order-1">
-          <p className="text-2xl sm:text-[28px] font-semibold text-[#0F111A] leading-snug">
+          <p className="text-2xl sm:text-[28px] font-heading text-[#0F111A] leading-snug">
             Você muda. <span className="text-zinc-900">A </span>
             <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">Eco</span>
             <span className="text-zinc-900"> cria as condições.</span>

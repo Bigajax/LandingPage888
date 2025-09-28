@@ -65,9 +65,10 @@ const HeroSection: React.FC = () => {
             text-[32px] leading-[1.36]
             sm:text-6xl sm:leading-tight lg:text-7xl
             tracking-tight mb-4 sm:mb-6
+            font-heading-strong
           "
         >
-          <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
+          <span className="text-zinc-900">Eco.</span>{" "}
           <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
         </h1>
 

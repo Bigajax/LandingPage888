@@ -67,7 +67,7 @@ const PrinciplesSection: React.FC = () => {
 
       {/* Título + subtítulo */}
       <div className="relative max-w-4xl mx-auto text-center mb-10 sm:mb-12">
-        <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] font-semibold leading-tight tracking-tight">
+        <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] font-semibold leading-tight tracking-tight font-heading-strong">
           <span className="text-[#1D1D1F]">Nossos </span>
           <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
             Princípios
@@ -96,7 +96,7 @@ const PrinciplesSection: React.FC = () => {
           >
             <div className="flex flex-col items-center text-center">
               <IconBadge Icon={Icon} />
-              <h3 className="mt-4 text-[18px] sm:text-[20px] font-semibold text-[#0F1115] tracking-tight">
+              <h3 className="mt-4 text-[18px] sm:text-[20px] font-heading text-[#0F1115] tracking-tight">
                 {title}
               </h3>
               <p className="mt-2 text-[14px] sm:text-[15px] leading-relaxed text-[#5E616B]">

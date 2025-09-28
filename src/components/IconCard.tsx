@@ -13,7 +13,7 @@ const IconCard: React.FC<IconCardProps> = ({ icon, title, description }) => {
         {icon}
       </div>
       <div>
-        <h3 className="text-xl font-medium text-gray-800 mb-1">{title}</h3>
+        <h3 className="text-xl font-heading text-gray-800 mb-1">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </div>
     </div>

@@ -23,7 +23,7 @@ const CallToActionEco: React.FC = () => {
 
       {/* Título + subtítulo */}
       <div className="relative max-w-3xl">
-        <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0A0C18]">
+        <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0A0C18] font-heading-strong">
           Descubra a{" "}
           <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
             Eco

@@ -94,7 +94,7 @@ const HowItWorks: React.FC = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <h2 className="text-left text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight">
+        <h2 className="text-left text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight font-heading-strong">
   <span className="text-zinc-900">Como a Eco</span>
   {" "}
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
@@ -137,7 +137,7 @@ const HowItWorks: React.FC = () => {
 
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2">
-                    <h3 className="text-[16px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
+                    <h3 className="text-[16px] text-zinc-900 font-heading leading-snug">{step.title}</h3>
                     <span className="ml-auto text-[12px] text-zinc-400 tabular-nums">0{step.id}</span>
                   </div>
                   <p className="text-zinc-600 text-[13px] leading-snug line-clamp-2">{step.description}</p>
@@ -190,7 +190,7 @@ const HowItWorks: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2">
-                    <h3 className="text-[17px] text-zinc-900 font-medium leading-snug">{step.title}</h3>
+                    <h3 className="text-[17px] text-zinc-900 font-heading leading-snug">{step.title}</h3>
                     <span className="ml-auto text-[12px] text-zinc-400 tabular-nums">0{step.id}</span>
                   </div>
                   <p className="text-zinc-600 text-[15px] leading-snug">{step.description}</p>

@@ -102,7 +102,7 @@ const StressIndexSection: React.FC = () => {
             viewport={{ once: true, amount: 0.4 }}
             className="
               mt-3
-              font-light tracking-[-0.01em]
+              font-heading tracking-[-0.01em]
               leading-[1.15]
               text-[clamp(26px,5.2vw,42px)]
               max-w-[26ch]

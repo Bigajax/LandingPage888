@@ -148,7 +148,7 @@ const Testimonials: React.FC = () => {
       <div className="relative max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0F111A]">
+          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-semibold leading-tight tracking-tight text-[#0F111A] font-heading-strong">
             O que as pessoas sentem com a{" "}
             <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
               Eco

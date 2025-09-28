@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
               {columns.map((col) => (
                 <div key={col.title}>
-                  <h3 className="text-[12px] font-medium uppercase tracking-wider text-slate-500 mb-3">
+                  <h3 className="text-[12px] font-heading uppercase tracking-wider text-slate-500 mb-3">
                     {col.title}
                   </h3>
                   <ul className="space-y-2.5">

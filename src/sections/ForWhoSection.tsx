@@ -105,7 +105,7 @@ const TargetAudienceSection: React.FC = () => {
       <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
         <h2
           id="para-quem-title"
-          className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight"
+          className="text-[26px] sm:text-4xl md:text-[44px] font-semibold leading-tight tracking-tight font-heading-strong"
         >
           <span className="text-zinc-900">Quando a </span>
           <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
@@ -133,7 +133,7 @@ const TargetAudienceSection: React.FC = () => {
               <div className="relative flex items-start gap-4 sm:gap-5">
                 <IconBadge Icon={c.Icon} accent={c.accent} />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
+                  <h3 className="text-[#1D1D1F] font-heading tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
                     {c.title}
                   </h3>
                   {/* Sinais ↔ O que muda (altura fixa) */}

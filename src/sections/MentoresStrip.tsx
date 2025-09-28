@@ -107,7 +107,10 @@ const MentoresStrip: React.FC = () => {
             Referências • Base das respostas
           </span>
 
-          <h2 id="mentores-title" className="mt-4 font-semibold tracking-tight text-2xl sm:text-4xl">
+          <h2
+            id="mentores-title"
+            className="mt-4 font-semibold tracking-tight text-2xl sm:text-4xl font-heading-strong"
+          >
             <span className="text-white">Grandes mentes.</span>
             <span className="text-white/70"> As ideias que inspiram a Eco.</span>
           </h2>
@@ -189,7 +192,7 @@ const MentoresStrip: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="text-white font-medium text-[15px] leading-tight">{m.name}</div>
+                  <div className="text-white font-heading text-[15px] leading-tight">{m.name}</div>
                   <div className="text-white/80 text-[12px]">{m.tag}</div>
 
                   {/* como aparece nas respostas */}
@@ -228,7 +231,7 @@ const MentoresStrip: React.FC = () => {
           "
           aria-label="Como a Eco usa essas referências nas respostas"
         >
-          <h3 className="font-medium mb-2">Como isso aparece na sua experiência</h3>
+          <h3 className="font-heading mb-2">Como isso aparece na sua experiência</h3>
           <ul className="list-disc pl-5 space-y-1 text-sm">
             <li>
               <span className="font-medium">Perguntas e reflexões guiadas</span> inspiradas em filosofia e psicologia — nada de respostas vazias.

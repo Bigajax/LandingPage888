@@ -194,6 +194,7 @@ const EmotionalReportSection: React.FC = () => {
             text-[26px] sm:text-4xl md:text-[44px] font-semibold tracking-tight
             text-neutral-900 text-center lg:text-left
             transition-all duration-700 mb-3
+            font-heading-strong
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
           `}
         >

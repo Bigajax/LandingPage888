@@ -89,7 +89,7 @@ const AcessoAntecipadoPage: React.FC = () => {
         </div>
 
         <div className="relative z-10 w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 text-center lg:text-left">
+          <h1 className="text-3xl md:text-4xl font-heading-strong text-white tracking-tight mb-4 text-center lg:text-left">
             Convite para o Acesso Antecipado à <span className="text-indigo-400">Eco</span>
           </h1>
           <p className="text-gray-300 mb-8 text-center lg:text-left leading-relaxed">
