@@ -11,7 +11,6 @@ import {
   Square,
   StopCircle,
 } from "lucide-react";
-import RelatorioMemoriasImg from "@/assets/images/relatorio+memorias.png";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 /* ---------- UI atoms ---------- */
@@ -88,6 +87,43 @@ type Tab = {
   Icon: LucideIcon;
   description: React.ReactNode;
 };
+
+const EMOTION_BADGES = [
+  {
+    label: "Frustração",
+    gradient: "from-[#FBCFE8]/80 to-[#FDE2FF]/60",
+  },
+  {
+    label: "Curiosidade",
+    gradient: "from-[#C7F9FF]/70 to-[#E0F2FF]/60",
+  },
+  {
+    label: "Dedicação",
+    gradient: "from-[#FFE7BA]/70 to-[#FFEFD5]/50",
+  },
+  {
+    label: "Autocuidado",
+    gradient: "from-[#D7FAD9]/70 to-[#ECFFED]/50",
+  },
+];
+
+const MINI_CARDS = [
+  {
+    title: "Memórias da semana",
+    value: "12 registradas",
+    accent: "from-[#6C63FF]/50 via-[#8F77FF]/40 to-[#B7A2FF]/40",
+  },
+  {
+    title: "Intensidade média",
+    value: "3.7 / 5",
+    accent: "from-[#FF8AAE]/40 via-[#FFB5C2]/35 to-[#FFD9E3]/30",
+  },
+  {
+    title: "Domínios ativos",
+    value: "Carreira, Relações",
+    accent: "from-[#5BE0C5]/45 via-[#82F7DD]/40 to-[#B6FFEE]/30",
+  },
+];
 
 const TABS: Tab[] = [
   {
@@ -354,7 +390,7 @@ const EmotionalReportSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Preview – Moldura Apple-like */}
+          {/* Preview – Painel abstrato */}
           <div
             className={`
               relative group flex justify-center items-center w-full
@@ -365,129 +401,133 @@ const EmotionalReportSection: React.FC = () => {
             <div
               className="
                 relative w-full max-w-[620px]
-                rounded-[30px] p-0.5
-                bg-[conic-gradient(from_180deg_at_50%_0%,#ffffff_0%,#f7f9ff_40%,#eef2ff_60%,#ffffff_100%)]
               "
             >
               <div
                 className="
-                  rounded-[28px] relative overflow-hidden
-                  bg-white/70 supports-[backdrop-filter]:bg-white/55
-                  backdrop-blur-2xl ring-1 ring-black/5
+                  relative overflow-hidden
+                  rounded-[28px]
+                  border border-white/10
+                  bg-white/10 backdrop-blur-xl
+                  shadow-[0_35px_80px_-30px_rgba(93,87,255,0.35)]
+                  text-white/90
+                  supports-[backdrop-filter]:bg-white/10
                 "
-                style={{
-                  WebkitMaskImage:
-                    "radial-gradient(150% 120% at 50% 0%, #000 60%, rgba(0,0,0,0) 100%)",
-                  maskImage:
-                    "radial-gradient(150% 120% at 50% 0%, #000 60%, rgba(0,0,0,0) 100%)",
-                }}
               >
-                {/* brilho sutil no topo */}
-                <span
-                  aria-hidden
-                  className="
-                    pointer-events-none absolute inset-x-6 -top-2 h-10
-                    rounded-[20px]
-                    bg-[linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0))]
-                  "
-                />
-
-                {/* halos discretos */}
-                <div aria-hidden className="pointer-events-none absolute inset-0">
-                  <div className="absolute -left-16 -top-20 w-64 h-64 rounded-full blur-3xl opacity-25 bg-[radial-gradient(circle,#EAE8FF_0%,transparent_65%)]" />
-                  <div className="absolute -right-16 -bottom-24 w-72 h-72 rounded-full blur-3xl opacity-20 bg-[radial-gradient(circle,#E6F0FF_0%,transparent_65%)]" />
+                <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#8F77FF_0%,transparent_60%)] opacity-40 blur-3xl" />
+                  <div className="absolute -bottom-28 right-12 h-52 w-52 rounded-full bg-[radial-gradient(circle,#6EE7FF_0%,transparent_65%)] opacity-30 blur-3xl" />
+                  <div className="absolute top-1/3 -left-10 h-40 w-40 rotate-12 rounded-[32px] bg-[linear-gradient(140deg,rgba(255,255,255,0.18),rgba(255,255,255,0))]" />
                 </div>
 
-                {/* Conteúdo da moldura */}
-                <figure className="relative grid place-items-center px-4 sm:px-5 py-5 sm:py-6">
+                {/* Conteúdo do painel */}
+                <div className="relative px-6 sm:px-8 py-7 sm:py-8 space-y-7">
+                  <div className="flex flex-wrap gap-2.5">
+                    {EMOTION_BADGES.map((badge) => (
+                      <span
+                        key={badge.label}
+                        className={`
+                          inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium
+                          bg-gradient-to-r ${badge.gradient}
+                          text-white/80 shadow-[0_8px_20px_rgba(15,23,42,0.08)]
+                          border border-white/10 backdrop-blur-md
+                        `}
+                      >
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden />
+                        {badge.label}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                    {MINI_CARDS.map((card) => (
+                      <div
+                        key={card.title}
+                        className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white/80"
+                      >
+                        <div className={`absolute inset-0 opacity-70 bg-gradient-to-br ${card.accent}`} aria-hidden />
+                        <div className="relative space-y-1">
+                          <p className="text-xs font-medium uppercase tracking-wide text-white/60">
+                            {card.title}
+                          </p>
+                          <p className="text-lg font-semibold text-white/90">{card.value}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
                   {!isVoicePreview ? (
-                    <img
-                      src={RelatorioMemoriasImg}
-                      alt="Relatório emocional e memórias"
-                      className="
-                        w-full max-w-[560px]
-                        select-none pointer-events-none
-                        contrast-[1.02] saturate-[1.02]
-                        transition-transform duration-500 ease-out
-                        group-hover:translate-y-[-1px]
-                      "
-                      style={{
-                        WebkitMaskImage:
-                          "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
-                        maskImage:
-                          "radial-gradient(ellipse 100% 100% at 50% 55%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)",
-                      }}
-                    />
+                    <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-6 text-white/75">
+                      <p className="text-sm leading-relaxed">
+                        A Eco destila suas memórias em padrões semanais, destacando emoções, gatilhos e os
+                        domínios da vida que mais vibraram. Visualize a progressão, acompanhe seus rituais de
+                        autocuidado e descubra oportunidades de equilíbrio.
+                      </p>
+                    </div>
                   ) : (
-                    /* Preview de voz (rec/tts) dentro da moldura */
                     <div
                       className="
-                        w-full max-w-[520px]
-                        rounded-2xl border border-black/5 bg-white/60 backdrop-blur-xl
-                        px-5 py-4
+                        rounded-3xl border border-white/10 bg-white/10 px-5 py-5 text-white/85 backdrop-blur-lg
                       "
                       role="group"
                       aria-label="Controles de voz"
                     >
-                      {/* título + legenda dinâmica */}
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-4">
                         <div>
-                          <p className="text-[15px] font-medium text-neutral-900">
+                          <p className="text-[15px] font-semibold tracking-tight text-white">
                             {activeVoiceMeta?.title}
                           </p>
-                          <p className="text-[12px] text-neutral-500">{activeVoiceMeta?.subtitle}</p>
+                          <p className="text-xs text-white/70">{activeVoiceMeta?.subtitle}</p>
                         </div>
-                        {VoiceIcon && <VoiceIcon className="text-[#5B4BFF]" size={18} />}
+                        {VoiceIcon && (
+                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10">
+                            <VoiceIcon className="text-white" size={18} />
+                          </span>
+                        )}
                       </div>
 
-                      {/* barra/onda ilustrativa */}
-                      <div className="mt-4 h-16 rounded-xl bg-gradient-to-r from-[#F1EEFF] to-[#EAF0FF] relative overflow-hidden">
-                        <div className="absolute inset-0 animate-pulse opacity-60" />
-                        <div className="absolute inset-0 grid grid-cols-24 gap-1 px-2">
-                          {Array.from({ length: 24 }).map((_, i) => (
+                      <div className="relative mt-4 h-16 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-white/10 via-white/5 to-white/10">
+                        <div className="absolute inset-0 animate-pulse opacity-40" />
+                        <div className="relative flex h-full items-end gap-[3px] px-3 pb-2">
+                          {Array.from({ length: 32 }).map((_, i) => (
                             <span
                               key={i}
-                              className="self-end w-full rounded-t bg-[#5B4BFF]/30"
-                              style={{ height: `${12 + ((i * 37) % 40)}%` }}
+                              className="w-[4px] rounded-t-full bg-white/60"
+                              style={{ height: `${18 + ((i * 37) % 55)}%` }}
                             />
                           ))}
                         </div>
                       </div>
 
-                      {/* controles */}
-                      <div className="mt-4 flex items-center gap-2">
-                        {isVoiceTab(activeTab) && (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        {activeTab !== "tts" && (
                           <>
-                            {activeTab !== "tts" && (
-                              <>
-                                <ActionButton
-                                  onClick={startRecording}
-                                  Icon={Mic}
-                                  label="Gravar"
-                                  ariaLabel="Iniciar gravação"
-                                />
-                                <ActionButton
-                                  onClick={stopRecording}
-                                  Icon={Square}
-                                  label="Parar"
-                                  ariaLabel="Parar gravação"
-                                  variant="secondary"
-                                />
-                              </>
-                            )}
                             <ActionButton
-                              onClick={playTTS}
-                              Icon={Play}
-                              label="Reproduzir"
-                              ariaLabel="Reproduzir áudio"
+                              onClick={startRecording}
+                              Icon={Mic}
+                              label="Gravar"
+                              ariaLabel="Iniciar gravação"
+                            />
+                            <ActionButton
+                              onClick={stopRecording}
+                              Icon={Square}
+                              label="Parar"
+                              ariaLabel="Parar gravação"
                               variant="secondary"
                             />
                           </>
                         )}
+                        <ActionButton
+                          onClick={playTTS}
+                          Icon={Play}
+                          label={activeTab === "tts" ? "Ouvir agora" : "Reproduzir"}
+                          ariaLabel="Reproduzir áudio"
+                          variant="secondary"
+                        />
                       </div>
                     </div>
                   )}
-                </figure>
+                </div>
               </div>
             </div>
           </div>
