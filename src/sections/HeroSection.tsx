@@ -1,11 +1,9 @@
 import React from "react"; 
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import Reveal from "../components/Reveal";
 
 const HeroSection: React.FC = () => {
-  const { ref, isVisible } = useScrollReveal();
-
   const handleGoToHowItWorks = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById("como-funciona");
@@ -14,7 +12,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <section
-      ref={ref}
       aria-labelledby="hero-title"
       className={`
         relative overflow-hidden liquid-bg
@@ -48,64 +45,91 @@ const HeroSection: React.FC = () => {
           md:pt-[calc(var(--nav-h,80px)+88px)]
           pb-[calc(32px+env(safe-area-inset-bottom))]
           md:pb-32
-          transition-all duration-500 ease-out
-          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          transform-gpu will-change-[opacity,transform]
         `}
       >
         {/* Pílula */}
-        <span className="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280]">
+        <Reveal
+          as="span"
+          index={0}
+          duration={820}
+          className="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280]"
+        >
           Jornada de autoconhecimento
-        </span>
+        </Reveal>
 
         {/* Título */}
-        <h1 id="hero-title" className="heading-xl mt-8 text-balance font-semibold text-[#111827]">
+        <Reveal
+          as="h1"
+          index={1}
+          duration={880}
+          className="heading-xl mt-8 text-balance font-semibold text-[#111827]"
+          id="hero-title"
+        >
           Eco, um espaço delicado para ler o que você sente.
-        </h1>
+        </Reveal>
 
         {/* Subtítulo */}
-        <p className="subheading mt-6 max-w-2xl text-balance text-[#6B7280]">
+        <Reveal
+          as="p"
+          index={2}
+          duration={900}
+          className="subheading mt-6 max-w-2xl text-balance text-[#6B7280]"
+        >
           Um diário inteligente com toques humanos: escreva, receba reflexões e acompanhe sua evolução emocional com suavidade.
-        </p>
+        </Reveal>
 
         {/* CTAs */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
-          <a
+          <Reveal
+            as="a"
             href="https://ecofrontend888.vercel.app/login"
             aria-label="Começar minha jornada"
+            index={3}
+            duration={960}
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#6366F1] px-8 py-3 text-base font-semibold text-white shadow-[0_18px_36px_rgba(99,102,241,0.28)] transition duration-300 ease-out hover:shadow-[0_22px_44px_rgba(99,102,241,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
           >
             <PlayCircle size={18} className="opacity-90" />
             Começar minha jornada
-          </a>
+          </Reveal>
 
-          <a
+          <Reveal
+            as="a"
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
+            index={4}
+            duration={960}
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E0E7FF] bg-white/80 px-8 py-3 text-base font-semibold text-[#4F46E5] shadow-sm transition duration-300 ease-out hover:border-[#C7D2FE] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
             aria-label="Ver como funciona"
           >
             Ver como funciona
             <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Reveal>
         </div>
 
         {/* Micro-confiança */}
-        <div className="mt-10 flex flex-wrap justify-center gap-3 text-xs font-medium text-[#6B7280] sm:text-sm">
+        <Reveal
+          as="div"
+          index={5}
+          duration={920}
+          className="mt-10 flex flex-wrap justify-center gap-3 text-xs font-medium text-[#6B7280] sm:text-sm"
+        >
           <span className="glass px-4 py-1.5">Beta gratuito</span>
           <span className="glass px-4 py-1.5">Relatórios emocionais guiados</span>
           <span className="glass px-4 py-1.5">Mentoria humana + IA</span>
-        </div>
+        </Reveal>
 
         {/* Seta */}
-        <a
+        <Reveal
+          as="a"
           href="#como-funciona"
           onClick={handleGoToHowItWorks}
+          index={6}
+          duration={900}
           className="group mt-10 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-[#6B7280] transition duration-300 ease-out hover:text-[#4F46E5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           aria-label="Ir para a próxima seção"
         >
           <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-y-1" />
-        </a>
+        </Reveal>
       </div>
     </section>
   );

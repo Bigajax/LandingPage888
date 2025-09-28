@@ -17,6 +17,7 @@ import CallToActionEco from './sections/CallToActionEco';
 import Testimonials from './sections/Testimonials';
 
 import ReflexaoPage from './pages/ReflexaoPage';
+import useReveal from './hooks/useReveal';
 
 const LandingPage: React.FC = () => {
   return (
@@ -43,6 +44,8 @@ const LandingPage: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  useReveal();
+
   return (
     <Router>
       <Routes>

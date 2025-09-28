@@ -7,6 +7,7 @@ import nassim  from "@/assets/mentores/nassim-taleb.png";
 import brene   from "@/assets/mentores/brene-brown.png";
 import joe     from "@/assets/mentores/joe-dispenza.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Reveal from "../components/Reveal";
 
 type Mentor = {
   name: string;
@@ -103,20 +104,36 @@ const MentoresStrip: React.FC = () => {
       <div className="relative z-10 mx-auto max-w-7xl px-5">
         {/* Título + mensagem de valor */}
         <div className="text-center mb-8 sm:mb-12">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-white/90 bg-white/10 border border-white/20 backdrop-blur">
+          <Reveal
+            as="span"
+            index={0}
+            duration={780}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm font-medium text-white/90 bg-white/10 border border-white/20 backdrop-blur"
+          >
             Referências • Base das respostas
-          </span>
+          </Reveal>
 
-          <h2 id="mentores-title" className="mt-4 heading-lg font-semibold text-white">
+          <Reveal
+            as="h2"
+            index={1}
+            duration={860}
+            className="mt-4 heading-lg font-semibold text-white"
+            id="mentores-title"
+          >
             <span className="text-white">Grandes mentes.</span>
             <span className="text-white/70"> As ideias que inspiram a Eco.</span>
-          </h2>
+          </Reveal>
 
-          <p className="text-white/90 max-w-2xl mx-auto mt-3 text-sm sm:text-base">
+          <Reveal
+            as="p"
+            index={2}
+            duration={900}
+            className="text-white/90 max-w-2xl mx-auto mt-3 text-sm sm:text-base"
+          >
             A Eco não dá respostas genéricas: usa princípios de <span className="font-medium">filosofia</span>,{" "}
             <span className="font-medium">psicologia</span> e <span className="font-medium">ciência</span> para orientar reflexões
             mais humanas, profundas e confiáveis.
-          </p>
+          </Reveal>
         </div>
 
         {/* SETAS mobile */}
@@ -157,8 +174,12 @@ const MentoresStrip: React.FC = () => {
           "
         >
           {MENTORES.map((m, index) => (
-            <figure
+            <Reveal
+              as="figure"
               key={m.name}
+              index={index}
+              delayOffset={160}
+              duration={860}
               className="snap-center shrink-0 w-[240px] sm:w-[260px] md:w-auto md:shrink md:snap-none group"
             >
               <div
@@ -198,12 +219,15 @@ const MentoresStrip: React.FC = () => {
                   </p>
                 </figcaption>
               </div>
-            </figure>
+            </Reveal>
           ))}
         </div>
 
         {/* HINT mobile */}
-        <p
+        <Reveal
+          as="p"
+          index={MENTORES.length + 1}
+          duration={780}
           className="md:hidden mx-auto mt-5 inline-flex items-center gap-2 px-3 py-1 rounded-full
                       bg-white/10 text-[11.5px] text-white/90 backdrop-blur-sm border border-white/20"
         >
@@ -217,10 +241,13 @@ const MentoresStrip: React.FC = () => {
           >
             <path d="M9 18l6-6-6-6" />
           </svg>
-        </p>
+        </Reveal>
 
         {/* Caixinha de explicação — “Como a Eco usa isso” */}
-        <div
+        <Reveal
+          as="div"
+          index={MENTORES.length + 2}
+          duration={880}
           className="
             mt-8 sm:mt-10 rounded-2xl px-4 sm:px-6 py-4 sm:py-5
             bg-white/10 text-white/90 backdrop-blur border border-white/20
@@ -240,7 +267,7 @@ const MentoresStrip: React.FC = () => {
               <span className="font-medium">Micro-ações práticas</span> (antifragilidade & neurociência) para transformar insight em mudança real.
             </li>
           </ul>
-        </div>
+        </Reveal>
       </div>
 
       <style>{`
