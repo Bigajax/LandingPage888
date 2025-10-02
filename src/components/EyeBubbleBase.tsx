@@ -1,4 +1,4 @@
-import { CSSProperties, PropsWithChildren } from "react";
+import { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 type SizeToken =
@@ -34,11 +34,11 @@ export type EyeBubbleToken = {
   highlightColor?: string;
 };
 
-type EyeBubbleBaseProps = PropsWithChildren<{
+type EyeBubbleBaseProps = {
   token: EyeBubbleToken;
   motionConfig?: MotionConfig;
   className?: string;
-}>;
+};
 
 const defaultMotion: Required<MotionConfig> = {
   floatAmplitude: 12,
@@ -55,7 +55,6 @@ export function EyeBubbleBase({
   token,
   motionConfig,
   className,
-  children,
 }: EyeBubbleBaseProps) {
   const prefersReducedMotion = useReducedMotion();
   const config = { ...defaultMotion, ...motionConfig };
@@ -108,11 +107,37 @@ export function EyeBubbleBase({
       whileHover={hover}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="pointer-events-none absolute -top-24 left-16 h-48 w-48 rounded-full bg-white/15 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-28 right-12 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10" />
-      <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-center">
-        {children}
+      <div className="pointer-events-none absolute -top-20 left-12 h-44 w-44 rounded-full bg-white/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 right-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-black/15" />
+      <div className="relative z-10 flex w-full flex-1 items-center justify-center py-6">
+        <div className="relative aspect-square w-[min(260px,72%)] max-w-[320px]">
+          <div
+            className="absolute inset-0 rounded-full shadow-[0_22px_48px_rgba(15,23,42,0.35)]"
+            style={{ background: token.background }}
+          >
+            <div className="absolute inset-[10%] rounded-full border border-white/30" />
+            <div
+              className="absolute inset-[16%] rounded-full"
+              style={{ background: token.irisGradient }}
+            />
+            <div
+              className="absolute inset-[34%] rounded-full"
+              style={{ background: token.pupilColor }}
+            />
+            <div
+              className="absolute left-[24%] top-[26%] h-[28%] w-[28%] rounded-full blur-[1px]"
+              style={{
+                background: token.reflectionColor,
+                opacity: 0.75,
+              }}
+            />
+            <div
+              className="absolute right-[22%] bottom-[24%] h-[16%] w-[16%] rounded-full blur-sm"
+              style={{ background: token.highlightColor, opacity: 0.6 }}
+            />
+          </div>
+        </div>
       </div>
     </motion.div>
   );
