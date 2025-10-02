@@ -34,18 +34,27 @@ const HeroSection: React.FC = () => {
         [content-visibility:auto] [contain-intrinsic-size:1px_800px]
       `}
     >
-      {/* BG / ORB */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1]">
-        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-50 blur-[80px]" />
-        <div className="absolute inset-0 flex items-center justify-center transform-gpu will-change-transform">
-          <div className="relative w-[88vw] max-w-[560px] aspect-square">
-            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.15)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl" />
-            <div className="absolute inset-0 opacity-0 animate-[fadeIn_0.8s_ease-out_0.3s_forwards] motion-reduce:opacity-25 sm:motion-reduce:opacity-40">
-              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
+      {/* BG */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1]">
+        {/* leves glows superiores */}
+        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-40 blur-[80px]" />
+        {/* FAIXA ROXA + ORB */}
+        <div className="absolute inset-x-0 bottom-0 h-[18rem] sm:h-[22rem]">
+          {/* faixa roxa */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#9B7DFF_0%,#8269FF_45%,#5B4BFF_100%)]" />
+          {/* orb central dentro da faixa */}
+          <div className="absolute inset-0 flex items-end justify-center">
+            <div className="relative w-[80vw] max-w-[560px] aspect-square translate-y-[35%]">
+              {/* halo do orb para dar “vidro líquido” */}
+              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.10)_45%,transparent_72%)] blur-[70px]" />
+              <div className="absolute inset-0 opacity-0 animate-[fadeIn_0.9s_ease-out_0.35s_forwards] mix-blend-screen">
+                <Orb hoverIntensity={0.0} rotateOnHover={false} hue={265} forceHoverState={true} />
+              </div>
             </div>
           </div>
+          {/* suave fade para o branco acima */}
+          <div className="absolute inset-x-0 -top-10 h-16 bg-gradient-to-t from-[#5B4BFF]/35 via-[#5B4BFF]/10 to-transparent" />
         </div>
-        <div className="absolute inset-x-0 bottom-[-10%] h-[22rem] bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
       </div>
 
       {/* CONTEÚDO */}
@@ -60,7 +69,7 @@ const HeroSection: React.FC = () => {
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        {/* Pílula – igual às demais */}
+        {/* Pílula */}
         <div className="mt-2 flex justify-center">
           <span
             className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
@@ -103,7 +112,7 @@ const HeroSection: React.FC = () => {
           </a>
         </div>
 
-        {/* Micro-confiança – chips em glass 25px */}
+        {/* Chips */}
         <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-3 sm:gap-4 text-sm font-medium text-gray-700">
           {badges.map(({ label, key }) => (
             <span key={key} className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2" itemProp="featureList">
@@ -123,7 +132,7 @@ const HeroSection: React.FC = () => {
         </a>
       </div>
 
-      {/* glass utils: blur(25px) + opacidade média */}
+      {/* glass utils */}
       <style>{`
         .glass-25{
           position:relative;
@@ -163,8 +172,7 @@ const HeroSection: React.FC = () => {
       `}</style>
 
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.25; } }
-        @media (min-width: 640px) { @keyframes fadeIn { to { opacity: 0.4; } } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
     </section>
   );
