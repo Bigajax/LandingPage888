@@ -15,7 +15,6 @@ import HowItWorksSection from "./sections/HowItWorksSection";
 import ForWhoSection from "./sections/ForWhoSection";
 import IntroducingEco from "./sections/IntroducingEco";
 import EmotionalReportSection from "./sections/EmotionalReportSection";
-import PrinciplesSection from "./sections/PrinciplesSection";
 import CallToActionEco from "./sections/CallToActionEco";
 import Testimonials from "./sections/Testimonials";
 
@@ -46,7 +45,6 @@ const LandingPage: React.FC = () => (
       <ForWhoSection />
       <IntroducingEco />
       <EmotionalReportSection />
-      <PrinciplesSection />
       <CallToActionEco />
       <Testimonials />
     </main>
