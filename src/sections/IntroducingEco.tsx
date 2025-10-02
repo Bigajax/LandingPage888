@@ -6,10 +6,10 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 type Feature = { Icon: React.ElementType; title: string; description: string };
 
 const FEATURES: Feature[] = [
-  { Icon: PenLine,  title: "Escrita expressiva",       description: "Dê forma ao que sente e alivie tensões." },
-  { Icon: Sparkles, title: "Reflexão guiada",          description: "Perguntas que funcionam como espelho." },
-  { Icon: RefreshCw,title: "Padrões revelados",        description: "O que se repete fica nítido no tempo." },
-  { Icon: Sprout,   title: "Jornada pessoal",          description: "Pequenas doses no seu ritmo, evolução real." },
+  { Icon: PenLine,  title: "Escrita expressiva",  description: "Dê forma ao que sente e alivie tensões." },
+  { Icon: Sparkles, title: "Reflexão guiada",     description: "Perguntas que funcionam como espelho." },
+  { Icon: RefreshCw,title: "Padrões revelados",   description: "O que se repete fica nítido no tempo." },
+  { Icon: Sprout,   title: "Jornada pessoal",     description: "Pequenas doses no seu ritmo, evolução real." },
 ];
 
 const Chip: React.FC<Feature> = ({ Icon, title, description }) => (
@@ -31,8 +31,7 @@ const IntroducingEco: React.FC = () => {
   const { ref: headRef, isVisible: headVis } = useScrollReveal();
   const { ref: phoneRef, isVisible: phoneVis } = useScrollReveal();
 
-  const fade = (v: boolean) =>
-    v ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4";
+  const fade = (v: boolean) => (v ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4");
 
   return (
     <section
@@ -47,13 +46,19 @@ const IntroducingEco: React.FC = () => {
 
       <div className="mx-auto max-w-6xl px-6">
         {/* Header */}
-        <div
-          ref={headRef}
-          className={`text-center transition-all duration-700 ${fade(headVis)}`}
-        >
-          <span className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-4 py-1 text-xs font-medium uppercase tracking-[0.28em] text-slate-700 backdrop-blur">
-            Como funciona
+        <div ref={headRef} className={`text-center transition-all duration-700 ${fade(headVis)}`}>
+          {/* Pílula melhorada */}
+          <span
+            className="
+              inline-flex items-center gap-2 rounded-full border border-indigo-200/60
+              bg-white/60 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.28em]
+              text-slate-700 backdrop-blur shadow-[inset_0_1px_0_rgba(255,255,255,.8)]
+            "
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-500 shadow-[0_0_0_3px_rgba(139,92,246,0.18)]" />
+            Como a Eco funciona
           </span>
+
           <h2
             id="introducing-eco-title"
             className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-[2.6rem] sm:leading-[1.06]"
@@ -66,19 +71,14 @@ const IntroducingEco: React.FC = () => {
         </div>
 
         {/* Grid 3 colunas: chips / phone / chips */}
-        <div
-          className="
-            mt-10 grid grid-cols-1 gap-8
-            lg:grid-cols-[1fr_auto_1fr] lg:items-center
-          "
-        >
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           {/* Chips esquerda */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
             <Chip {...FEATURES[0]} />
             <Chip {...FEATURES[1]} />
           </div>
 
-          {/* iPhone central + CTA */}
+          {/* iPhone central + CTA + seta */}
           <div
             ref={phoneRef}
             className={`relative flex flex-col items-center transition-all duration-700 ${fade(phoneVis)}`}
@@ -97,22 +97,51 @@ const IntroducingEco: React.FC = () => {
               draggable={false}
             />
 
-            {/* CTA preto integrado */}
-            <a
-              href="https://ecofrontend888.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                mt-6 inline-flex items-center justify-center rounded-full
-                bg-black px-8 py-3 text-sm font-semibold text-white
-                shadow-[0_18px_40px_rgba(2,6,23,0.25)]
-                hover:bg-zinc-900 hover:-translate-y-0.5 transition
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30
-                focus-visible:ring-offset-2 focus-visible:ring-offset-white
-              "
-            >
-              Começar minha jornada
-            </a>
+            {/* Wrapper do CTA para ancorar a seta */}
+            <div className="relative mt-6">
+              {/* SETA apontando para o botão */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 animate-[floaty_1.8s_ease-in-out_infinite]"
+              >
+                <svg
+                  width="120"
+                  height="58"
+                  viewBox="0 0 120 58"
+                  fill="none"
+                  className="opacity-95"
+                >
+                  {/* curva */}
+                  <path
+                    d="M10 10 C 35 40, 85 40, 60 52"
+                    stroke="#ef4444"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  {/* ponta da seta */}
+                  <path d="M60 52 L53 44" stroke="#ef4444" strokeWidth="3.5" strokeLinecap="round" />
+                  <path d="M60 52 L67 44" stroke="#ef4444" strokeWidth="3.5" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              {/* CTA preto */}
+              <a
+                href="https://ecofrontend888.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex items-center justify-center rounded-full
+                  bg-black px-8 py-3 text-sm font-semibold text-white
+                  shadow-[0_18px_40px_rgba(2,6,23,0.25)]
+                  hover:bg-zinc-900 hover:-translate-y-0.5 transition
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30
+                  focus-visible:ring-offset-2 focus-visible:ring-offset-white
+                "
+              >
+                Começar minha jornada
+              </a>
+            </div>
           </div>
 
           {/* Chips direita */}
@@ -122,6 +151,14 @@ const IntroducingEco: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* animação da seta */}
+      <style>{`
+        @keyframes floaty {
+          0%, 100% { transform: translate(-50%, -2px); }
+          50%      { transform: translate(-50%,  2px); }
+        }
+      `}</style>
     </section>
   );
 };
