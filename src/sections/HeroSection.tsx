@@ -1,6 +1,6 @@
 import React from "react"; 
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
-import Orb from "../components/Orb";
+import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const HeroSection: React.FC = () => {
@@ -30,11 +30,10 @@ const HeroSection: React.FC = () => {
         <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-60 blur-3xl" />
         <div className="absolute inset-x-0 bottom-[-10%] h-[22rem] bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center transform-gpu will-change-transform">
-          <div className="relative w-[88vw] max-w-[560px] aspect-square">
-            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.18)_0%,rgba(115,91,255,0.08)_45%,transparent_72%)] blur-2xl" />
-            <div className="absolute inset-0 opacity-25 sm:opacity-40 motion-reduce:opacity-0">
-              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
-            </div>
+          <div className="relative flex w-[88vw] max-w-[560px] items-center justify-center">
+            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.22)_0%,rgba(16,185,129,0.12)_48%,transparent_76%)] blur-2xl" />
+            <div className="absolute -inset-10 rounded-full bg-emerald-200/30 blur-3xl" />
+            <EcoBubbleOneEye className="pointer-events-none mx-auto max-w-[420px] shadow-[0_34px_82px_rgba(16,185,129,0.32)]" />
           </div>
         </div>
       </div>
