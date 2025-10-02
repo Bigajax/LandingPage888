@@ -1,3 +1,4 @@
+// src/sections/HeroSection.tsx
 import React from "react";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
@@ -8,95 +9,82 @@ const HeroSection: React.FC = () => {
 
   const handleGoToHowItWorks = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const el = document.getElementById("como-funciona");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("como-funciona")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <section
       ref={ref}
       aria-labelledby="hero-title"
-      className={`
+      className="
         relative overflow-hidden bg-white
-        min-h-[calc(100svh-var(--nav-h,64px))] md:min-h-[calc(100dvh-var(--nav-h,80px))]
-        [content-visibility:auto] [contain-intrinsic-size:1px_800px]
-      `}
+        min-h-[calc(100svh-var(--nav-h,64px))]
+        [content-visibility:auto] [contain-intrinsic-size:1px_720px]
+      "
     >
       {/* BG / ORB */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0 flex items-center justify-center
-          transform-gpu will-change-transform
-        "
-      >
-        <div className="relative w-[88vw] max-w-[560px] aspect-square">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.14)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl sm:blur-2xl" />
-          <div className="absolute inset-0 opacity-20 sm:opacity-35 motion-reduce:opacity-0">
-            <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
+      <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="relative w-[86vw] max-w-[520px] aspect-square">
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.12)_0%,rgba(115,91,255,0.05)_45%,transparent_72%)] blur-xl sm:blur-2xl" />
+          <div className="absolute inset-0 opacity-20 motion-reduce:opacity-0">
+            <Orb hoverIntensity={0.1} rotateOnHover={false} hue={265} forceHoverState={false} />
           </div>
         </div>
       </div>
 
-      {/* CONTEÚDO */}
+      {/* CONTENT */}
       <div
         className={`
           relative z-10 mx-auto px-5 sm:px-6
-          max-w-[520px] sm:max-w-[880px]
+          max-w-[520px] sm:max-w-[840px]
           flex flex-col items-center text-center
-          pt-[calc(var(--nav-h,64px)+22px+env(safe-area-inset-top))]
-          md:pt-[calc(var(--nav-h,80px)+72px)]
-          pb-[calc(16px+env(safe-area-inset-bottom))] md:pb-20
+          pt-[calc(var(--nav-h,64px)+28px)]
+          pb-14
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
-          transform-gpu will-change-[opacity,transform]
         `}
       >
-        {/* Pílula */}
-        <span className="inline-flex items-center px-4 py-1.5 rounded-full mb-5 sm:mb-6 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-sm">
+        {/* Pílula (opcional — discreta) */}
+        <span className="inline-flex items-center px-3.5 py-1 rounded-full mb-4 text-[11px] sm:text-xs text-zinc-700 bg-white/70 border border-zinc-200 backdrop-blur-sm">
           Jornada de Autoconhecimento
         </span>
 
-        {/* Título */}
+        {/* Title */}
         <h1
           id="hero-title"
           className="
             text-balance
-            text-[32px] leading-[1.2]
-            sm:text-6xl sm:leading-tight lg:text-7xl
-            tracking-tight mb-4 sm:mb-6
+            text-[30px] leading-tight
+            sm:text-[44px] sm:leading-[1.1] lg:text-6xl
+            tracking-tight mb-3
           "
         >
           <span className="font-extrabold text-zinc-900">Eco,</span>{" "}
           <span className="font-medium text-zinc-900">seu diário inteligente de autoconhecimento.</span>
         </h1>
 
-        {/* Subtítulo */}
+        {/* Subtitle — 1 frase só */}
         <p
           className="
-            text-[17px] leading-[1.85] sm:text-xl sm:leading-relaxed
-            text-zinc-600 max-w-[48ch] sm:max-w-[720px]
-            mb-12 sm:mb-10
+            text-[16px] sm:text-[18px] leading-relaxed
+            text-zinc-600 max-w-[44ch] sm:max-w-[60ch]
+            mb-8
           "
         >
-          Escreva o que sente, receba reflexões personalizadas e acompanhe sua evolução emocional
-          em relatórios visuais.
-          <br className="hidden sm:block" />
-          <span className="block mt-2">Mais que palavras: um espelho emocional para clareza e bem-estar.</span>
+          Escreva o que sente e receba reflexões personalizadas para ganhar clareza — com relatórios simples e visuais.
         </p>
 
-        {/* CTAs */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
+        {/* CTAs compactos */}
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6">
           <a
             href="https://ecofrontend888.vercel.app/login"
             aria-label="Quero experimentar agora"
             className="
-              relative inline-flex w-full sm:w-auto items-center justify-center gap-2
-              h-12 px-7 rounded-full font-semibold text-white
+              inline-flex w-full sm:w-auto items-center justify-center gap-2
+              h-11 px-6 rounded-full font-semibold text-white
               bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF]
-              shadow-[0_12px_24px_rgba(91,75,255,0.26)]
-              hover:brightness-[1.07] active:scale-[0.99] transition
-              transform-gpu
+              shadow-[0_10px_22px_rgba(91,75,255,0.24)]
+              hover:brightness-[1.06] active:scale-[0.99] transition
             "
           >
             <PlayCircle size={18} className="opacity-90" />
@@ -107,12 +95,10 @@ const HeroSection: React.FC = () => {
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
             className="
-              group relative inline-flex w-full sm:w-auto items-center justify-center gap-2
-              h-12 px-7 rounded-full font-semibold
-              bg-white text-zinc-900
-              ring-1 ring-[#E6E9F6]
-              shadow-sm hover:bg-[#F8FAFF] active:scale-[0.99] transition
-              cursor-pointer
+              group inline-flex w-full sm:w-auto items-center justify-center gap-2
+              h-11 px-6 rounded-full font-medium
+              bg-white text-zinc-900 ring-1 ring-[#E6E9F6]
+              hover:bg-[#F8FAFF] active:scale-[0.99] transition
             "
             aria-label="Ver em ação"
           >
@@ -121,19 +107,17 @@ const HeroSection: React.FC = () => {
           </a>
         </div>
 
-        {/* Micro-confiança */}
-        <p className="text-[12px] sm:text-sm text-zinc-500 tracking-wide">
-          Beta gratuito · Teste em minutos · Vagas limitadas
-        </p>
+        {/* Micro-confiança bem curta */}
+        <p className="text-[12px] text-zinc-500">Beta gratuito · Teste em minutos</p>
 
         {/* Seta */}
         <a
           href="#como-funciona"
           onClick={handleGoToHowItWorks}
-          className="group mt-6 sm:mt-8 inline-flex cursor-pointer select-none"
+          className="group mt-5 inline-flex cursor-pointer select-none"
           aria-label="Ir para a próxima seção"
         >
-          <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
+          <ChevronDown className="h-5 w-5 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
         </a>
       </div>
     </section>
