@@ -12,14 +12,16 @@ const HeroSection: React.FC = () => {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  const badges = useMemo(
-    () => [
-      { label: "Grátis para sempre", key: "beta" },
-      { label: "Insights toda semana", key: "reports" },
-      { label: "Tecnologia + empatia", key: "mentorship" },
-    ],
-    []
-  );
+  // substitua apenas este trecho
+const badges = useMemo(
+  () => [
+    { label: "Clareza emocional", key: "clarity" },
+    { label: "Reflexões personalizadas", key: "reflections" },
+    { label: "Evolução constante", key: "evolution" },
+  ],
+  []
+);
+
 
   return (
     <section
