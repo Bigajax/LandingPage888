@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
           <div className="relative w-[88vw] max-w-[560px] aspect-square">
             <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.15)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl" />
             <div className="absolute inset-0 opacity-0 animate-[fadeIn_0.8s_ease-out_0.3s_forwards] motion-reduce:opacity-25 sm:motion-reduce:opacity-40">
-              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
+              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={275} forceHoverState={true} />
             </div>
           </div>
         </div>
