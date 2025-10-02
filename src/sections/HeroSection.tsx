@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -62,32 +62,34 @@ const HeroSection: React.FC = () => {
           id="hero-title"
           className="
             text-balance
-            text-[32px] leading-[1.36]
+            text-[32px] leading-[1.2]
             sm:text-6xl sm:leading-tight lg:text-7xl
             tracking-tight mb-4 sm:mb-6
           "
         >
-          <span className="font-extrabold text-zinc-900">Eco.</span>{" "}
-          <span className="font-medium text-zinc-700">Sua jornada começa aqui.</span>
+          <span className="font-extrabold text-zinc-900">Eco,</span>{" "}
+          <span className="font-medium text-zinc-900">seu diário inteligente de autoconhecimento.</span>
         </h1>
 
         {/* Subtítulo */}
         <p
           className="
             text-[17px] leading-[1.85] sm:text-xl sm:leading-relaxed
-            text-zinc-600 max-w-[46ch] sm:max-w-[680px]
+            text-zinc-600 max-w-[48ch] sm:max-w-[720px]
             mb-12 sm:mb-10
           "
         >
-          Escreva, reflita e descubra padrões — simples, guiado e no seu ritmo.
+          Escreva o que sente, receba reflexões personalizadas e acompanhe sua evolução emocional
+          em relatórios visuais.
+          <br className="hidden sm:block" />
+          <span className="block mt-2">Mais que palavras: um espelho emocional para clareza e bem-estar.</span>
         </p>
 
         {/* CTAs */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
-          {/* CTA com o link ajustado */}
           <a
             href="https://ecofrontend888.vercel.app/login"
-            aria-label="Começar minha jornada"
+            aria-label="Quero experimentar agora"
             className="
               relative inline-flex w-full sm:w-auto items-center justify-center gap-2
               h-12 px-7 rounded-full font-semibold text-white
@@ -98,7 +100,7 @@ const HeroSection: React.FC = () => {
             "
           >
             <PlayCircle size={18} className="opacity-90" />
-            Começar minha jornada
+            Quero experimentar agora
           </a>
 
           <a
@@ -112,9 +114,9 @@ const HeroSection: React.FC = () => {
               shadow-sm hover:bg-[#F8FAFF] active:scale-[0.99] transition
               cursor-pointer
             "
-            aria-label="Ver como funciona"
+            aria-label="Ver em ação"
           >
-            Ver como funciona
+            Ver em ação
             <ChevronRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
         </div>
