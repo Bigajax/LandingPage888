@@ -6,7 +6,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-purple-50 to-pink-50 font-sans text-gray-800">
+    <div className="min-h-screen bg-[#F9FAFB] text-[#111827] antialiased">
       {children}
     </div>
   );

@@ -17,7 +17,7 @@ const HeroSection: React.FC = () => {
       ref={ref}
       aria-labelledby="hero-title"
       className={`
-        relative overflow-hidden bg-white
+        relative overflow-hidden liquid-bg
         min-h-[calc(100svh-var(--nav-h,64px))] md:min-h-[calc(100dvh-var(--nav-h,80px))]
         [content-visibility:auto] [contain-intrinsic-size:1px_800px]
       `}
@@ -25,15 +25,16 @@ const HeroSection: React.FC = () => {
       {/* BG / ORB */}
       <div
         aria-hidden
-        className="
-          pointer-events-none absolute inset-0 flex items-center justify-center
-          transform-gpu will-change-transform
-        "
+        className="pointer-events-none absolute inset-0 z-[1]"
       >
-        <div className="relative w-[88vw] max-w-[560px] aspect-square">
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.14)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl sm:blur-2xl" />
-          <div className="absolute inset-0 opacity-20 sm:opacity-35 motion-reduce:opacity-0">
-            <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
+        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-60 blur-3xl" />
+        <div className="absolute inset-x-0 bottom-[-10%] h-[22rem] bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
+        <div className="absolute inset-0 flex items-center justify-center transform-gpu will-change-transform">
+          <div className="relative w-[88vw] max-w-[560px] aspect-square">
+            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.18)_0%,rgba(115,91,255,0.08)_45%,transparent_72%)] blur-2xl" />
+            <div className="absolute inset-0 opacity-25 sm:opacity-40 motion-reduce:opacity-0">
+              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={265} forceHoverState={false} />
+            </div>
           </div>
         </div>
       </div>
@@ -41,63 +42,39 @@ const HeroSection: React.FC = () => {
       {/* CONTEÚDO */}
       <div
         className={`
-          relative z-10 mx-auto px-5 sm:px-6
-          max-w-[520px] sm:max-w-[880px]
-          flex flex-col items-center text-center
-          pt-[calc(var(--nav-h,64px)+22px+env(safe-area-inset-top))]
-          md:pt-[calc(var(--nav-h,80px)+72px)]
-          pb-[calc(16px+env(safe-area-inset-bottom))] md:pb-20
+          relative z-10 mx-auto flex max-w-7xl flex-col items-center
+          px-4 sm:px-6 lg:px-8 text-center
+          pt-[calc(var(--nav-h,64px)+32px+env(safe-area-inset-top))]
+          md:pt-[calc(var(--nav-h,80px)+88px)]
+          pb-[calc(32px+env(safe-area-inset-bottom))]
+          md:pb-32
           transition-all duration-500 ease-out
-          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
           transform-gpu will-change-[opacity,transform]
         `}
       >
         {/* Pílula */}
-        <span className="inline-flex items-center px-4 py-1.5 rounded-full mb-5 sm:mb-6 text-[12px] sm:text-sm font-medium text-zinc-700 bg-white/80 border border-zinc-200 backdrop-blur-sm shadow-sm">
-          Jornada de Autoconhecimento
+        <span className="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280]">
+          Jornada de autoconhecimento
         </span>
 
         {/* Título */}
-        <h1
-          id="hero-title"
-          className="
-            text-balance
-            text-[32px] leading-[1.2]
-            sm:text-6xl sm:leading-tight lg:text-7xl
-            tracking-tight mb-4 sm:mb-6
-          "
-        >
-          <span className="font-extrabold text-zinc-900">Eco,</span>{" "}
-          <span className="font-medium text-zinc-900">seu diário inteligente de autoconhecimento.</span>
+        <h1 id="hero-title" className="heading-xl mt-8 text-balance font-semibold text-[#111827]">
+          Eco, um espaço delicado para ler o que você sente.
         </h1>
 
         {/* Subtítulo */}
-        <p
-          className="
-            text-[17px] leading-[1.85] sm:text-xl sm:leading-relaxed
-            text-zinc-600 max-w-[48ch] sm:max-w-[720px]
-            mb-12 sm:mb-10
-          "
-        >
-          Escreva o que sente, receba reflexões personalizadas e acompanhe sua evolução emocional
-          em relatórios visuais.
-          <br className="hidden sm:block" />
-          <span className="block mt-2">Mais que palavras: um espelho emocional para clareza e bem-estar.</span>
+        <p className="subheading mt-6 max-w-2xl text-balance text-[#6B7280]">
+          Um diário inteligente com toques humanos: escreva, receba reflexões e acompanhe sua evolução emocional com suavidade.
         </p>
 
         {/* CTAs */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-7 sm:mb-9">
+        <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
           <a
             href="https://ecofrontend888.vercel.app/login"
-            aria-label="Quero experimentar agora"
-            className="
-              relative inline-flex w-full sm:w-auto items-center justify-center gap-2
-              h-12 px-7 rounded-full font-semibold text-white
-              bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF]
-              shadow-[0_12px_24px_rgba(91,75,255,0.26)]
-              hover:brightness-[1.07] active:scale-[0.99] transition
-              transform-gpu
-            "
+            aria-label="Começar minha jornada"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-8 py-3 text-base font-semibold text-white shadow-[0_16px_32px_rgba(59,130,246,0.28)] transition duration-300 ease-out hover:bg-[#2563EB] hover:shadow-[0_22px_44px_rgba(59,130,246,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
+
           >
             <PlayCircle size={18} className="opacity-90" />
             Quero experimentar agora
@@ -106,34 +83,29 @@ const HeroSection: React.FC = () => {
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="
-              group relative inline-flex w-full sm:w-auto items-center justify-center gap-2
-              h-12 px-7 rounded-full font-semibold
-              bg-white text-zinc-900
-              ring-1 ring-[#E6E9F6]
-              shadow-sm hover:bg-[#F8FAFF] active:scale-[0.99] transition
-              cursor-pointer
-            "
-            aria-label="Ver em ação"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#D1D5DB] bg-white/80 px-8 py-3 text-base font-semibold text-[#3B82F6] shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition duration-300 ease-out hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
+            aria-label="Ver como funciona"
           >
-            Ver em ação
-            <ChevronRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            Ver como funciona
+            <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
 
         {/* Micro-confiança */}
-        <p className="text-[12px] sm:text-sm text-zinc-500 tracking-wide">
-          Beta gratuito · Teste em minutos · Vagas limitadas
-        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3 text-xs font-medium text-[#6B7280] sm:text-sm">
+          <span className="glass px-4 py-1.5">Beta gratuito</span>
+          <span className="glass px-4 py-1.5">Relatórios emocionais guiados</span>
+          <span className="glass px-4 py-1.5">Mentoria humana + IA</span>
+        </div>
 
         {/* Seta */}
         <a
           href="#como-funciona"
           onClick={handleGoToHowItWorks}
-          className="group mt-6 sm:mt-8 inline-flex cursor-pointer select-none"
+          className="group mt-10 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-[#6B7280] transition duration-300 ease-out hover:text-[#4F46E5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           aria-label="Ir para a próxima seção"
         >
-          <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-zinc-400 group-hover:text-zinc-600 transition-colors" />
+          <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-y-1" />
         </a>
       </div>
     </section>
