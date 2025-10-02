@@ -13,9 +13,9 @@ const HeroSection: React.FC = () => {
   }, []);
 
   const badges = useMemo(() => [
-    { label: "Beta gratuito", key: "beta" },
-    { label: "Relatórios emocionais guiados", key: "reports" },
-    { label: "Mentoria humana + IA", key: "mentorship" }
+    { label: "100% gratuito no beta", key: "beta" },
+    { label: "Relatórios semanais personalizados", key: "reports" },
+    { label: "IA + supervisão humana", key: "mentorship" }
   ], []);
 
   return (
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
           className="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-600"
           itemProp="applicationCategory"
         >
-          Jornada de autoconhecimento
+          Seu diário emocional
         </span>
 
         {/* Título */}
@@ -81,7 +81,7 @@ const HeroSection: React.FC = () => {
           itemProp="name"
           className="heading-xl mt-8 text-balance font-semibold text-gray-900"
         >
-          Eco, um espaço delicado para ler o que você sente.
+          Transforme sentimentos em clareza.
         </h1>
 
         {/* Subtítulo */}
@@ -89,19 +89,19 @@ const HeroSection: React.FC = () => {
           className="subheading mt-6 max-w-2xl text-balance text-gray-600"
           itemProp="description"
         >
-          Um diário inteligente com toques humanos: escreva, receba reflexões e acompanhe sua evolução emocional com suavidade.
+          Escreva livremente. Receba reflexões personalizadas. Descubra padrões que você não via sozinho.
         </p>
 
         {/* CTAs */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
           <a
             href="https://ecofrontend888.vercel.app/login"
-            aria-label="Começar minha jornada no Eco"
+            aria-label="Começar a escrever no Eco gratuitamente"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 px-8 py-3.5 text-base font-semibold text-white shadow-[0_16px_32px_rgba(59,130,246,0.28)] transition-all duration-300 ease-out hover:bg-blue-600 hover:shadow-[0_22px_44px_rgba(59,130,246,0.35)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.98] sm:w-auto"
           >
             <PlayCircle size={18} className="opacity-90" aria-hidden="true" />
-            <span className="hidden sm:inline">Quero experimentar agora</span>
-            <span className="sm:hidden">Experimentar agora</span>
+            <span className="hidden sm:inline">Começar agora — é grátis</span>
+            <span className="sm:hidden">Começar grátis</span>
           </a>
 
           <a
