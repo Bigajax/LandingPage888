@@ -31,8 +31,7 @@ const IntroducingEco: React.FC = () => {
   const { ref: headRef, isVisible: headVis } = useScrollReveal();
   const { ref: phoneRef, isVisible: phoneVis } = useScrollReveal();
 
-  const fade = (v: boolean) =>
-    v ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4";
+  const fade = (v: boolean) => (v ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4");
 
   return (
     <section
@@ -97,17 +96,42 @@ const IntroducingEco: React.FC = () => {
               draggable={false}
             />
 
-            {/* CTA preto integrado */}
+            {/* Seta indicando o CTA */}
+            <div className="mt-2 h-8" aria-hidden>
+              <svg
+                viewBox="0 0 80 40"
+                className="h-8 w-20 text-violet-500/90 drop-shadow animate-cta-wiggle"
+                fill="none"
+              >
+                {/* curva */}
+                <path
+                  d="M5 5 C 28 28, 52 6, 75 22"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+                {/* ponta da seta */}
+                <path
+                  d="M75 22 L 67 18 M75 22 L 69 28"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+
+            {/* CTA roxo (degradê) */}
             <a
               href="https://ecofrontend888.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="
-                mt-6 inline-flex items-center justify-center rounded-full
-                bg-black px-8 py-3 text-sm font-semibold text-white
-                shadow-[0_18px_40px_rgba(2,6,23,0.25)]
-                hover:bg-zinc-900 hover:-translate-y-0.5 transition
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30
+                mt-2 inline-flex items-center justify-center rounded-full
+                bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-3
+                text-sm font-semibold text-white
+                shadow-[0_18px_40px_rgba(124,58,237,0.35)]
+                transition hover:brightness-110 hover:-translate-y-0.5
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300
                 focus-visible:ring-offset-2 focus-visible:ring-offset-white
               "
             >
@@ -122,6 +146,17 @@ const IntroducingEco: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* animação da seta */}
+      <style>{`
+        @keyframes cta-wiggle {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(4px); }
+        }
+        .animate-cta-wiggle {
+          animation: cta-wiggle 1.6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
