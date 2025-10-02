@@ -13,9 +13,9 @@ const HeroSection: React.FC = () => {
   }, []);
 
   const badges = useMemo(() => [
-    { label: "✨ Grátis para sempre", key: "beta" },
-    { label: "📊 Insights toda semana", key: "reports" },
-    { label: "🤝 Tecnologia + empatia", key: "mentorship" }
+    { label: "Grátis para sempre", key: "beta" },
+    { label: "Insights toda semana", key: "reports" },
+    { label: "Tecnologia + empatia", key: "mentorship" }
   ], []);
 
   return (
@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
       itemScope
       itemType="https://schema.org/SoftwareApplication"
       className={`
-        relative overflow-hidden liquid-bg
+        relative overflow-hidden bg-white
         min-h-[calc(100svh-var(--nav-h,64px))] md:min-h-[calc(100dvh-var(--nav-h,80px))]
         [content-visibility:auto] [contain-intrinsic-size:1px_800px]
       `}
@@ -97,9 +97,8 @@ const HeroSection: React.FC = () => {
           <a
             href="https://ecofrontend888.vercel.app/login"
             aria-label="Começar a escrever no Eco gratuitamente"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-3.5 text-base font-semibold text-white shadow-[0_20px_40px_rgba(99,102,241,0.25)] transition-all duration-300 ease-out hover:shadow-[0_24px_48px_rgba(99,102,241,0.35)] hover:scale-[1.02] hover:from-indigo-700 hover:to-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.98] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gray-900 px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-gray-800 hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
           >
-            <PlayCircle size={18} className="opacity-90" aria-hidden="true" />
             <span className="hidden sm:inline">Começar agora — é grátis</span>
             <span className="sm:hidden">Começar grátis</span>
           </a>
@@ -107,7 +106,7 @@ const HeroSection: React.FC = () => {
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-3.5 text-base font-medium text-gray-700 shadow-[0_4px_16px_rgba(15,23,42,0.04)] transition-all duration-300 ease-out hover:bg-gray-50 hover:border-gray-300 hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gray-50 px-9 py-4 text-base font-medium text-gray-700 transition-all duration-200 ease-out hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
             aria-label="Ver como o Eco funciona"
           >
             Ver como funciona
@@ -120,11 +119,11 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Micro-confiança */}
-        <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-3 text-xs font-medium text-gray-700 sm:text-sm">
+        <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-600 sm:text-base">
           {badges.map(({ label, key }) => (
             <span 
               key={key}
-              className="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-5 py-2.5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300"
+              className="inline-flex items-center gap-2 px-4 py-2"
               itemProp="featureList"
             >
               {label}
