@@ -5,18 +5,16 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 // ⚠️ side-effect: registra os Code Components (crie src/plasmic-register.tsx)
 import "./plasmic-register";
 
-
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 // Sections
 import HeroSection from "./sections/HeroSection";
+import MentoresStrip from "./sections/MentoresStrip";
 import HowItWorksSection from "./sections/HowItWorksSection";
 import ForWhoSection from "./sections/ForWhoSection";
 import IntroducingEco from "./sections/IntroducingEco";
 import EmotionalReportSection from "./sections/EmotionalReportSection";
-import MentoresStrip from "./sections/MentoresStrip";
 import PrinciplesSection from "./sections/PrinciplesSection";
 import CallToActionEco from "./sections/CallToActionEco";
 import Testimonials from "./sections/Testimonials";
@@ -41,12 +39,13 @@ const LandingPage: React.FC = () => (
     <Header />
     <main id="content" className="min-h-screen">
       <HeroSection />
+      {/* Mentores logo após o herói */}
+      <MentoresStrip />
+
       <HowItWorksSection />
       <ForWhoSection />
       <IntroducingEco />
-      {/* logo após “Conheça a Eco” */}
       <EmotionalReportSection />
-      <MentoresStrip />
       <PrinciplesSection />
       <CallToActionEco />
       <Testimonials />
