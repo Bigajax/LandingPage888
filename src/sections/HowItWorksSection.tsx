@@ -10,10 +10,10 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { id: 1, title: "Compartilhe",          description: "Dê forma ao que sente.",                 icon: Circle },
-  { id: 2, title: "Reflexão guiada",      description: "Um reflexo do seu interior.",            icon: Sparkles },
-  { id: 3, title: "Clareza emocional",    description: "Veja o invisível ganhar contorno.",      icon: Sun },
-  { id: 4, title: "Memórias conscientes", description: "Um lugar para guardar o essencial.",     icon: BookOpen },
+  { id: 1, title: "Envie uma mensagem",     description: "Você escreve livremente. A conversa começa com você.",           icon: Circle },
+  { id: 2, title: "Resposta da Eco",        description: "Reflexões guiadas e perguntas que funcionam como espelho.",     icon: Sparkles },
+  { id: 3, title: "Sinais & padrões",       description: "A Eco destaca o essencial e o que se repete com o tempo.",      icon: Sun },
+  { id: 4, title: "Memórias automáticas",   description: "O que importa fica salvo para consultas futuras — sem esforço.", icon: BookOpen },
 ];
 
 const HowItWorks: React.FC = () => {
@@ -23,64 +23,70 @@ const HowItWorks: React.FC = () => {
   const Demo = ({ step }: { step: number }) => {
     if (step === 1)
       return (
-        <div className="space-y-4">
-          <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
-            Sua expressão
+        <div className="space-y-3">
+          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
+            Sua mensagem
           </span>
-          <div className="rounded-2xl border border-white/40 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
+          <div className="rounded-xl border border-white/40 bg-white/80 p-3 shadow-sm backdrop-blur-xl">
             <p className="text-sm leading-relaxed text-[#111827]">
               Hoje me sinto confuso, tentando ouvir o que está aqui dentro.
             </p>
           </div>
-          <div className="mt-1 flex h-11 items-center rounded-xl border border-white/30 bg-white/60 px-4 text-sm text-[#6B7280] backdrop-blur-xl">
-            Dê forma ao que sente…
+          <div className="mt-1 flex h-10 items-center rounded-lg border border-white/30 bg-white/60 px-3 text-sm text-[#6B7280] backdrop-blur-xl">
+            Escreva para a Eco…
           </div>
         </div>
       );
 
     if (step === 2)
       return (
-        <div className="flex flex-col items-center justify-center space-y-4 py-6">
-          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-white/50 bg-white/80 shadow-inner backdrop-blur-xl">
-            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9),rgba(99,102,241,0.16)_50%,rgba(79,70,229,0.22)_85%)]" />
-            <div className="absolute inset-0 rounded-full border border-white/60 opacity-70 animate-pulse" />
+        <div className="space-y-3">
+          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
+            Resposta da Eco
+          </span>
+          <div className="space-y-2">
+            <div className="rounded-xl border border-white/40 bg-white/85 p-3 text-sm text-[#111827] shadow-sm backdrop-blur-xl">
+              Entendi. Vamos explorar: o que provocou essa confusão hoje?
+            </div>
+            <div className="rounded-xl border border-white/40 bg-white/70 p-3 text-sm text-[#111827] shadow-sm backdrop-blur-xl">
+              Se isso tivesse uma cor ou peso, qual seria? Por quê?
+            </div>
           </div>
-          <p className="px-6 text-center text-sm leading-relaxed text-[#6B7280]">
-            Uma resposta nasce do que você revela.
-          </p>
         </div>
       );
 
     if (step === 3)
       return (
-        <div className="space-y-4">
-          <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
-            Seu insight
+        <div className="space-y-3">
+          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
+            Sinais & padrões
           </span>
-          <div className="rounded-2xl border border-[#C7D2FE]/60 bg-gradient-to-br from-[#E0E7FF]/60 via-white to-[#F5F3FF]/70 p-4 shadow-sm backdrop-blur-xl">
-            <p className="text-sm leading-relaxed text-[#111827]">
-              O que se repete começa a ganhar contorno.
-            </p>
+          <div className="rounded-xl border border-[#C7D2FE]/60 bg-gradient-to-br from-[#E0E7FF]/60 via-white to-[#F5F3FF]/70 p-3 shadow-sm backdrop-blur-xl">
+            <ul className="space-y-1 text-sm text-[#111827]">
+              <li>• Tema recorrente: <b>autocrítica</b> nas tardes de segunda.</li>
+              <li>• Gatilho comum: reuniões longas.</li>
+              <li>• Sugestão: mini-pausa respiratória antes da última reunião.</li>
+            </ul>
           </div>
         </div>
       );
 
     return (
-      <div className="space-y-4">
-        <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
-          Memória (exemplo)
+      <div className="space-y-3">
+        <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#A1A6BB]">
+          Memórias automáticas
         </span>
-        <div className="max-h-[240px] space-y-4 overflow-y-auto rounded-2xl border border-white/40 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
-          <div className="border-b border-white/40 pb-3">
-            <div className="text-xs text-[#A1A6BB]">14 de julho</div>
+        <div className="max-h-[200px] space-y-3 overflow-y-auto rounded-xl border border-white/40 bg-white/80 p-3 shadow-sm backdrop-blur-xl">
+          <div className="border-b border-white/40 pb-2">
+            <div className="text-[11px] text-[#A1A6BB]">14 de julho</div>
             <p className="text-sm leading-relaxed text-[#111827]">
-              Hoje me senti mais presente e calmo.
+              Confusão → clareza após pausa de respiração (3 min).
             </p>
           </div>
-          <div className="border-b border-white/40 pb-3">
-            <div className="text-xs text-[#A1A6BB]">12 de julho</div>
+          <div className="border-b border-white/40 pb-2">
+            <div className="text-[11px] text-[#A1A6BB]">12 de julho</div>
             <p className="text-sm leading-relaxed text-[#111827]">
-              Notei que estou reconhecendo melhor o que sinto.
+              Padrão percebido: tensão pré-reunião. Funcionou: anotar 1 intenção.
             </p>
           </div>
         </div>
@@ -92,26 +98,23 @@ const HowItWorks: React.FC = () => {
     <section
       id="como-funciona"
       ref={ref}
-      className="relative w-full scroll-mt-24 bg-white py-20 md:py-28"
+      className="relative w-full scroll-mt-24 bg-white py-14 md:py-20"
     >
-      <div className="pointer-events-none absolute left-[12%] top-12 hidden h-64 w-64 -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-40 blur-3xl lg:block" aria-hidden />
-
-      {/* Cabeçalho estilo “continuação” */}
       <div
-        className={`mx-auto mb-12 flex w-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${
+        className={`mx-auto mb-8 flex w-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
         <h2 className="heading-lg text-left font-semibold text-[#111827]">
-          Como a Eco acompanha sua clareza emocional.
+          Como a conversa funciona.
         </h2>
-        <p className="subheading mt-3 max-w-2xl text-left text-[#6B7280]">
-          Passo a passo, da escrita à leitura delicada dos seus padrões.
+        <p className="subheading mt-2 max-w-2xl text-left text-[#6B7280]">
+          Você escreve, a Eco responde com perguntas e reflexões, destaca sinais importantes e salva o essencial.
         </p>
       </div>
 
-      {/* MOBILE: cards empilhados + demo inline no card ativo */}
-      <div className="w-full max-w-3xl space-y-4 px-4 sm:px-6 lg:hidden">
+      {/* MOBILE */}
+      <div className="w-full max-w-3xl space-y-3 px-4 sm:px-6 lg:hidden">
         {steps.map((step) => {
           const Icon = step.icon;
           const active = activeStep === step.id;
@@ -120,52 +123,44 @@ const HowItWorks: React.FC = () => {
               key={step.id}
               className={`glass glass-hover w-full transition-all duration-300 ease-out ${
                 active
-                  ? "border-white/50 bg-white/70 ring-2 ring-[#A78BFA]/40 shadow-md"
+                  ? "border-white/50 bg-white/70 ring-1 ring-[#A78BFA]/30 shadow-md"
                   : "border-white/30 bg-white/50"
               }`}
             >
               <button
                 onClick={() => setActiveStep(active ? 0 : step.id)}
-                className="flex w-full items-center gap-4 rounded-[inherit] px-5 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                className="flex w-full items-center gap-3 rounded-[inherit] px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 aria-expanded={active}
                 aria-pressed={active}
                 aria-controls={`demo-${step.id}`}
               >
                 <span
-                  className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-gradient-to-br from-white via-white/60 to-[#E0E7FF]/70 shadow-inner transition-opacity duration-300 ease-out ${
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-gradient-to-br from-white via-white/60 to-[#E0E7FF]/70 shadow-inner transition-opacity ${
                     active ? "opacity-100" : "opacity-90"
                   }`}
                   aria-hidden
                 >
-                  <Icon size={18} strokeWidth={1.6} className="text-[#4F46E5]" />
+                  <Icon size={16} strokeWidth={1.6} className="text-[#4F46E5]" />
                 </span>
 
-                <span className="flex flex-1 flex-col gap-2">
+                <span className="flex flex-1 flex-col">
                   <span className="flex items-baseline gap-2">
-                    <span className="text-sm font-semibold leading-snug text-[#111827] sm:text-[16px]">
+                    <span className="text-[15px] font-semibold leading-snug text-[#111827]">
                       {step.title}
                     </span>
-                    <span className="ml-auto text-[12px] font-medium text-[#A1A6BB] tabular-nums">
+                    <span className="ml-auto text-[11px] font-medium text-[#A1A6BB] tabular-nums">
                       0{step.id}
                     </span>
                   </span>
-                  <span className="text-[13px] leading-snug text-[#6B7280] sm:text-[14px]">
+                  <span className="text-[13px] leading-snug text-[#6B7280]">
                     {step.description}
                   </span>
-                  {step.id === 4 && (
-                    <a
-                      href="#relatorio"
-                      className="mt-1 inline-flex items-center text-[13px] font-semibold text-[#4F46E5] transition-colors duration-200 ease-out hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                    >
-                      Ver relatório emocional →
-                    </a>
-                  )}
                 </span>
               </button>
 
               {active && (
-                <div id={`demo-${step.id}`} className="px-5 pb-5">
-                  <div className="rounded-2xl border border-white/40 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
+                <div id={`demo-${step.id}`} className="px-4 pb-4">
+                  <div className="rounded-xl border border-white/40 bg-white/75 p-3 shadow-sm backdrop-blur-xl">
                     <Demo step={step.id} />
                   </div>
                 </div>
@@ -175,9 +170,9 @@ const HowItWorks: React.FC = () => {
         })}
       </div>
 
-      {/* DESKTOP: lista à esquerda + demo fixa à direita */}
-      <div className="mx-auto hidden w-full max-w-7xl grid-cols-2 gap-12 px-4 sm:px-6 lg:px-8 lg:grid">
-        <div className="space-y-4">
+      {/* DESKTOP */}
+      <div className="mx-auto hidden w-full max-w-7xl grid-cols-2 gap-8 px-4 sm:px-6 lg:px-8 lg:grid">
+        <div className="space-y-3">
           {steps.map((step) => {
             const Icon = step.icon;
             const active = activeStep === step.id;
@@ -185,48 +180,40 @@ const HowItWorks: React.FC = () => {
               <button
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
-                className={`glass glass-hover flex w-full items-center gap-4 rounded-2xl px-6 py-5 text-left transition-all duration-300 ease-out ${
+                className={`glass glass-hover flex w-full items-center gap-3 rounded-2xl px-5 py-4 text-left transition-all duration-300 ease-out ${
                   active
-                    ? "border-white/60 bg-white/70 ring-2 ring-[#A78BFA]/40 shadow-md"
+                    ? "border-white/60 bg-white/70 ring-1 ring-[#A78BFA]/30 shadow-md"
                     : "border-white/30 bg-white/40"
                 }`}
                 aria-pressed={active}
                 aria-controls={`demo-desktop-${step.id}`}
               >
                 <span
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-gradient-to-br from-white via-white/60 to-[#E0E7FF]/70 shadow-inner"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-gradient-to-br from-white via-white/60 to-[#E0E7FF]/70 shadow-inner"
                   aria-hidden
                 >
-                  <Icon size={18} strokeWidth={1.6} className="text-[#4F46E5]" />
+                  <Icon size={16} strokeWidth={1.6} className="text-[#4F46E5]" />
                 </span>
-                <span className="flex flex-1 flex-col gap-2">
+                <span className="flex flex-1 flex-col">
                   <span className="flex items-baseline gap-2">
-                    <span className="text-[17px] font-semibold leading-snug text-[#111827]">
+                    <span className="text-[16px] font-semibold leading-snug text-[#111827]">
                       {step.title}
                     </span>
-                    <span className="ml-auto text-xs font-medium text-[#A1A6BB] tabular-nums">
+                    <span className="ml-auto text-[12px] font-medium text-[#A1A6BB] tabular-nums">
                       0{step.id}
                     </span>
                   </span>
-                  <span className="text-[15px] leading-snug text-[#6B7280]">
+                  <span className="text-[14px] leading-snug text-[#6B7280]">
                     {step.description}
                   </span>
-                  {step.id === 4 && (
-                    <a
-                      href="#relatorio"
-                      className="mt-1 inline-flex items-center text-[13px] font-semibold text-[#4F46E5] transition-colors duration-200 ease-out hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                    >
-                      Ver relatório emocional →
-                    </a>
-                  )}
                 </span>
               </button>
             );
           })}
         </div>
 
-        <div className="glass relative min-h-[420px] overflow-hidden rounded-3xl border-white/40 bg-white/60 p-8 shadow-lg">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_0%,rgba(99,102,241,0.12),transparent)]" />
+        <div className="glass relative min-h-[340px] overflow-hidden rounded-3xl border-white/40 bg-white/60 p-6 shadow-lg">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_0%,rgba(99,102,241,0.10),transparent)]" />
           <div className="relative h-full" id="demo-desktop">
             <Demo step={activeStep || 1} />
           </div>
