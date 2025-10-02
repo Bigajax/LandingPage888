@@ -12,16 +12,14 @@ const HeroSection: React.FC = () => {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  // substitua apenas este trecho
-const badges = useMemo(
-  () => [
-    { label: "Clareza emocional", key: "clarity" },
-    { label: "Reflexões personalizadas", key: "reflections" },
-    { label: "Evolução constante", key: "evolution" },
-  ],
-  []
-);
-
+  const badges = useMemo(
+    () => [
+      { label: "Clareza emocional", key: "clarity" },
+      { label: "Reflexões personalizadas", key: "reflections" },
+      { label: "Evolução constante", key: "evolution" },
+    ],
+    []
+  );
 
   return (
     <section
@@ -62,13 +60,15 @@ const badges = useMemo(
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        {/* Pílula – blur 25px + opacidade média */}
-        <span
-          className="glass-25 inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium tracking-[0.2em] uppercase text-gray-700"
-          itemProp="applicationCategory"
-        >
-          Seu diário emocional
-        </span>
+        {/* Pílula – igual às demais */}
+        <div className="mt-2 flex justify-center">
+          <span
+            className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
+            itemProp="applicationCategory"
+          >
+            Seu diário emocional
+          </span>
+        </div>
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
