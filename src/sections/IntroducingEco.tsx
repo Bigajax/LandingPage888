@@ -96,29 +96,7 @@ const IntroducingEco: React.FC = () => {
               draggable={false}
             />
 
-            {/* Seta indicando o CTA */}
-            <div className="mt-2 h-8" aria-hidden>
-              <svg
-                viewBox="0 0 80 40"
-                className="h-8 w-20 text-violet-500/90 drop-shadow animate-cta-wiggle"
-                fill="none"
-              >
-                {/* curva */}
-                <path
-                  d="M5 5 C 28 28, 52 6, 75 22"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-                {/* ponta da seta */}
-                <path
-                  d="M75 22 L 67 18 M75 22 L 69 28"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
+      
 
             {/* CTA roxo (degradê) */}
             <a
