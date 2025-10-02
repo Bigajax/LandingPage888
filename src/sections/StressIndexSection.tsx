@@ -28,7 +28,7 @@ const Pill: React.FC<{ children: React.ReactNode; className?: string }> = ({
     ].join(" ")}
   >
     {/* pontinho */}
-    <span className="h-1.5 w-1.5 rounded-full bg-[#9B8CFF] shadow-[0_0_10px_#9B8CFF,0_0_2px_#9B8CFF_inset]" />
+    <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--violet-500)] shadow-[0_0_10px_rgba(var(--violet-600-rgb),0.6),0_0_2px_rgba(var(--violet-600-rgb),0.8)_inset]" />
     {children}
     {/* brilho superior */}
     <span
@@ -68,7 +68,7 @@ const StressIndexSection: React.FC = () => {
             absolute -left-20 bottom-[-6%]
             w-[45vw] h-[45vw] lg:w-[38vw] lg:h-[38vw]
             rounded-full blur-[110px] opacity-25
-            bg-[radial-gradient(50%_50%_at_50%_50%,#7C5CFF_0%,transparent_65%)]
+            bg-[radial-gradient(50%_50%_at_50%_50%,var(--violet-600)_0%,transparent_65%)]
           "
         />
         {/* halo azulado à direita/cima */}
@@ -77,7 +77,7 @@ const StressIndexSection: React.FC = () => {
             absolute right-[-12%] -top-16
             w-[52vw] h-[52vw] lg:w-[46vw] lg:h-[46vw]
             rounded-full blur-[120px] opacity-20
-            bg-[radial-gradient(50%_50%_at_50%_50%,#8FB3FF_0%,transparent_70%)]
+            bg-[radial-gradient(50%_50%_at_50%_50%,rgba(var(--indigo-600-rgb),0.55)_0%,transparent_70%)]
           "
         />
         {/* vinheta nas bordas */}
@@ -112,7 +112,7 @@ const StressIndexSection: React.FC = () => {
             <span
               className="
                 font-semibold bg-clip-text text-transparent
-                bg-[linear-gradient(90deg,#D4D3FF_0%,#8E7CFF_35%,#5B4BFF_100%)]
+                bg-[linear-gradient(90deg,var(--violet-300)_0%,var(--violet-500)_45%,var(--violet-600)_100%)]
               "
             >
               nitidez
@@ -146,7 +146,7 @@ const StressIndexSection: React.FC = () => {
               absolute inset-0 -z-[1] mx-auto my-auto
               w-[78%] max-w-[420px] aspect-[4/5]
               rounded-[48%] blur-2xl opacity-30
-              bg-[radial-gradient(60%_55%_at_50%_45%,#7C5CFF_0%,transparent_70%)]
+              bg-[radial-gradient(60%_55%_at_50%_45%,var(--violet-600)_0%,transparent_70%)]
             "
           />
           <motion.img

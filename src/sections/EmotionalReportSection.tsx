@@ -74,16 +74,24 @@ const Card: React.FC<Feature> = ({ Icon, title, points }) => {
   return (
     <article
       className="
-        rounded-2xl bg-white/70 backdrop-blur-md border border-black/5
-        p-5 sm:p-6 shadow-[0_12px_30px_rgba(2,6,23,0.06)]
-        transition-transform hover:-translate-y-0.5
-        focus-within:ring-2 focus-within:ring-[#5B4BFF]/20
+        rounded-2xl border border-[color:rgba(var(--violet-600-rgb),0.18)] bg-white/75 p-5 sm:p-6
+        shadow-[0_16px_36px_rgba(var(--violet-600-rgb),0.12)] backdrop-blur-xl
+        transition-transform duration-200 hover:-translate-y-0.5
+        focus-within:ring-2 focus-within:ring-[color:var(--violet-300)] focus-within:ring-offset-2 focus-within:ring-offset-white
       "
       tabIndex={0}
     >
       <div className="flex items-center gap-3">
-        <span className="grid place-items-center h-10 w-10 rounded-xl bg-violet-50 text-violet-600 ring-1 ring-white/70">
-          <Icon size={18} strokeWidth={1.75} />
+        <span
+          className="grid h-10 w-10 place-items-center rounded-xl border border-[color:rgba(var(--violet-600-rgb),0.24)] shadow-[0_12px_28px_rgba(var(--violet-600-rgb),0.14)]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.64))",
+            boxShadow:
+              "0 12px 28px rgba(var(--violet-600-rgb),0.14), inset 0 1px 0 rgba(255,255,255,0.75)",
+          }}
+        >
+          <Icon size={18} strokeWidth={1.75} className="text-[color:var(--violet-600)]" />
         </span>
         <h3 className="text-base sm:text-[17px] font-semibold text-neutral-900">{title}</h3>
       </div>
@@ -91,7 +99,7 @@ const Card: React.FC<Feature> = ({ Icon, title, points }) => {
       <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-neutral-700">
         {points.map((p, i) => (
           <li key={i} className="pl-4 relative">
-            <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-[#5B4BFF]/50" />
+            <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-[color:rgba(var(--violet-600-rgb),0.55)]" />
             {p}
           </li>
         ))}
@@ -122,7 +130,7 @@ const EmotionalReportSection: React.FC = () => {
           `}
         >
           <h2 id="features-title" className="heading-lg font-semibold text-neutral-900">
-            Explore os recursos da <span className="text-[#5B4BFF]">Eco</span>
+            Explore os recursos da <span className="bg-gradient-to-r from-[color:var(--violet-500)] to-[color:var(--violet-600)] bg-clip-text text-transparent">Eco</span>
           </h2>
           <p className="subheading text-neutral-600 max-w-3xl mt-2 mx-auto lg:mx-0">
             Tudo o que você precisa para escrever, refletir e enxergar padrões — de forma simples e direta.

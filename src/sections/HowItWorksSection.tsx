@@ -123,13 +123,13 @@ const HowItWorks: React.FC = () => {
               key={step.id}
               className={`glass glass-hover w-full transition-all duration-300 ease-out ${
                 active
-                  ? "border-white/50 bg-white/70 ring-1 ring-[#A78BFA]/30 shadow-md"
+                  ? "border-white/50 bg-white/70 ring-1 ring-[rgba(var(--violet-600-rgb),0.32)] shadow-md"
                   : "border-white/30 bg-white/50"
               }`}
             >
               <button
                 onClick={() => setActiveStep(active ? 0 : step.id)}
-                className="flex w-full items-center gap-3 rounded-[inherit] px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                className="flex w-full items-center gap-3 rounded-[inherit] px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--violet-600-rgb),0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 aria-expanded={active}
                 aria-pressed={active}
                 aria-controls={`demo-${step.id}`}
@@ -140,7 +140,7 @@ const HowItWorks: React.FC = () => {
                   }`}
                   aria-hidden
                 >
-                  <Icon size={16} strokeWidth={1.6} className="text-[#4F46E5]" />
+                  <Icon size={16} strokeWidth={1.6} className="text-[color:var(--indigo-600)]" />
                 </span>
 
                 <span className="flex flex-1 flex-col">
@@ -182,7 +182,7 @@ const HowItWorks: React.FC = () => {
                 onClick={() => setActiveStep(step.id)}
                 className={`glass glass-hover flex w-full items-center gap-3 rounded-2xl px-5 py-4 text-left transition-all duration-300 ease-out ${
                   active
-                    ? "border-white/60 bg-white/70 ring-1 ring-[#A78BFA]/30 shadow-md"
+                    ? "border-white/60 bg-white/70 ring-1 ring-[rgba(var(--violet-600-rgb),0.32)] shadow-md"
                     : "border-white/30 bg-white/40"
                 }`}
                 aria-pressed={active}
@@ -192,7 +192,7 @@ const HowItWorks: React.FC = () => {
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-gradient-to-br from-white via-white/60 to-[#E0E7FF]/70 shadow-inner"
                   aria-hidden
                 >
-                  <Icon size={16} strokeWidth={1.6} className="text-[#4F46E5]" />
+                  <Icon size={16} strokeWidth={1.6} className="text-[color:var(--indigo-600)]" />
                 </span>
                 <span className="flex flex-1 flex-col">
                   <span className="flex items-baseline gap-2">

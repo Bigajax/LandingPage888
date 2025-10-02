@@ -19,11 +19,6 @@ type Issue = {
   title: string;
   signals: string;
   help: string;
-  accent: {
-    tintBg: string;
-    tintBorder: string;
-    color: string;
-  };
 };
 
 /** Quatro “tiles” harmônicos com a paleta do CTA (roxo suave) */
@@ -33,54 +28,47 @@ const issues: Issue[] = [
     title: "Confusão emocional",
     signals: "Não saber o que sente, pensamentos em loop.",
     help: "Nomeia emoções, organiza ideias e aponta o próximo passo.",
-    accent: { tintBg: "#F1EFFF", tintBorder: "#E6E1F9", color: "#7C5CFF" },
   },
   {
     Icon: Clock,
     title: "Piloto automático",
     signals: "Dias iguais, reagir no impulso e só perceber depois.",
     help: "Cria pausas curtas para recuperar presença e escolher melhor.",
-    accent: { tintBg: "#EFF6FF", tintBorder: "#DBEAFE", color: "#2563EB" },
   },
   {
     Icon: Repeat,
     title: "Padrões que voltam",
     signals: "Mesmos conflitos/decisões; sensação de voltar à estaca zero.",
     help: "Mostra gatilho → resposta → consequência e sugere micro-ações.",
-    accent: { tintBg: "#ECFDF5", tintBorder: "#D1FAE5", color: "#16A34A" },
   },
   {
     Icon: Compass,
     title: "Transições sem clareza",
     signals: "Decisões grandes com neblina emocional.",
     help: "Foca no essencial e dá serenidade para decidir com calma.",
-    accent: { tintBg: "#FFF7ED", tintBorder: "#FFEDD5", color: "#F97316" },
   },
 ];
 
 /** Cápsula do ícone (branquinho + tint sutil) */
-const IconBadge: React.FC<{ Icon: LucideIcon; accent: Issue["accent"] }> = ({
-  Icon,
-  accent,
-}) => (
+const IconBadge: React.FC<{ Icon: LucideIcon }> = ({ Icon }) => (
   <span
     aria-hidden
-    className="relative grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl"
+    className="relative grid h-11 w-11 place-items-center rounded-xl border border-[color:rgba(var(--violet-600-rgb),0.22)] shadow-[0_14px_32px_rgba(var(--violet-600-rgb),0.14)] sm:h-12 sm:w-12"
     style={{
       background:
-        "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1))",
+        "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.64))",
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(17,24,39,0.06)",
-      border: `1px solid ${accent.tintBorder}`,
+        "0 14px 30px rgba(var(--violet-600-rgb),0.14), inset 0 1px 0 rgba(255,255,255,0.75)",
     }}
   >
     <span
       className="absolute inset-0 rounded-xl"
       style={{
-        background: `radial-gradient(60% 60% at 50% 50%, ${accent.tintBg} 0%, transparent 70%)`,
+        background:
+          "radial-gradient(60% 60% at 50% 50%, rgba(var(--violet-600-rgb),0.18) 0%, transparent 72%)",
       }}
     />
-    <Icon size={20} strokeWidth={2} style={{ color: accent.color }} />
+    <Icon size={20} strokeWidth={1.9} className="relative text-[color:var(--violet-600)]" />
   </span>
 );
 
@@ -105,7 +93,7 @@ const TargetAudienceSection: React.FC = () => {
       <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
         <h2 id="para-quem-title" className="heading-lg font-semibold">
           <span className="text-zinc-900">Quando a </span>
-          <span className="bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[color:var(--violet-500)] to-[color:var(--violet-600)] bg-clip-text text-transparent">
             Eco
           </span>
           <span className="text-zinc-900"> ajuda.</span>
@@ -125,10 +113,10 @@ const TargetAudienceSection: React.FC = () => {
               type="button"
               aria-pressed={isActive}
               onClick={() => setActive(isActive ? null : i)}
-              className="group relative text-left rounded-[22px] bg-white border border-[#E7EAF2] p-5 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(17,24,39,0.06)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/20"
+              className="group relative text-left rounded-[22px] border border-[color:rgba(var(--violet-600-rgb),0.22)] bg-white/80 p-5 shadow-[0_14px_36px_rgba(var(--violet-600-rgb),0.12)] transition-all duration-300 hover:-translate-y-[1px] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:p-6 lg:p-7"
             >
               <div className="relative flex items-start gap-4 sm:gap-5">
-                <IconBadge Icon={c.Icon} accent={c.accent} />
+                <IconBadge Icon={c.Icon} />
                 <div className="flex-1 min-w-0">
                   <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[18px] sm:text-[20px] lg:text-[22px]">
                     {c.title}

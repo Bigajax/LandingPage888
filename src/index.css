@@ -95,6 +95,16 @@ section { scroll-snap-align: start; }
     --heading-xl: clamp(2rem, calc(1.4rem + 3vw), 4.5rem);
     --heading-lg: clamp(1.65rem, calc(1.1rem + 2vw), 2.75rem);
     --subheading: clamp(1.0625rem, calc(0.95rem + 0.5vw), 1.375rem);
+
+    --violet-300: #c4b5fd;
+    --violet-500: #8b5cf6;
+    --violet-600: #7c3aed;
+    --indigo-600: #4f46e5;
+
+    --violet-300-rgb: 196, 181, 253;
+    --violet-500-rgb: 139, 92, 246;
+    --violet-600-rgb: 124, 58, 237;
+    --indigo-600-rgb: 79, 70, 229;
   }
 
   body {

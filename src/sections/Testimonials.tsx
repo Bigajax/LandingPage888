@@ -150,7 +150,7 @@ const Testimonials: React.FC = () => {
         <div className="flex flex-col items-center text-center">
           <h2 className="heading-lg font-semibold text-[#0F111A]">
             O que as pessoas sentem com a{" "}
-            <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[color:var(--violet-500)] to-[color:var(--violet-600)] bg-clip-text text-transparent">
               Eco
             </span>
           </h2>
@@ -183,7 +183,7 @@ const Testimonials: React.FC = () => {
               {stats.changeLabels.map((c) => (
                 <span
                   key={c}
-                  className="text-[12.5px] px-2 py-1 rounded-full border border-[#E3E6EF] bg-white"
+                  className="text-[12.5px] px-2 py-1 rounded-full border border-[color:rgba(var(--violet-600-rgb),0.22)] bg-white/80 text-[color:var(--violet-600)]"
                 >
                   {c}
                 </span>
@@ -213,7 +213,7 @@ const Testimonials: React.FC = () => {
                   {f.chips.map((c) => (
                     <span
                       key={c}
-                      className="text-[12.5px] px-2 py-1 rounded-full border border-[#E3E6EF] bg-white"
+                      className="text-[12.5px] px-2 py-1 rounded-full border border-[color:rgba(var(--violet-600-rgb),0.22)] bg-white/80 text-[color:var(--violet-600)]"
                     >
                       {c}
                     </span>
@@ -232,13 +232,11 @@ const Testimonials: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Enviar feedback sobre a Eco"
             className="
-              relative inline-flex items-center justify-center
-              h-12 px-6 rounded-full font-semibold text-white
-              bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF]
-              shadow-[0_14px_32px_rgba(91,75,255,0.34)]
-              hover:brightness-[1.08] active:scale-[0.99]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/30
-              transition
+              relative inline-flex h-12 items-center justify-center rounded-full px-7 font-semibold text-white
+              bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))]
+              shadow-[0_20px_44px_rgba(var(--violet-600-rgb),0.3)] transition-all duration-200 ease-out
+              hover:-translate-y-0.5 hover:shadow-[0_26px_56px_rgba(var(--violet-600-rgb),0.34)] active:translate-y-0
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white
             "
           >
             Enviar feedback

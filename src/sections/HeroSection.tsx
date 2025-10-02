@@ -85,9 +85,9 @@ const HeroSection: React.FC = () => {
           <a
             href="https://ecofrontend888.vercel.app/login"
             aria-label="Começar a escrever no Eco gratuitamente"
-            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gray-900 px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-gray-800 hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full px-9 py-4 text-base font-semibold text-white bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))] shadow-[0_20px_44px_rgba(var(--violet-600-rgb),0.28)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_26px_56px_rgba(var(--violet-600-rgb),0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:translate-y-0 sm:w-auto"
           >
-            <PlayCircle size={18} className="opacity-90" />
+            <PlayCircle size={19} strokeWidth={1.8} className="text-[color:var(--violet-300)]" />
             <span className="hidden sm:inline">Começar agora — é grátis</span>
             <span className="sm:hidden">Começar grátis</span>
           </a>
@@ -95,11 +95,11 @@ const HeroSection: React.FC = () => {
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="glass-btn-25 group inline-flex w-full items-center justify-center gap-2 rounded-full px-9 py-4 text-base font-medium text-gray-800 sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[color:rgba(var(--violet-600-rgb),0.24)] bg-white/60 px-9 py-4 text-base font-medium text-[color:var(--violet-600)] shadow-[0_18px_36px_rgba(var(--violet-600-rgb),0.12)] backdrop-blur-xl transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-[0_24px_48px_rgba(var(--violet-600-rgb),0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-auto"
             aria-label="Ver como o Eco funciona"
           >
             Ver como funciona
-            <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 text-gray-600" aria-hidden="true" />
+            <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 text-[color:var(--violet-500)]" aria-hidden="true" />
           </a>
         </div>
 
@@ -116,7 +116,7 @@ const HeroSection: React.FC = () => {
         <a
           href="#como-funciona"
           onClick={handleGoToHowItWorks}
-          className="group mt-12 md:mt-16 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-gray-500 transition-all duration-300 ease-out hover:text-indigo-600 hover:bg-indigo-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="group mt-12 md:mt-16 inline-flex cursor-pointer select-none rounded-full border border-[color:rgba(var(--violet-600-rgb),0.24)] bg-white/60 p-3 text-[color:var(--violet-500)] shadow-[0_14px_34px_rgba(var(--violet-600-rgb),0.16)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:text-[color:var(--violet-600)] hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           aria-label="Ir para a seção Como Funciona"
         >
           <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-y-1" aria-hidden="true" />
@@ -139,24 +139,11 @@ const HeroSection: React.FC = () => {
           pointer-events:none;
         }
 
-        .glass-btn-25{
-          position:relative;
-          color:#0b0b0f;
-          background: linear-gradient(180deg, rgba(255,255,255,0.70), rgba(255,255,255,0.40));
-          border: 1px solid rgba(230,233,246,0.9);
-          box-shadow: 0 12px 28px rgba(15,23,42,0.06);
-          -webkit-backdrop-filter: blur(25px);
-          backdrop-filter: blur(25px);
-          transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-        }
-        .glass-btn-25:hover{ background: rgba(255,255,255,0.82); box-shadow: 0 16px 36px rgba(15,23,42,0.1); transform: translateY(-1px); }
-        .glass-btn-25:active{ transform: translateY(0); }
-
         .glass-chip-25{
           position:relative;
           background: linear-gradient(180deg, rgba(255,255,255,0.60), rgba(255,255,255,0.32));
-          border: 1px solid rgba(235,238,249,0.9);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 20px rgba(15,23,42,0.05);
+          border: 1px solid rgba(var(--violet-600-rgb),0.18);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 24px rgba(var(--violet-600-rgb),0.12);
           -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
         }

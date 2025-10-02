@@ -29,13 +29,14 @@ const Header: React.FC = () => {
     : "bg-transparent border-transparent backdrop-blur-0 shadow-none";
 
   const linkCls =
-    "text-[14px] font-medium text-[#6B7280] transition hover:text-[#111827]";
+    "text-[14px] font-medium text-[#6B7280] transition hover:text-[color:var(--violet-600)]";
 
-  // CTA preto
-  const ctaCls =
-    "inline-flex items-center gap-2 rounded-full bg-black px-5 py-2 text-sm font-semibold text-white " +
-    "shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition hover:bg-black/90 " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
+  const gradientCta =
+    "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white " +
+    "bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))] shadow-[0_14px_34px_rgba(var(--violet-600-rgb),0.24)] " +
+    "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(var(--violet-600-rgb),0.28)] focus-visible:outline-none " +
+    "focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white " +
+    "active:translate-y-0";
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 mx-auto w-full px-4 sm:px-6">
@@ -99,7 +100,7 @@ const Header: React.FC = () => {
           href="https://ecofrontend888.vercel.app"
           target="_blank"
           rel="noopener noreferrer"
-          className={`hidden md:inline-flex ${ctaCls}`}
+          className={`hidden md:inline-flex ${gradientCta}`}
         >
           Acesso Antecipado
         </a>
@@ -108,9 +109,13 @@ const Header: React.FC = () => {
         <button
           aria-label="Abrir menu"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="rounded-full p-2 text-[#6B7280] transition hover:text-[#111827] md:hidden"
+          className="rounded-full p-2 text-[color:var(--violet-500)] transition hover:text-[color:var(--violet-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
         >
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          {isMenuOpen ? (
+            <X size={20} className="text-[color:var(--violet-600)]" strokeWidth={1.8} />
+          ) : (
+            <Menu size={20} className="text-[color:var(--violet-600)]" strokeWidth={1.8} />
+          )}
         </button>
       </div>
 
@@ -156,7 +161,7 @@ const Header: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
-            className="inline-flex w-fit items-center justify-center rounded-full bg-black px-5 py-2 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition hover:bg-black/90"
+            className={`${gradientCta} inline-flex w-fit`}
           >
             Acesso antecipado
           </a>

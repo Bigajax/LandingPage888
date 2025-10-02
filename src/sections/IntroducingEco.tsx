@@ -19,8 +19,16 @@ const Chip: React.FC<Feature> = ({ Icon, title, description }) => (
       shadow-[0_10px_30px_rgba(17,24,39,0.06)] hover:-translate-y-0.5 transition-all
     "
   >
-    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600 ring-1 ring-white/60">
-      <Icon size={18} strokeWidth={1.6} />
+    <div
+      className="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:rgba(var(--violet-600-rgb),0.2)] shadow-[0_12px_28px_rgba(var(--violet-600-rgb),0.14)]"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.65))",
+        boxShadow:
+          "0 12px 28px rgba(var(--violet-600-rgb),0.14), inset 0 1px 0 rgba(255,255,255,0.75)",
+      }}
+    >
+      <Icon size={18} strokeWidth={1.6} className="text-[color:var(--violet-600)]" />
     </div>
     <h3 className="mt-3 font-semibold text-slate-900">{title}</h3>
     <p className="mt-1 text-sm leading-relaxed text-slate-600">{description}</p>
@@ -92,7 +100,7 @@ const IntroducingEco: React.FC = () => {
             <img
               src={EcoChat}
               alt="Interface da Eco com escrita guiada"
-              className="w-[270px] sm:w-[320px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(124,58,237,0.28)] select-none"
+              className="w-[270px] sm:w-[320px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(var(--violet-600-rgb),0.28)] select-none"
               draggable={false}
             />
 
@@ -100,7 +108,7 @@ const IntroducingEco: React.FC = () => {
             <div className="mt-2 h-8" aria-hidden>
               <svg
                 viewBox="0 0 80 40"
-                className="h-8 w-20 text-violet-500/90 drop-shadow animate-cta-wiggle"
+                className="h-8 w-20 text-[color:var(--violet-500)] drop-shadow animate-cta-wiggle"
                 fill="none"
               >
                 {/* curva */}
@@ -126,13 +134,12 @@ const IntroducingEco: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                mt-2 inline-flex items-center justify-center rounded-full
-                bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-3
+                mt-2 inline-flex items-center justify-center rounded-full px-8 py-3
                 text-sm font-semibold text-white
-                shadow-[0_18px_40px_rgba(124,58,237,0.35)]
-                transition hover:brightness-110 hover:-translate-y-0.5
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300
-                focus-visible:ring-offset-2 focus-visible:ring-offset-white
+                bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))]
+                shadow-[0_20px_44px_rgba(var(--violet-600-rgb),0.3)]
+                transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_26px_56px_rgba(var(--violet-600-rgb),0.34)]
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white
               "
             >
               Começar minha jornada

@@ -32,21 +32,21 @@ const principles: Principle[] = [
 const IconBadge: React.FC<{ Icon: React.ElementType }> = ({ Icon }) => (
   <span
     aria-hidden
-    className="relative grid place-items-center h-12 w-12 sm:h-13 sm:w-13 rounded-xl ring-1 ring-[#E6E9F6]"
+    className="relative grid h-12 w-12 place-items-center rounded-xl border border-[color:rgba(var(--violet-600-rgb),0.2)] shadow-[0_14px_34px_rgba(var(--violet-600-rgb),0.12)] sm:h-13 sm:w-13"
     style={{
-      background: "linear-gradient(180deg, rgba(255,255,255,0.98), #FFFFFF)",
+      background: "linear-gradient(180deg, rgba(255,255,255,0.96), #FFFFFF)",
       boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 18px rgba(17,24,39,0.06)",
+        "0 14px 34px rgba(var(--violet-600-rgb),0.12), inset 0 1px 0 rgba(255,255,255,0.78)",
     }}
   >
     <span
       className="absolute inset-0 rounded-xl"
       style={{
         background:
-          "radial-gradient(60% 60% at 50% 50%, #EEF2FF 0%, transparent 70%)",
+          "radial-gradient(62% 62% at 50% 50%, rgba(var(--violet-600-rgb),0.16) 0%, transparent 72%)",
       }}
     />
-    <Icon className="relative z-[1] text-[#0F172A]" size={20} strokeWidth={2} />
+    <Icon className="relative z-[1] text-[color:var(--violet-600)]" size={20} strokeWidth={1.9} />
   </span>
 );
 
@@ -69,7 +69,7 @@ const PrinciplesSection: React.FC = () => {
       <div className="relative max-w-4xl mx-auto text-center mb-10 sm:mb-12">
         <h2 className="heading-lg font-semibold">
           <span className="text-[#1D1D1F]">Nossos </span>
-          <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[color:var(--violet-500)] to-[color:var(--violet-600)] bg-clip-text text-transparent">
             Princípios
           </span>
         </h2>
@@ -85,13 +85,14 @@ const PrinciplesSection: React.FC = () => {
           <article
             key={title}
             className="
-              group rounded-[22px] bg-white
-              border border-[#E7EAF2]
+              group rounded-[22px] bg-white/90
+              border border-[color:rgba(var(--violet-600-rgb),0.18)]
               p-6 sm:p-7
-              shadow-[0_8px_24px_rgba(17,24,39,0.06)]
+              shadow-[0_16px_36px_rgba(var(--violet-600-rgb),0.12)]
               transition-all duration-300
               hover:-translate-y-[1px]
-              hover:shadow-[0_16px_40px_rgba(17,24,39,0.10)]
+              hover:bg-white
+              hover:shadow-[0_24px_48px_rgba(var(--violet-600-rgb),0.18)]
             "
           >
             <div className="flex flex-col items-center text-center">

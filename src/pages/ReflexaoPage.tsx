@@ -125,7 +125,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     required
                     value={formData.nome}
                     onChange={handleChange}
-                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
+                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[color:var(--violet-600)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(var(--violet-600-rgb),0.28)]"
                   />
                   <input
                     type="text"
@@ -134,7 +134,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     required
                     value={formData.sobrenome}
                     onChange={handleChange}
-                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
+                    className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[color:var(--violet-600)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(var(--violet-600-rgb),0.28)]"
                   />
                 </div>
                 <input
@@ -144,7 +144,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
+                  className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[color:var(--violet-600)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(var(--violet-600-rgb),0.28)]"
                 />
                 <InputMask
                   mask="(99) 99999-9999"
@@ -158,7 +158,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                       name="telefone"
                       placeholder="Telefone com DDD"
                       required
-                      className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[#3B82F6] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/30"
+                      className="w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 py-3 text-sm text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_4px_16px_rgba(15,23,42,0.04)] focus:border-[color:var(--violet-600)] focus:outline-none focus:ring-2 focus:ring-[color:rgba(var(--violet-600-rgb),0.28)]"
                     />
                   )}
                 </InputMask>
@@ -181,7 +181,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                         name="motivacao"
                         value={opcao}
                         onChange={() => handleRadioChange("motivacao", opcao)}
-                        className="mt-1 h-4 w-4 accent-[#3B82F6]"
+                        className="mt-1 h-4 w-4 accent-[var(--violet-600)]"
                         required
                       />
                       <span className="leading-relaxed">{opcao}</span>
@@ -202,7 +202,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                         name="emocao"
                         value={opcao}
                         onChange={() => handleRadioChange("emocao", opcao)}
-                        className="h-4 w-4 accent-[#3B82F6]"
+                        className="h-4 w-4 accent-[var(--violet-600)]"
                         required
                       />
                       <span>{opcao}</span>
@@ -219,7 +219,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     name="consentimento_email"
                     checked={formData.consentimento_email}
                     onChange={handleChange}
-                    className="h-4 w-4 accent-[#3B82F6]"
+                    className="h-4 w-4 accent-[var(--violet-600)]"
                   />
                   <span>Concordo em receber o link de acesso por e-mail</span>
                 </label>
@@ -229,7 +229,7 @@ const AcessoAntecipadoPage: React.FC = () => {
                     name="consentimento_whatsapp"
                     checked={formData.consentimento_whatsapp}
                     onChange={handleChange}
-                    className="h-4 w-4 accent-[#3B82F6]"
+                    className="h-4 w-4 accent-[var(--violet-600)]"
                   />
                   <span>Concordo em receber o link de acesso por WhatsApp</span>
                 </label>
@@ -238,9 +238,9 @@ const AcessoAntecipadoPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={!formData.consentimento_email && !formData.consentimento_whatsapp}
-                className={`w-full rounded-full px-6 py-3 text-sm font-semibold shadow-[0_16px_32px_rgba(59,130,246,0.22)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                className={`w-full rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--violet-600-rgb),0.35)] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   formData.consentimento_email || formData.consentimento_whatsapp
-                    ? "bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                    ? "bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))] text-white shadow-[0_20px_44px_rgba(var(--violet-600-rgb),0.28)] hover:-translate-y-0.5 hover:shadow-[0_26px_56px_rgba(var(--violet-600-rgb),0.32)] active:translate-y-0"
                     : "cursor-not-allowed bg-[#E5E7EB] text-[#9CA3AF] shadow-none"
                 }`}
               >

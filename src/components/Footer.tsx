@@ -27,8 +27,14 @@ const Footer: React.FC = () => {
           {/* Brand + descrição + sociais */}
           <div className="max-w-md space-y-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/60 bg-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.08)]">
-                <span className="text-[18px] font-semibold tracking-tight text-[#3B82F6]">E</span>
+              <span
+                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[color:rgba(var(--violet-600-rgb),0.2)] bg-white/70 shadow-[0_16px_38px_rgba(var(--violet-600-rgb),0.18)] backdrop-blur"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.62))",
+                }}
+              >
+                <span className="text-[18px] font-semibold tracking-tight text-[color:var(--violet-600)]">E</span>
               </span>
               <span className="text-2xl font-semibold tracking-tight text-[#111827]">eco</span>
             </div>
@@ -44,9 +50,15 @@ const Footer: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-[#6B7280] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-[color:rgba(var(--violet-600-rgb),0.18)] text-[color:var(--violet-500)] shadow-[0_14px_34px_rgba(var(--violet-600-rgb),0.16)] backdrop-blur transition hover:-translate-y-0.5 hover:text-[color:var(--violet-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.58))",
+                    boxShadow:
+                      "0 14px 32px rgba(var(--violet-600-rgb),0.16), inset 0 1px 0 rgba(255,255,255,0.7)",
+                  }}
                 >
-                  <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="h-[18px] w-[18px] text-[color:var(--violet-600)]" viewBox="0 0 24 24" fill="currentColor">
                     <path d={item.d} />
                   </svg>
                 </a>

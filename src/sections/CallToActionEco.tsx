@@ -21,7 +21,7 @@ const CallToActionEco: React.FC = () => {
           <div className="relative mx-auto max-w-3xl md:max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#0A0C18]">
               Descubra a{" "}
-              <span className="bg-[linear-gradient(90deg,#7C5CFF,#5B4BFF)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[color:var(--violet-500)] to-[color:var(--violet-600)] bg-clip-text text-transparent">
                 Eco
               </span>{" "}
               antes de todo mundo
@@ -35,7 +35,7 @@ const CallToActionEco: React.FC = () => {
 
           <div className="relative mt-8 mb-4 flex justify-center">
             <svg
-              className="h-5 w-5 text-[#8A8FA6]"
+              className="h-5 w-5 text-[color:var(--violet-500)]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -49,7 +49,7 @@ const CallToActionEco: React.FC = () => {
             <Link
               to="/reflexao"
               aria-label="Entrar no beta da Eco"
-              className="relative inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF] px-7 font-semibold text-white shadow-[0_14px_32px_rgba(91,75,255,0.34)] transition hover:brightness-[1.08] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/30"
+              className="relative inline-flex h-12 items-center justify-center rounded-full bg-[linear-gradient(120deg,var(--violet-600),var(--indigo-600))] px-7 font-semibold text-white shadow-[0_20px_44px_rgba(var(--violet-600-rgb),0.3)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_26px_56px_rgba(var(--violet-600-rgb),0.34)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--violet-300)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               Junte-se ao Beta
               <span className="pointer-events-none absolute inset-[1px] rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,255,255,0))]" />
