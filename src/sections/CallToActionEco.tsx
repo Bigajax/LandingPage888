@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"; 
 
 const CallToActionEco: React.FC = () => {
   return (
@@ -46,14 +45,16 @@ const CallToActionEco: React.FC = () => {
           </div>
 
           <div className="relative flex justify-center">
-            <Link
-              to="/reflexao"
+            <a
+              href="https://ecofrontend888.vercel.app/login"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Entrar no beta da Eco"
               className="relative inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-b from-[#7C5CFF] to-[#5B4BFF] px-7 font-semibold text-white shadow-[0_14px_32px_rgba(91,75,255,0.34)] transition hover:brightness-[1.08] active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/30"
             >
               Junte-se ao Beta
               <span className="pointer-events-none absolute inset-[1px] rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,255,255,0))]" />
-            </Link>
+            </a>
           </div>
 
           <p className="relative mt-4 text-[12.5px] sm:text-[13px] text-[#6E7284]">

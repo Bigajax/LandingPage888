@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import Orb from "../components/Orb";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -11,15 +11,6 @@ const HeroSection: React.FC = () => {
     const el = document.getElementById("como-funciona");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
-
-  const badges = useMemo(
-    () => [
-      { label: "Clareza emocional", key: "clarity" },
-      { label: "Reflexões personalizadas", key: "reflections" },
-      { label: "Evolução constante", key: "evolution" },
-    ],
-    []
-  );
 
   return (
     <section
@@ -60,7 +51,7 @@ const HeroSection: React.FC = () => {
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        {/* Pílula – igual às demais */}
+        {/* Pílula topo */}
         <div className="mt-2 flex justify-center">
           <span
             className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
@@ -103,13 +94,11 @@ const HeroSection: React.FC = () => {
           </a>
         </div>
 
-        {/* Micro-confiança – chips em glass 25px */}
+        {/* Micro-confiança – selo único */}
         <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-3 sm:gap-4 text-sm font-medium text-gray-700">
-          {badges.map(({ label, key }) => (
-            <span key={key} className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2" itemProp="featureList">
-              {label}
-            </span>
-          ))}
+          <span className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2" itemProp="featureList">
+            Beta gratuito · 7 min para testar · Vagas limitadas
+          </span>
         </div>
 
         {/* Seta */}
@@ -123,7 +112,7 @@ const HeroSection: React.FC = () => {
         </a>
       </div>
 
-      {/* glass utils: blur(25px) + opacidade média */}
+      {/* glass utils */}
       <style>{`
         .glass-25{
           position:relative;
