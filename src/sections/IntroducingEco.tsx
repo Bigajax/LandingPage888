@@ -19,7 +19,7 @@ const Chip: React.FC<Feature> = ({ Icon, title, description }) => (
       shadow-[0_10px_30px_rgba(17,24,39,0.06)] hover:-translate-y-0.5 transition-all
     "
   >
-    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600 ring-1 ring-white/60">
+    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-600 ring-1 ring-white/60">
       <Icon size={18} strokeWidth={1.6} />
     </div>
     <h3 className="mt-3 font-semibold text-slate-900">{title}</h3>
@@ -82,23 +82,17 @@ const IntroducingEco: React.FC = () => {
             ref={phoneRef}
             className={`relative flex flex-col items-center transition-all duration-700 ${fade(phoneVis)}`}
           >
-            {/* halo sutil atrás */}
-            <div
-              aria-hidden
-              className="absolute -z-10 top-1/2 -translate-y-1/2 h-[360px] w-[360px] sm:h-[420px] sm:w-[420px]
-                         rounded-full blur-2xl
-                         bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.35),rgba(129,140,248,0.12)_55%,transparent_78%)]"
-            />
+            {/* REMOVIDO: halo roxo atrás do celular */}
+            {/* <div aria-hidden className="absolute ... bg-[radial-gradient(...violet...)]" /> */}
+
             <img
               src={EcoChat}
               alt="Interface da Eco com escrita guiada"
-              className="w-[270px] sm:w-[320px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(124,58,237,0.28)] select-none"
+              className="w-[270px] sm:w-[320px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(15,23,42,0.12)] select-none"
               draggable={false}
             />
 
-      
-
-            {/* CTA roxo (degradê) */}
+            {/* CTA */}
             <a
               href="https://ecofrontend888.vercel.app"
               target="_blank"
@@ -107,7 +101,7 @@ const IntroducingEco: React.FC = () => {
                 mt-2 inline-flex items-center justify-center rounded-full
                 bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-3
                 text-sm font-semibold text-white
-                shadow-[0_18px_40px_rgba(124,58,237,0.35)]
+                shadow-[0_18px_40px_rgba(15,23,42,0.12)]
                 transition hover:brightness-110 hover:-translate-y-0.5
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300
                 focus-visible:ring-offset-2 focus-visible:ring-offset-white
