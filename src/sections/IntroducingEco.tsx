@@ -1,5 +1,5 @@
 import React from "react";
-import { PenLine, Sparkles, RefreshCw, Sprout } from "lucide-react";
+import { PenLine, Sparkles, RefreshCw, Sprout, ChevronDown } from "lucide-react";
 import EcoChat from "@/assets/images/Eco_chat.png";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -82,8 +82,7 @@ const IntroducingEco: React.FC = () => {
             ref={phoneRef}
             className={`relative flex flex-col items-center transition-all duration-700 ${fade(phoneVis)}`}
           >
-            {/* REMOVIDO: halo roxo atrás do celular */}
-            {/* <div aria-hidden className="absolute ... bg-[radial-gradient(...violet...)]" /> */}
+            {/* halo removido (sem roxo atrás do celular) */}
 
             <img
               src={EcoChat}
@@ -91,6 +90,19 @@ const IntroducingEco: React.FC = () => {
               className="w-[270px] sm:w-[320px] lg:w-[360px] drop-shadow-[0_30px_70px_rgba(15,23,42,0.12)] select-none"
               draggable={false}
             />
+
+            {/* Arrow apontando para o botão */}
+            <div
+              aria-hidden
+              className="relative mt-1 h-0 w-full"
+            >
+              <div className="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2">
+                <ChevronDown
+                  className="h-5 w-5 text-slate-500 animate-bounce-slow opacity-90"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
 
             {/* CTA */}
             <a
@@ -119,14 +131,20 @@ const IntroducingEco: React.FC = () => {
         </div>
       </div>
 
-      {/* animação da seta */}
+      {/* animações utilitárias */}
       <style>{`
         @keyframes cta-wiggle {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(4px); }
         }
-        .animate-cta-wiggle {
-          animation: cta-wiggle 1.6s ease-in-out infinite;
+        .animate-cta-wiggle { animation: cta-wiggle 1.6s ease-in-out infinite; }
+
+        @keyframes bounce-slow {
+          0%, 100% { transform: translate(-50%, 0); }
+          50%      { transform: translate(-50%, 6px); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 1.6s ease-in-out infinite;
         }
       `}</style>
     </section>
