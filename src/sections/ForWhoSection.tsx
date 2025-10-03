@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { type LucideIcon, Brain, Clock, Repeat, Compass, Plus } from "lucide-react";
+import { type LucideIcon, Brain, Clock, Repeat, Compass } from "lucide-react";
 
 /* Detecta se há hover (mouse) para decidir copy do subtítulo */
 function useHoverCapable() {
@@ -22,40 +22,17 @@ type Issue = {
 };
 
 const issues: Issue[] = [
-  {
-    Icon: Brain,
-    title: "Confusão emocional",
-    signals: "Não saber o que sente, pensamentos em loop.",
-    help: "Nomeia emoções, organiza ideias e aponta o próximo passo.",
-  },
-  {
-    Icon: Clock,
-    title: "Piloto automático",
-    signals: "Dias iguais, reagir no impulso e só perceber depois.",
-    help: "Cria pausas curtas para recuperar presença e escolher melhor.",
-  },
-  {
-    Icon: Repeat,
-    title: "Padrões que voltam",
-    signals: "Mesmos conflitos/decisões; sensação de voltar à estaca zero.",
-    help: "Mostra gatilho → resposta → consequência e sugere micro-ações.",
-  },
-  {
-    Icon: Compass,
-    title: "Transições sem clareza",
-    signals: "Decisões grandes com neblina emocional.",
-    help: "Foca no essencial e dá serenidade para decidir com calma.",
-  },
+  { Icon: Brain,   title: "Confusão emocional",     signals: "Não saber o que sente, pensamentos em loop.", help: "Nomeia emoções, organiza ideias e aponta o próximo passo." },
+  { Icon: Clock,   title: "Piloto automático",      signals: "Dias iguais, reagir no impulso e só perceber depois.", help: "Cria pausas curtas para recuperar presença e escolher melhor." },
+  { Icon: Repeat,  title: "Padrões que voltam",     signals: "Mesmos conflitos/decisões; sensação de voltar à estaca zero.", help: "Mostra gatilho → resposta → consequência e sugere micro-ações." },
+  { Icon: Compass, title: "Transições sem clareza", signals: "Decisões grandes com neblina emocional.", help: "Foca no essencial e dá serenidade para decidir com calma." },
 ];
 
 /** Ícone no topo, monocromático como na Apple */
 const IconMark: React.FC<{ Icon: LucideIcon }> = ({ Icon }) => (
   <div
     className="grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl border border-[#ECECEC] bg-white"
-    style={{
-      boxShadow:
-        "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(0,0,0,0.04)",
-    }}
+    style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(0,0,0,0.04)" }}
     aria-hidden
   >
     <Icon size={22} strokeWidth={1.8} className="text-[#1D1D1F]" />
@@ -75,10 +52,14 @@ const TargetAudienceSection: React.FC = () => {
     >
       {/* Header alinhado à esquerda, estilo Apple */}
       <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
-        <h2 id="para-quem-title" className="font-semibold tracking-tight text-[#1D1D1F] text-[28px] sm:text-[32px]">
+        {/* TÍTULO MAIOR (referência Apple) */}
+        <h2
+          id="para-quem-title"
+          className="font-semibold tracking-tight text-[#1D1D1F] text-[34px] sm:text-[40px] lg:text-[48px] leading-[1.06]"
+        >
           Quando a <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9B8CFF] to-[#7C5CFF]">Eco</span> ajuda.
         </h2>
-        <p className="mt-2 text-[15px] leading-relaxed text-[#6E6E73] max-w-2xl">
+        <p className="mt-3 text-[15px] sm:text-[16px] leading-relaxed text-[#6E6E73] max-w-2xl">
           Quatro situações do dia a dia. {legend}
         </p>
       </div>
@@ -137,20 +118,7 @@ const TargetAudienceSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Botão flutuante + (como na Apple) */}
-              <span
-                className="
-                  absolute bottom-4 right-4 grid place-items-center
-                  h-9 w-9 rounded-full bg-[#1F1F1F] text-white
-                  shadow-[0_4px_12px_rgba(0,0,0,0.18)]
-                  transition-transform duration-200
-                  group-hover:scale-[1.04] group-active:scale-[0.98]
-                "
-                aria-hidden
-              >
-                <Plus size={18} strokeWidth={2} />
-              </span>
-              <span className="sr-only">Saiba mais sobre {c.title}</span>
+              {/* REMOVIDO: botão “+” */}
             </button>
           );
         })}
