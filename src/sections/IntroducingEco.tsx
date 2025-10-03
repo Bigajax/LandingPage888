@@ -50,9 +50,18 @@ const IntroducingEco: React.FC = () => {
           ref={headRef}
           className={`text-center transition-all duration-700 ${fade(headVis)}`}
         >
-          <span className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-4 py-1 text-xs font-medium uppercase tracking-[0.28em] text-slate-700 backdrop-blur">
+          {/* PÍLULA: igual à “Seu diário emocional” */}
+          <span
+            className="
+              inline-flex items-center rounded-full
+              px-5 py-2 text-sm font-medium text-slate-800
+              bg-white/60 border border-white/70 backdrop-blur-md
+              shadow-[0_4px_16px_rgba(17,24,39,0.06)]
+            "
+          >
             Como funciona
           </span>
+
           <h2
             id="introducing-eco-title"
             className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-[2.6rem] sm:leading-[1.06]"
@@ -83,7 +92,6 @@ const IntroducingEco: React.FC = () => {
             className={`relative flex flex-col items-center transition-all duration-700 ${fade(phoneVis)}`}
           >
             {/* halo removido (sem roxo atrás do celular) */}
-
             <img
               src={EcoChat}
               alt="Interface da Eco com escrita guiada"
@@ -91,17 +99,12 @@ const IntroducingEco: React.FC = () => {
               draggable={false}
             />
 
-            {/* Arrow apontando para o botão */}
-            <div
-              aria-hidden
-              className="relative mt-1 h-0 w-full"
-            >
-              <div className="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2">
-                <ChevronDown
-                  className="h-5 w-5 text-slate-500 animate-bounce-slow opacity-90"
-                  aria-hidden="true"
-                />
-              </div>
+            {/* SETA: mais para baixo, acima do botão */}
+            <div aria-hidden className="mt-5 sm:mt-6 flex items-center justify-center">
+              <ChevronDown
+                className="h-5 w-5 text-slate-500 animate-bounce-slow opacity-90"
+                aria-hidden="true"
+              />
             </div>
 
             {/* CTA */}
@@ -133,15 +136,9 @@ const IntroducingEco: React.FC = () => {
 
       {/* animações utilitárias */}
       <style>{`
-        @keyframes cta-wiggle {
-          0%, 100% { transform: translateY(0); }
-          50%      { transform: translateY(4px); }
-        }
-        .animate-cta-wiggle { animation: cta-wiggle 1.6s ease-in-out infinite; }
-
         @keyframes bounce-slow {
-          0%, 100% { transform: translate(-50%, 0); }
-          50%      { transform: translate(-50%, 6px); }
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(6px); }
         }
         .animate-bounce-slow {
           animation: bounce-slow 1.6s ease-in-out infinite;
