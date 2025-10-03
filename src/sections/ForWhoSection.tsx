@@ -31,7 +31,7 @@ const issues: Issue[] = [
 /** Ícone no topo, monocromático como na Apple */
 const IconMark: React.FC<{ Icon: LucideIcon }> = ({ Icon }) => (
   <div
-    className="grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl border border-[#ECECEC] bg-white"
+    className="grid place-items-center h-11 w-11 sm:h-12 sm:w-12 rounded-lg border border-[#ECECEC] bg-white"
     style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 14px rgba(0,0,0,0.04)" }}
     aria-hidden
   >
@@ -52,7 +52,6 @@ const TargetAudienceSection: React.FC = () => {
     >
       {/* Header alinhado à esquerda, estilo Apple */}
       <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 text-left">
-        {/* TÍTULO MAIOR (referência Apple) */}
         <h2
           id="para-quem-title"
           className="font-semibold tracking-tight text-[#1D1D1F] text-[34px] sm:text-[40px] lg:text-[48px] leading-[1.06]"
@@ -75,7 +74,7 @@ const TargetAudienceSection: React.FC = () => {
               aria-pressed={isActive}
               onClick={() => setActive(isActive ? null : i)}
               className="
-                group relative text-left rounded-[28px]
+                group relative text-left rounded-xl
                 bg-white border border-[#E5E5EA]
                 p-6 sm:p-7 lg:p-8
                 shadow-[0_1px_1px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)]
@@ -88,15 +87,15 @@ const TargetAudienceSection: React.FC = () => {
               <div className="relative flex items-start gap-4 sm:gap-5">
                 <IconMark Icon={c.Icon} />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[22px] sm:text-[24px]">
+                  <h3 className="text-[#1D1D1F] font-semibold tracking-tight text-[20px] sm:text-[22px]">
                     {c.title}
                   </h3>
 
-                  {/* bloco de texto com troca suave (altura estável) */}
+                  {/* bloco de texto com troca suave */}
                   <div className="relative mt-2 lg:mt-3 min-h-[48px]">
                     <p
                       className={`
-                        absolute inset-0 text-[#6E6E73] text-[15px] leading-snug
+                        absolute inset-0 text-[#6E6E73] text-[14px] leading-snug
                         transition-all duration-200
                         ${isActive ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"}
                         group-hover:opacity-0 group-hover:translate-y-1
@@ -106,7 +105,7 @@ const TargetAudienceSection: React.FC = () => {
                     </p>
                     <p
                       className={`
-                        absolute inset-0 text-[#1D1D1F] text-[15px] leading-snug
+                        absolute inset-0 text-[#1D1D1F] text-[14px] leading-snug
                         transition-all duration-200
                         ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"}
                         group-hover:opacity-100 group-hover:translate-y-0
@@ -117,8 +116,6 @@ const TargetAudienceSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* REMOVIDO: botão “+” */}
             </button>
           );
         })}
