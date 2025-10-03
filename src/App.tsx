@@ -1,6 +1,7 @@
 // src/App.tsx
 import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"; // 👈 importa aqui
 
 // ⚠️ side-effect: registra os Code Components (crie src/plasmic-register.tsx)
 import "./plasmic-register";
@@ -38,9 +39,7 @@ const LandingPage: React.FC = () => (
     <Header />
     <main id="content" className="min-h-screen">
       <HeroSection />
-      {/* Mentores logo após o herói */}
       <MentoresStrip />
-
       <HowItWorksSection />
       <ForWhoSection />
       <IntroducingEco />
@@ -60,13 +59,8 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/reflexao" element={<ReflexaoPage />} />
-
-          {/* Plasmic preview (renderiza a página feita no Studio, ex.: "Homepage" ou "Landing") */}
           <Route path="/plasmic" element={<PlasmicPage />} />
-
-          {/* Plasmic Canvas Host — use esta URL no Studio: http://localhost:5173/plasmic-host */}
           <Route path="/plasmic-host" element={<PlasmicHost />} />
-
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route
             path="*"
@@ -84,6 +78,9 @@ const App: React.FC = () => {
           />
         </Routes>
       </Suspense>
+
+      {/* 👇 adiciona o Analytics no fim, para rastrear todas as páginas */}
+      <Analytics />
     </BrowserRouter>
   );
 };
