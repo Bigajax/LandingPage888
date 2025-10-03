@@ -60,7 +60,7 @@ const Card: React.FC<Feature> = ({ Icon, title, desc }) => (
   </article>
 );
 
-/* ---------- Section minimal ---------- */
+/* ---------- Section ---------- */
 const EmotionalReportSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
 
@@ -81,7 +81,15 @@ const EmotionalReportSection: React.FC = () => {
             ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
           `}
         >
-          <span className="inline-flex items-center rounded-full border border-white/60 bg-white/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.26em] text-neutral-700 backdrop-blur">
+          {/* Pílula no mesmo estilo da “Como funciona” */}
+          <span
+            className="
+              inline-flex items-center rounded-full
+              px-5 py-2 text-sm font-medium text-slate-800
+              bg-white/60 border border-white/70 backdrop-blur-md
+              shadow-[0_4px_16px_rgba(17,24,39,0.06)]
+            "
+          >
             Recursos
           </span>
 
