@@ -3,17 +3,35 @@ import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
+/* Hookzinho leve para valores responsivos */
+function useMediaQuery(query: string) {
+  const [match, setMatch] = React.useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia(query).matches : false
+  );
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia(query);
+    const onChange = () => setMatch(m.matches);
+    onChange();
+    m.addEventListener?.("change", onChange);
+    return () => m.removeEventListener?.("change", onChange);
+  }, [query]);
+  return match;
+}
+
 const HeroSection: React.FC = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  const handleGoToHowItWorks = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      const el = document.getElementById("como-funciona");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    },
-    []
-  );
+  // Tamanhos do olho por breakpoint
+  const md = useMediaQuery("(min-width: 768px)");
+  const lg = useMediaQuery("(min-width: 1024px)");
+  const eyeSize = lg ? 520 : md ? 400 : 260;
+
+  const handleGoToHowItWorks = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("como-funciona");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   return (
     <section
@@ -31,22 +49,41 @@ const HeroSection: React.FC = () => {
     >
       {/* BG suave no topo */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1]">
-        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-50 blur-[80px]" />
+        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-40 blur-[80px]" />
       </div>
 
       {/* CONTEÚDO – GRID */}
       <div
         className={`
           relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center
-          gap-10 px-4 pt-[calc(var(--nav-h,64px)+18px+env(safe-area-inset-top))]
-          pb-[calc(32px+env(safe-area-inset-bottom))]
+          gap-8 px-4
+          pt-[calc(var(--nav-h,64px)+12px+env(safe-area-inset-top))]
+          pb-[calc(28px+env(safe-area-inset-bottom))]
           sm:px-6
-          md:grid-cols-2 md:gap-6 md:pt-[calc(var(--nav-h,80px)+48px)] md:pb-24
+          md:grid-cols-2 md:gap-6 md:pt-[calc(var(--nav-h,80px)+40px)] md:pb-20
           lg:px-8
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
+        {/* Coluna olho (em cima no mobile, à direita no desktop) */}
+        <div className="order-1 flex items-center justify-center md:order-2">
+          <div className="relative">
+            {/* halo radial atrás do olho */}
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
+              style={{
+                width: eyeSize * 1.35,
+                height: eyeSize * 1.35,
+                background:
+                  "radial-gradient(60% 60% at 50% 50%, rgba(115, 141, 255, 0.16), transparent)",
+              }}
+            />
+            <EcoBubbleOneEye state="idle" variant="voice" size={eyeSize} />
+          </div>
+        </div>
+
         {/* Coluna texto */}
         <div className="order-2 md:order-1">
           {/* Pílula topo */}
@@ -65,19 +102,19 @@ const HeroSection: React.FC = () => {
             itemProp="name"
             className={`
               font-semibold text-gray-900 text-balance
-              text-[34px] leading-[1.04]
-              sm:text-[42px]
-              md:text-[54px]
-              lg:text-[64px]
+              text-[30px] leading-[1.07]
+              sm:text-[36px]
+              md:text-[48px]
+              lg:text-[56px]
             `}
           >
-            Transforme seus dias com&nbsp;
+            Transforme seus dias com{" "}
             <span className="whitespace-nowrap">7 minutos</span> de autoconhecimento
           </h1>
 
           {/* Subtítulo */}
           <p
-            className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-gray-600 sm:text-[17px]"
+            className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-gray-600 sm:text-[17px]"
             itemProp="description"
           >
             A Eco identifica como você está se sentindo e revela padrões emocionais que
@@ -85,7 +122,7 @@ const HeroSection: React.FC = () => {
           </p>
 
           {/* CTAs */}
-          <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:gap-4">
+          <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:gap-4">
             <a
               href="https://ecofrontend888.vercel.app/login"
               aria-label="Começar a escrever na Eco gratuitamente"
@@ -93,9 +130,9 @@ const HeroSection: React.FC = () => {
                 inline-flex w-full items-center justify-center gap-2.5
                 rounded-full bg-[#007AFF] px-6 py-4
                 text-[15px] font-semibold text-white
-                shadow-[0_6px_18px_rgba(0,122,255,0.25)]
+                shadow-[0_6px_18px_rgba(0,122,255,0.22)]
                 transition-all duration-200 ease-out
-                hover:bg-[#0066E5] hover:shadow-[0_10px_28px_rgba(0,122,255,0.25)]
+                hover:bg-[#0066E5] hover:shadow-[0_10px_28px_rgba(0,122,255,0.24)]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]
                 focus-visible:ring-offset-2 focus-visible:ring-offset-white
                 active:scale-[0.99]
@@ -142,7 +179,7 @@ const HeroSection: React.FC = () => {
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="group mt-10 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-gray-500 transition-all duration-300 ease-out hover:bg-indigo-50/50 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:mt-12"
+            className="group mt-9 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-gray-500 transition-all duration-300 ease-out hover:bg-indigo-50/50 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:mt-10"
             aria-label="Ir para a seção Como Funciona"
           >
             <ChevronDown
@@ -150,40 +187,6 @@ const HeroSection: React.FC = () => {
               aria-hidden="true"
             />
           </a>
-        </div>
-
-        {/* Coluna olho */}
-        <div className="order-1 flex items-center justify-center md:order-2">
-          <div className="relative">
-            {/* halo radial atrás do olho, bem suave */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 -z-10 rounded-full blur-2xl"
-              style={{
-                width: "min(80vw, 640px)",
-                height: "min(80vw, 640px)",
-                background:
-                  "radial-gradient(60% 60% at 50% 50%, rgba(115, 141, 255, 0.15), transparent)",
-              }}
-            />
-            <EcoBubbleOneEye
-              state="idle"
-              variant="voice"
-              // Menor no mobile, grande no desktop usando clamp:
-              size={undefined as any}
-            />
-            {/* wrapper para dimensionar via CSS */}
-            <style>{`
-              /* força o tamanho do componente via wrapper direto no SVG/canvas */
-              /* Como EcoBubbleOneEye respeita o prop size, aqui ajustamos o contêiner pai */
-              [data-eco-eye] {
-                width: clamp(220px, 42vw, 520px);
-                height: clamp(220px, 42vw, 520px);
-              }
-            `}</style>
-            {/* Pequeno truque: aplicamos um data-attr no componente abaixo */}
-            <div data-eco-eye className="sr-only" />
-          </div>
         </div>
       </div>
 
