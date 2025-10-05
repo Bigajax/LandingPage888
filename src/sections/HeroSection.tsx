@@ -63,12 +63,12 @@ const HeroSection: React.FC = () => {
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
-          Transforme sentimentos em clareza.
+          Reflita sobre seu dia com a Eco
         </h1>
 
         {/* Subtítulo */}
         <p className="subheading mt-6 max-w-2xl text-balance text-gray-600" itemProp="description">
-          Escreva livremente. Receba reflexões personalizadas. Descubra padrões que você não via sozinho.
+          Registre como você se sentiu hoje.
         </p>
 
         {/* CTAs */}
