@@ -3,7 +3,7 @@ import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
 import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-/* Hookzinho leve para valores responsivos */
+/* Hook leve para valores responsivos */
 function useMediaQuery(query: string) {
   const [match, setMatch] = React.useState<boolean>(() =>
     typeof window !== "undefined" ? window.matchMedia(query).matches : false
@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
     >
       {/* BG suave no topo */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1]">
-        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-40 blur-[80px]" />
+        <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-30 blur-[80px]" />
       </div>
 
       {/* CONTEÚDO – GRID */}
@@ -57,30 +57,44 @@ const HeroSection: React.FC = () => {
         className={`
           relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center
           gap-8 px-4
-          pt-[calc(var(--nav-h,64px)+12px+env(safe-area-inset-top))]
-          pb-[calc(28px+env(safe-area-inset-bottom))]
+          pt-[calc(var(--nav-h,64px)+10px+env(safe-area-inset-top))]
+          pb-[calc(12px+env(safe-area-inset-bottom))]
           sm:px-6
-          md:grid-cols-2 md:gap-6 md:pt-[calc(var(--nav-h,80px)+40px)] md:pb-20
+          md:grid-cols-2 md:gap-10 md:pt-[calc(var(--nav-h,80px)+44px)] md:pb-12
           lg:px-8
           transition-all duration-500 ease-out
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        {/* Coluna olho (em cima no mobile, à direita no desktop) */}
+        {/* Coluna olho (topo no mobile, direita no desktop) */}
         <div className="order-1 flex items-center justify-center md:order-2">
           <div className="relative">
-            {/* halo radial atrás do olho */}
+            {/* Halo radial de luz atrás do olho (bem sutil) */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
+              className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[40px]"
               style={{
-                width: eyeSize * 1.35,
-                height: eyeSize * 1.35,
+                width: eyeSize * 1.45,
+                height: eyeSize * 1.45,
                 background:
-                  "radial-gradient(60% 60% at 50% 50%, rgba(115, 141, 255, 0.16), transparent)",
+                  "radial-gradient(65% 65% at 50% 50%, rgba(120, 160, 255, 0.18), transparent)",
               }}
             />
-            <EcoBubbleOneEye state="idle" variant="voice" size={eyeSize} />
+
+            {/* Sombra elíptica abaixo para profundidade */}
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-6 left-1/2 -z-10 h-10 w-[70%] -translate-x-1/2 rounded-[50%] blur-[18px]"
+              style={{
+                background:
+                  "radial-gradient(70% 100% at 50% 50%, rgba(20,28,45,0.14), rgba(20,28,45,0.06) 60%, transparent 70%)",
+              }}
+            />
+
+            {/* Olho – opacidade reduzida para não roubar a cena */}
+            <div className="opacity-80 md:opacity-85 lg:opacity-90 transition-opacity">
+              <EcoBubbleOneEye state="idle" variant="voice" size={eyeSize} />
+            </div>
           </div>
         </div>
 
@@ -96,33 +110,32 @@ const HeroSection: React.FC = () => {
             </span>
           </div>
 
-          {/* Título */}
+          {/* Título (respiros e quebras mais naturais) */}
           <h1
             id="hero-title"
             itemProp="name"
             className={`
               font-semibold text-gray-900 text-balance
-              text-[30px] leading-[1.07]
+              text-[30px] leading-[1.08]
               sm:text-[36px]
               md:text-[48px]
               lg:text-[56px]
             `}
           >
-            Reflita sobre seu dia{" "}
-            <span className="whitespace-nowrap">com a</span>Eco
+            Reflita sobre seu dia com a <span className="whitespace-nowrap">Eco</span>
           </h1>
 
-          {/* Subtítulo */}
+          {/* Subtítulo com largura confortável */}
           <p
-            className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-gray-600 sm:text-[17px]"
+            className="mt-4 max-w-[56ch] text-[16px] leading-relaxed text-gray-600 sm:text-[17px]"
             itemProp="description"
           >
-           Uma conversa e pronto: a Eco identifica como você está se sentindo,
-destaca padrões importantes e registra tudo automaticamente.
+            Uma conversa e pronto: a Eco identifica como você está se sentindo,
+            destaca padrões importantes e registra tudo automaticamente.
           </p>
 
-          {/* CTAs */}
-          <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:gap-4">
+          {/* CTAs com ritmo visual */}
+          <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:gap-4">
             <a
               href="https://ecofrontend888.vercel.app/login"
               aria-label="Começar a escrever na Eco gratuitamente"
@@ -140,7 +153,7 @@ destaca padrões importantes e registra tudo automaticamente.
               `}
             >
               <PlayCircle size={18} className="opacity-90" />
-               Começar agora grátis
+              Começar agora grátis
             </a>
 
             <a
@@ -174,12 +187,14 @@ destaca padrões importantes e registra tudo automaticamente.
               👥 +500 já usam
             </span>
           </div>
+        </div>
 
-          {/* Seta */}
+        {/* Seta centralizada abaixo do grid */}
+        <div className="col-span-1 md:col-span-2 mt-8 md:mt-10 flex justify-center">
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
-            className="group mt-9 inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-gray-500 transition-all duration-300 ease-out hover:bg-indigo-50/50 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:mt-10"
+            className="group inline-flex cursor-pointer select-none rounded-full border border-transparent p-3 text-gray-500 transition-all duration-300 ease-out hover:bg-indigo-50/50 hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             aria-label="Ir para a seção Como Funciona"
           >
             <ChevronDown
