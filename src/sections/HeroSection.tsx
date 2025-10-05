@@ -51,24 +51,11 @@ const HeroSection: React.FC = () => {
           ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
       >
-        {/* Pílula topo – borda gradiente, interior transparente */}
+        {/* Pílula topo */}
         <div className="mt-2 flex justify-center">
           <span
-            aria-label="Eco IA de Autoconhecimento"
+            className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
             itemProp="applicationCategory"
-            className={`
-              inline-flex items-center rounded-full px-5 py-2
-              text-white/95 font-medium leading-none
-
-              border-2 border-transparent
-              [background:linear-gradient(transparent,transparent)_padding-box,linear-gradient(90deg,#59B5FF,#C08BFF,#FF7AE0,#59B5FF)_border-box]
-              [background-size:200%_200%]
-              [animation:eco-gradient-move_6s_ease_infinite]
-
-              shadow-[0_0_10px_rgba(192,139,255,0.35)]
-              backdrop-blur-[1px]
-              filter drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]
-            `}
           >
             #EcoIAdeAutoconhecimento
           </span>
@@ -88,15 +75,15 @@ revela padrões emocionais que transformam sua vida.
 
         {/* CTAs */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
-          <a
-            href="https://ecofrontend888.vercel.app/login"
-            aria-label="Começar a escrever na Eco gratuitamente"
-            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
-          >
-            <PlayCircle size={18} className="opacity-90" />
-            <span className="hidden sm:inline"> Começar minha jornada grátis</span>
-            <span className="sm:hidden">Começar minha jornada grátis</span>
-          </a>
+  <a
+    href="https://ecofrontend888.vercel.app/login"
+    aria-label="Começar a escrever na Eco gratuitamente"
+    className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
+  >
+    <PlayCircle size={18} className="opacity-90" />
+    <span className="hidden sm:inline"> Começar minha jornada grátis</span>
+    <span className="sm:hidden">Começar minha jornada grátis</span>
+  </a>
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
@@ -165,13 +152,7 @@ revela padrões emocionais que transformam sua vida.
         }
       `}</style>
 
-      {/* Anim. da borda gradiente + fade do ORB */}
       <style>{`
-        @keyframes eco-gradient-move {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.25; } }
         @media (min-width: 640px) { @keyframes fadeIn { to { opacity: 0.4; } } }
       `}</style>
