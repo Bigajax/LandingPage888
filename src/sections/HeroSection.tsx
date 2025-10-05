@@ -63,12 +63,12 @@ const HeroSection: React.FC = () => {
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
-          Reflita sobre seu dia com a Eco
+          Entenda suas emoções em 7 minutos por dia
         </h1>
 
         {/* Subtítulo */}
         <p className="subheading mt-6 max-w-2xl text-balance text-gray-600" itemProp="description">
-          Registre como você se sentiu hoje.
+          A Eco identifica como você está se sentindo e te ajuda a transformar seu dia, automaticamente.
         </p>
 
         {/* CTAs */}
