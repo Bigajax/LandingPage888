@@ -57,7 +57,7 @@ const HeroSection: React.FC = () => {
             className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
             itemProp="applicationCategory"
           >
-            Seu diário emocional
+            #EcoIAdeAutoconhecimento
           </span>
         </div>
 
