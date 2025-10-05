@@ -62,7 +62,7 @@ const HowItWorks: React.FC = () => {
           <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#8E8E93]">
             Resposta da Eco
           </span>
-          <div className="space-y-2">
+        <div className="space-y-2">
             <div className="rounded-xl border border-[#E5E5EA] bg-white p-3 text-sm text-[#1D1D1F] shadow-[0_1px_1px_rgba(0,0,0,0.04)]">
               Entendi. Vamos explorar: o que provocou essa confusão hoje?
             </div>
@@ -141,13 +141,14 @@ const HowItWorks: React.FC = () => {
             >
               <button
                 onClick={() => setActiveStep(active ? 0 : step.id)}
-                className="flex w-full items-start gap-3 rounded-[inherit] px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10"
+                className="flex w-full items-start gap-3 rounded-[inherit] px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(0,122,255,0.25)]"
                 aria-expanded={active}
                 aria-pressed={active}
                 aria-controls={`demo-${step.id}`}
               >
+                {/* Ícone com Apple Blue */}
                 <span
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] text-white"
+                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[#007AFF] text-white"
                   aria-hidden
                 >
                   <Icon size={20} strokeWidth={2} />
@@ -192,17 +193,17 @@ const HowItWorks: React.FC = () => {
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
                 className={`flex w-full items-start gap-4 rounded-2xl px-5 py-5 text-left transition-all duration-200
-                  border ${active ? "border-[#007AFF] bg-gradient-to-br from-blue-50 to-indigo-50" : "border-[#E5E5EA] bg-white"}
+                  border ${active ? "border-[#007AFF] bg-[rgba(0,122,255,0.06)]" : "border-[#E5E5EA] bg-white"}
                   shadow-[0_1px_1px_rgba(0,0,0,0.04)]
                   hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)]
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF]/30`}
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(0,122,255,0.25)]`}
                 aria-pressed={active}
                 aria-controls={`demo-desktop-${step.id}`}
               >
                 <span
                   className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full transition-colors ${
                     active 
-                      ? "bg-gradient-to-br from-[#007AFF] to-[#5856D6] text-white" 
+                      ? "bg-[#007AFF] text-white" 
                       : "bg-[#F5F5F7] text-[#1D1D1F]"
                   }`}
                   aria-hidden
@@ -233,8 +234,8 @@ const HowItWorks: React.FC = () => {
             <Demo step={activeStep || 1} />
           </div>
           
-          {/* Badge decorativo */}
-          <div className="absolute bottom-6 left-8 flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 px-3 py-1.5 text-xs font-medium text-[#007AFF]">
+          {/* Badge decorativo em Apple Blue */}
+          <div className="absolute bottom-6 left-8 flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-[#007AFF]" style={{ background: "linear-gradient(90deg, rgba(0,122,255,0.10), rgba(0,122,255,0.18))" }}>
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#007AFF] opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#007AFF]"></span>
@@ -246,11 +247,20 @@ const HowItWorks: React.FC = () => {
 
       {/* CTA Final */}
       <div className="mx-auto mt-12 flex w-full max-w-7xl flex-col items-center px-4 sm:px-6 lg:px-8">
-        <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-[#007AFF] to-[#5856D6] px-8 py-4 text-[17px] font-semibold text-white shadow-[0_4px_16px_rgba(0,122,255,0.3)] transition-all hover:shadow-[0_8px_24px_rgba(0,122,255,0.4)] hover:scale-105">
+        <button
+          className="group relative overflow-hidden rounded-full px-8 py-4 text-[17px] font-semibold text-white shadow-[0_4px_16px_rgba(0,122,255,0.30)] transition-all hover:shadow-[0_8px_24px_rgba(0,122,255,0.40)] hover:scale-105"
+          style={{
+            background: "linear-gradient(90deg, #007AFF 0%, #007AFF 100%)"
+          }}
+        >
           <span className="relative z-10 flex items-center gap-2">
             🎯 Começar minha jornada grátis
           </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#5856D6] to-[#007AFF] opacity-0 transition-opacity group-hover:opacity-100"></div>
+          {/* overlay para hover (azul + levemente mais escuro) */}
+          <div
+            className="absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+            style={{ background: "linear-gradient(90deg, #007AFF 0%, #0066E6 100%)" }}
+          />
         </button>
         <p className="mt-3 text-center text-[13px] text-[#8E8E93]">
           Grátis • Sem cartão • Cancele quando quiser
