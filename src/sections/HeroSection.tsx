@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
-import Orb from "../components/EcoBubbleOneEye";
+import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const HeroSection: React.FC = () => {
@@ -25,17 +25,29 @@ const HeroSection: React.FC = () => {
         [content-visibility:auto] [contain-intrinsic-size:1px_800px]
       `}
     >
-      {/* BG / ORB */}
+      {/* BG / OLHO */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1]">
+        {/* glow de topo amplo */}
         <div className="absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-200 via-transparent to-indigo-200 opacity-50 blur-[80px]" />
+
+        {/* wrapper central para a bolha */}
         <div className="absolute inset-0 flex items-center justify-center transform-gpu will-change-transform">
           <div className="relative w-[88vw] max-w-[560px] aspect-square">
+            {/* halo radial suave atrás do olho */}
             <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(115,91,255,0.15)_0%,rgba(115,91,255,0.06)_45%,transparent_72%)] blur-xl" />
-            <div className="absolute inset-0 opacity-0 animate-[fadeIn_0.8s_ease-out_0.3s_forwards] motion-reduce:opacity-25 sm:motion-reduce:opacity-40">
-              <Orb hoverIntensity={0.12} rotateOnHover={false} hue={290} forceHoverState={true} />
+            {/* bolha/olho com fade-in */}
+            <div className="absolute inset-0 opacity-0 animate-[fadeIn_0.8s_ease-out_0.3s_forwards] motion-reduce:opacity-25 sm:motion-reduce:opacity-40 grid place-items-center">
+              <EcoBubbleOneEye
+                state="idle"        // "idle" | "listening" | "speaking" | "thinking" | "focus"
+                variant="voice"     // tamanho base grande
+                size={280}          // ajuste fino do diâmetro
+                className=""        // posicionado pelo grid parent (centralizado)
+              />
             </div>
           </div>
         </div>
+
+        {/* gradient de base para separar do rodapé da dobra */}
         <div className="absolute inset-x-0 bottom-[-10%] h-[22rem] bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
       </div>
 
@@ -63,27 +75,28 @@ const HeroSection: React.FC = () => {
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
-          Transforme seus dias com 
-7 minutos de autoconhecimento
+          Transforme seus dias com{" "}
+          <br className="hidden sm:block" />
+          7 minutos de autoconhecimento
         </h1>
 
         {/* Subtítulo */}
         <p className="subheading mt-6 max-w-2xl text-balance text-gray-600" itemProp="description">
-          A Eco identifica como você está se sentindo e 
-revela padrões emocionais que transformam sua vida.
+          A Eco identifica como você está se sentindo e{" "}
+          revela padrões emocionais que transformam sua vida.
         </p>
 
         {/* CTAs */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
-  <a
-    href="https://ecofrontend888.vercel.app/login"
-    aria-label="Começar a escrever na Eco gratuitamente"
-    className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
-  >
-    <PlayCircle size={18} className="opacity-90" />
-    <span className="hidden sm:inline"> Começar minha jornada grátis</span>
-    <span className="sm:hidden">Começar minha jornada grátis</span>
-  </a>
+          <a
+            href="https://ecofrontend888.vercel.app/login"
+            aria-label="Começar a escrever na Eco gratuitamente"
+            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
+          >
+            <PlayCircle size={18} className="opacity-90" />
+            <span className="hidden sm:inline"> Começar minha jornada grátis</span>
+            <span className="sm:hidden">Começar minha jornada grátis</span>
+          </a>
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
