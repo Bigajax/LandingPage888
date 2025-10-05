@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
             className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gray-900 px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-gray-800 hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
           >
             <PlayCircle size={18} className="opacity-90" />
-            <span className="hidden sm:inline">Começar agora — é grátis</span>
+            <span className="hidden sm:inline">Registrar</span>
             <span className="sm:hidden">Começar grátis</span>
           </a>
 
