@@ -73,16 +73,15 @@ const HeroSection: React.FC = () => {
 
         {/* CTAs */}
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:flex-wrap md:flex-nowrap md:gap-5">
-          <a
-            href="https://ecofrontend888.vercel.app/login"
-            aria-label="Começar a escrever no Eco gratuitamente"
-            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gray-900 px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-gray-800 hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
-          >
-            <PlayCircle size={18} className="opacity-90" />
-            <span className="hidden sm:inline">Registrar</span>
-            <span className="sm:hidden">Começar grátis</span>
-          </a>
-
+  <a
+    href="https://ecofrontend888.vercel.app/login"
+    aria-label="Começar a escrever na Eco gratuitamente"
+    className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
+  >
+    <PlayCircle size={18} className="opacity-90" />
+    <span className="hidden sm:inline">Registrar</span>
+    <span className="sm:hidden">Começar grátis</span>
+  </a>
           <a
             href="#como-funciona"
             onClick={handleGoToHowItWorks}
