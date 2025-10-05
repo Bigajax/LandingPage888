@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { ChevronDown, ChevronRight, PlayCircle } from "lucide-react";
-import Orb from "../components/Orb";
+import Orb from "../components/EcoBubbleOneEye";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const HeroSection: React.FC = () => {

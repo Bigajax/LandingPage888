@@ -1,82 +1,214 @@
-import EyeBubbleBase, {
-  EyeBubbleToken,
-  MotionConfig,
-} from "./EyeBubbleBase";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
-const ecoBubbleToken: EyeBubbleToken = {
-  id: "eco-bubble-one-eye",
-  background:
-    "radial-gradient(circle at 20% 20%, rgba(224, 255, 222, 0.85), rgba(16, 185, 129, 0.85) 42%, rgba(5, 150, 105, 0.95) 100%)",
-  border: { color: "rgba(255, 255, 255, 0.45)", width: 1 },
-  glowColor: "rgba(16, 185, 129, 0.35)",
-  textColor: "#022c22",
-  accentColor: "#22d3ee",
-  irisGradient:
-    "radial-gradient(circle at 50% 45%, rgba(34, 211, 238, 0.8), rgba(6, 182, 212, 0.85) 35%, rgba(22, 101, 216, 0.95) 75%)",
-  pupilColor: "rgba(2, 6, 23, 0.95)",
-  reflectionColor: "rgba(255, 255, 255, 0.75)",
-  highlightColor: "rgba(255, 255, 255, 0.35)",
-  minHeight: 360,
+import EyeBubbleBase, { EyeBubbleToken, MotionConfig } from './EyeBubbleBase';
+
+type EcoState = 'idle' | 'listening' | 'speaking' | 'thinking' | 'focus';
+type EcoVariant = 'icon' | 'avatar' | 'message' | 'voice';
+
+export interface EcoBubbleOneEyeProps {
+  state?: EcoState;
+  variant?: EcoVariant;
+  size?: number;
+}
+
+const STATE_LABELS: Record<EcoState, string> = {
+  idle: 'ECO em repouso',
+  listening: 'ECO escutando',
+  speaking: 'ECO respondendo',
+  thinking: 'ECO refletindo',
+  focus: 'ECO em foco',
 };
 
-const ecoMotion: MotionConfig = {
-  floatAmplitude: 16,
-  floatDuration: 9,
-  rotateAmplitude: 2.2,
-  rotateDuration: 18,
-  scaleOnHover: 1.08,
+const DEFAULT_SIZES: Record<EcoVariant, number> = {
+  icon: 24,
+  avatar: 40,
+  message: 30,
+  voice: 240,
 };
 
-export type EcoBubbleOneEyeProps = {
-  className?: string;
+const STATIC_BUBBLE: MotionConfig = {
+  animate: { scale: 1, rotate: 0, x: 0, y: 0 },
 };
 
-const EcoBubbleOneEye = ({ className }: EcoBubbleOneEyeProps) => {
+const STATIC_EYE: MotionConfig = {
+  animate: { scaleY: 1, scale: 1 },
+};
+
+const STATIC_PUPIL: MotionConfig = {
+  animate: { x: 0, y: 0, scale: 1, opacity: 1 },
+};
+
+const getBubbleMotion = (state: EcoState, reduceMotion: boolean): MotionConfig => {
+  if (reduceMotion) {
+    if (state === 'focus') return { animate: { scale: 1.02 } };
+    return STATIC_BUBBLE;
+  }
+
+  switch (state) {
+    case 'listening':
+      return {
+        animate: { scale: [1, 1.07, 1] },
+        transition: { duration: 1.6, repeat: Infinity, ease: 'easeInOut' },
+      };
+    case 'speaking':
+      return {
+        animate: { rotate: [-2.2, 2.2, -2.2] },
+        transition: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' },
+      };
+    case 'thinking':
+      return {
+        animate: { x: [0, 1.8, -1.8, 0], y: [0, -1.6, 1.6, 0] },
+        transition: { duration: 3.6, repeat: Infinity, ease: 'easeInOut' },
+      };
+    case 'focus':
+      return {
+        animate: { scale: [1, 1.04, 1] },
+        transition: { duration: 2.2, repeat: Infinity, ease: 'easeInOut' },
+      };
+    default:
+      return STATIC_BUBBLE;
+  }
+};
+
+const getEyeMotion = (state: EcoState, reduceMotion: boolean): MotionConfig => {
+  if (reduceMotion) return STATIC_EYE;
+
+  if (state === 'idle') {
+    return {
+      animate: { scaleY: [1, 1, 0.15, 1] },
+      transition: {
+        duration: 2.4,
+        times: [0, 0.72, 0.82, 1],
+        repeat: Infinity,
+        repeatDelay: 3.4,
+        ease: 'easeInOut',
+      },
+    };
+  }
+
+  if (state === 'listening') {
+    return {
+      animate: { scale: [1, 1.02, 1] },
+      transition: { duration: 1.6, repeat: Infinity, ease: 'easeInOut' },
+    };
+  }
+
+  return STATIC_EYE;
+};
+
+const getPupilMotion = (state: EcoState, reduceMotion: boolean): MotionConfig => {
+  if (reduceMotion) return STATIC_PUPIL;
+
+  switch (state) {
+    case 'speaking':
+      return {
+        animate: { scale: [1, 1.08, 0.96, 1] },
+        transition: { duration: 1, repeat: Infinity, ease: 'easeInOut' },
+      };
+    case 'thinking':
+      return {
+        animate: {
+          x: [0, -1.2, 1.4, -0.8, 0],
+          y: [0, 1.2, -1, 0.8, 0],
+        },
+        transition: { duration: 4.2, repeat: Infinity, ease: 'easeInOut' },
+      };
+    case 'listening':
+      return {
+        animate: { opacity: [0.85, 1, 0.85], scale: [1, 1.05, 1] },
+        transition: { duration: 1.6, repeat: Infinity, ease: 'easeInOut' },
+      };
+    default:
+      return STATIC_PUPIL;
+  }
+};
+
+const BASE_EYE_TOKEN: Omit<EyeBubbleToken, 'microMotion'> & { microMotion: EyeBubbleToken['microMotion'] } = {
+  gradient: ['rgba(238, 244, 255, 0.95)', 'rgba(192, 212, 255, 0.55)'],
+  highlight: ['rgba(255,255,255,0.75)', 'rgba(255,255,255,0.08)'],
+  irisGradient: ['rgba(158, 189, 255, 0.85)', 'rgba(74, 110, 196, 0.65)'],
+  irisHighlight: ['rgba(255,255,255,0.85)', 'rgba(255,255,255,0.15)'],
+  pupilColor: 'radial-gradient(120% 120% at 30% 30%, rgba(20,27,45,0.95), rgba(2,5,12,0.65))',
+  irisScale: 0.4,
+  pupilScale: 0.45,
+  eyelidOffset: 0.05,
+  blinkCadence: 3.6,
+  microMotion: 'breathing',
+};
+
+const EcoBubbleOneEye: React.FC<EcoBubbleOneEyeProps> = ({
+  state = 'idle',
+  variant = 'icon',
+  size,
+}) => {
+  const reduceMotion = useReducedMotion();
+  const dimension = size ?? DEFAULT_SIZES[variant];
+  const irisScale =
+    variant === 'voice' ? 0.44 : variant === 'avatar' ? 0.42 : variant === 'message' ? 0.4 : 0.38;
+
+  const label = STATE_LABELS[state] || 'ECO';
+  const haloSize = dimension * (variant === 'voice' ? 1.4 : 1.2);
+  const glowSize = dimension * (variant === 'voice' ? 1.5 : 1.35);
+
+  const showListeningHalo = state === 'listening';
+  const showFocusGlow = state === 'focus';
+
+  const token: EyeBubbleToken = {
+    ...BASE_EYE_TOKEN,
+    irisScale,
+    blinkCadence: state === 'idle' ? 3.4 : 0,
+    eyelidOffset: state === 'focus' ? 0.08 : BASE_EYE_TOKEN.eyelidOffset,
+    animations: {
+      bubble: ({ reduceMotion: shouldReduce }) => getBubbleMotion(state, shouldReduce),
+      iris: ({ reduceMotion: shouldReduce }) => getEyeMotion(state, shouldReduce),
+      pupil: ({ reduceMotion: shouldReduce }) => getPupilMotion(state, shouldReduce),
+    },
+  };
+
   return (
-    <EyeBubbleBase token={ecoBubbleToken} motionConfig={ecoMotion} className={className}>
-      <div className="relative flex w-full flex-1 flex-col items-center justify-center gap-6">
-        <div className="relative flex items-center justify-center">
-          <div
-            className="relative h-32 w-32 rounded-full shadow-[0_22px_40px_rgba(13,148,136,0.4)]"
-            style={{ background: ecoBubbleToken.irisGradient }}
-          >
-            <div
-              className="absolute inset-8 rounded-full"
-              style={{ background: ecoBubbleToken.pupilColor }}
-            />
-            <div
-              className="absolute left-3 top-6 h-10 w-10 rounded-full blur-[1px]"
-              style={{ background: ecoBubbleToken.reflectionColor, opacity: 0.7 }}
-            />
-            <div className="absolute right-4 bottom-6 h-6 w-6 rounded-full bg-white/40 blur-sm" />
-          </div>
-          <div
-            className="pointer-events-none absolute inset-x-4 top-1 h-6 rounded-full blur-lg"
-            style={{ background: ecoBubbleToken.highlightColor }}
-          />
-          <div className="pointer-events-none absolute inset-x-10 bottom-0 h-4 rounded-full bg-emerald-900/20 blur-lg" />
-        </div>
-        <div className="space-y-2 text-emerald-950">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-700/60">
-            Eco Vision
-          </p>
-          <h3 className="text-xl font-semibold leading-tight">
-            Monitoramento inteligente de sustentabilidade
-          </h3>
-          <p className="text-sm text-emerald-800/70">
-            Acompanhe indicadores ambientais em tempo real com uma interface inspirada na biomimética.
-          </p>
-        </div>
-        <div className="flex items-center gap-3 text-xs font-medium text-emerald-950/80">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/60 shadow-inner">
-            92%
-          </span>
-          <span className="rounded-full bg-emerald-900/10 px-4 py-2">
-            Índice médio de neutralidade de carbono
-          </span>
-        </div>
-      </div>
-    </EyeBubbleBase>
+    <div
+      className="relative inline-flex select-none items-center justify-center"
+      style={{ width: dimension, height: dimension }}
+    >
+      {showFocusGlow && (
+        <motion.span
+          aria-hidden
+          className="absolute pointer-events-none rounded-full blur-2xl"
+          style={{
+            width: glowSize,
+            height: glowSize,
+            background: 'radial-gradient(60% 60% at 50% 50%, rgba(120, 170, 255, 0.42), transparent)',
+          }}
+          animate={
+            reduceMotion
+              ? { opacity: 0.55 }
+              : { opacity: [0.45, 0.75, 0.45], scale: [1, 1.06, 1] }
+          }
+          transition={{ duration: 2.4, repeat: reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
+        />
+      )}
+
+      {showListeningHalo && (
+        <motion.span
+          aria-hidden
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            width: haloSize,
+            height: haloSize,
+            background: 'radial-gradient(60% 60% at 50% 50%, rgba(102, 160, 255, 0.3), transparent)',
+          }}
+          animate={
+            reduceMotion
+              ? { opacity: 0.5 }
+              : { opacity: [0.35, 0.75, 0.35], scale: [1, 1.08, 1] }
+          }
+          transition={{ duration: 1.6, repeat: reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
+        />
+      )}
+
+      <EyeBubbleBase token={token} size={dimension} label={label} reduceMotion={reduceMotion} />
+    </div>
   );
 };
 
