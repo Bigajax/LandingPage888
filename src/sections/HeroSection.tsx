@@ -90,7 +90,7 @@ revela padrões emocionais que transformam sua vida.
             className="glass-btn-25 group inline-flex w-full items-center justify-center gap-2 rounded-full px-9 py-4 text-base font-medium text-gray-800 sm:w-auto"
             aria-label="Ver como o Eco funciona"
           >
-            Ver como funciona em 1 min
+            Assista em 1 minuto
             <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 text-gray-600" aria-hidden="true" />
           </a>
         </div>
