@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import { Menu, X } from "lucide-react";
+import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
 
 const Header: React.FC = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -31,11 +32,12 @@ const Header: React.FC = () => {
   const linkCls =
     "text-[14px] font-medium text-[#6B7280] transition hover:text-[#111827]";
 
-  // CTA preto
-  const ctaCls =
-    "inline-flex items-center gap-2 rounded-full bg-black px-5 py-2 text-sm font-semibold text-white " +
-    "shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition hover:bg-black/90 " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
+  // CTA azul (menor no desktop)
+  const ctaBase =
+    "inline-flex items-center gap-2 rounded-full bg-[#007AFF] text-white " +
+    "shadow-[0_6px_16px_rgba(0,122,255,0.25)] transition-all duration-200 ease-out " +
+    "hover:bg-[#0066E5] hover:shadow-[0_10px_24px_rgba(0,122,255,0.28)] " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]";
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 mx-auto w-full px-4 sm:px-6">
@@ -73,7 +75,7 @@ const Header: React.FC = () => {
             Características
           </ScrollLink>
 
-        <ScrollLink
+          <ScrollLink
             to="para-quem"
             smooth
             duration={500}
@@ -94,15 +96,20 @@ const Header: React.FC = () => {
           </ScrollLink>
         </nav>
 
-        {/* CTA Desktop */}
+        {/* CTA Desktop (com olho) */}
         <a
-  href="https://ecofrontend888.vercel.app"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hidden md:inline-flex items-center justify-center rounded-full bg-[#007AFF] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]"
->
-  Acesso Antecipado
-</a>
+          href="https://ecofrontend888.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${ctaBase} hidden md:inline-flex px-5 py-2.5 text-sm font-semibold`}
+        >
+          {/* Olho da Eco */}
+          <span aria-hidden className="-ml-0.5">
+            <EcoBubbleOneEye state="idle" variant="icon" size={22} />
+          </span>
+          Acesso Antecipado
+        </a>
+
         {/* Toggle Mobile */}
         <button
           aria-label="Abrir menu"
@@ -149,15 +156,19 @@ const Header: React.FC = () => {
             Opinar
           </ScrollLink>
 
-          {/* CTA Mobile */}
+          {/* CTA Mobile (largura total + olho) */}
           <a
-  href="https://ecofrontend888.vercel.app"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hidden md:inline-flex items-center justify-center rounded-full bg-[#007AFF] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]"
->
-  Acesso Antecipado
-</a>
+            href="https://ecofrontend888.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${ctaBase} w-full justify-center px-5 py-3 text-[15px] font-semibold`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span aria-hidden className="-ml-0.5">
+              <EcoBubbleOneEye state="idle" variant="icon" size={20} />
+            </span>
+            Acesso Antecipado
+          </a>
         </div>
       )}
     </header>
