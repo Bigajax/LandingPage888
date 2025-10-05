@@ -52,14 +52,24 @@ const HeroSection: React.FC = () => {
         `}
       >
         {/* Pílula topo */}
-        <div className="mt-2 flex justify-center">
-          <span
-            className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700"
-            itemProp="applicationCategory"
-          >
-            #EcoIAdeAutoconhecimento
-          </span>
-        </div>
+        <span
+  className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-white
+             border border-transparent bg-gradient-to-r from-[#7D5FFF] via-[#9D7BFF] to-[#7D5FFF]
+             [background-clip:padding-box] relative overflow-hidden"
+  style={{
+    background:
+      'linear-gradient(90deg, rgba(125,95,255,0.8) 0%, rgba(157,123,255,0.8) 50%, rgba(125,95,255,0.8) 100%)',
+    padding: '0.4rem 1rem',
+    borderRadius: '9999px',
+    boxShadow: '0 0 12px rgba(125,95,255,0.4)',
+    color: 'white',
+    fontWeight: 500,
+    backdropFilter: 'blur(8px)',
+  }}
+>
+  #EcoIAdeAutoconhecimento
+</span>
+
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
