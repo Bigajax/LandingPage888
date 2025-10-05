@@ -63,12 +63,14 @@ const HeroSection: React.FC = () => {
 
         {/* Título */}
         <h1 id="hero-title" itemProp="name" className="heading-xl mt-8 text-balance font-semibold text-gray-900">
-          Entenda suas emoções em 7 minutos por dia
+          Transforme seus dias com 
+7 minutos de autoconhecimento
         </h1>
 
         {/* Subtítulo */}
         <p className="subheading mt-6 max-w-2xl text-balance text-gray-600" itemProp="description">
-          A Eco identifica como você está se sentindo e te ajuda a transformar seu dia, automaticamente.
+          A Eco identifica como você está se sentindo e 
+revela padrões emocionais que transformam sua vida.
         </p>
 
         {/* CTAs */}
@@ -79,8 +81,8 @@ const HeroSection: React.FC = () => {
     className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#007AFF] px-9 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] sm:w-auto"
   >
     <PlayCircle size={18} className="opacity-90" />
-    <span className="hidden sm:inline">Registrar</span>
-    <span className="sm:hidden">Começar grátis</span>
+    <span className="hidden sm:inline"> Começar minha jornada grátis</span>
+    <span className="sm:hidden">Começar minha jornada grátis</span>
   </a>
           <a
             href="#como-funciona"
@@ -88,7 +90,7 @@ const HeroSection: React.FC = () => {
             className="glass-btn-25 group inline-flex w-full items-center justify-center gap-2 rounded-full px-9 py-4 text-base font-medium text-gray-800 sm:w-auto"
             aria-label="Ver como o Eco funciona"
           >
-            Ver como funciona
+            Ver como funciona em 1 min
             <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 text-gray-600" aria-hidden="true" />
           </a>
         </div>
@@ -96,7 +98,7 @@ const HeroSection: React.FC = () => {
         {/* Micro-confiança – selo único */}
         <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-3 sm:gap-4 text-sm font-medium text-gray-700">
           <span className="glass-chip-25 inline-flex items-center rounded-full px-4 py-2" itemProp="featureList">
-            Beta gratuito · 7 min para testar · Vagas limitadas
+            ✨ Beta gratuito • 🕐 7 min/dia • 🔥 Últimas vagas
           </span>
         </div>
 
