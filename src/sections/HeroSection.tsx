@@ -52,23 +52,30 @@ const HeroSection: React.FC = () => {
         `}
       >
         {/* Pílula topo */}
-        <span
-  className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-white
-             border border-transparent bg-gradient-to-r from-[#7D5FFF] via-[#9D7BFF] to-[#7D5FFF]
-             [background-clip:padding-box] relative overflow-hidden"
-  style={{
-    background:
-      'linear-gradient(90deg, rgba(125,95,255,0.8) 0%, rgba(157,123,255,0.8) 50%, rgba(125,95,255,0.8) 100%)',
-    padding: '0.4rem 1rem',
-    borderRadius: '9999px',
-    boxShadow: '0 0 12px rgba(125,95,255,0.4)',
-    color: 'white',
-    fontWeight: 500,
-    backdropFilter: 'blur(8px)',
-  }}
->
-  #EcoIAdeAutoconhecimento
-</span>
+<div className="mt-2 flex justify-center">
+  <span
+    aria-label="Eco IA de Autoconhecimento"
+    className="
+      inline-block rounded-full p-[2px]
+      bg-[linear-gradient(90deg,#59B5FF,#C08BFF,#FF7AE0,#59B5FF)]
+      shadow-[0_0_10px_rgba(192,139,255,0.35)]
+    "
+  >
+    <span
+      className="
+        block rounded-full px-5 py-2
+        bg-transparent
+        text-white/95 font-medium
+        leading-none
+        backdrop-blur-[1px]
+        filter drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]
+      "
+      itemProp="applicationCategory"
+    >
+      #EcoIAdeAutoconhecimento
+    </span>
+  </span>
+</div>
 
 
         {/* Título */}
