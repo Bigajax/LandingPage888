@@ -94,16 +94,15 @@ const Header: React.FC = () => {
           </ScrollLink>
         </nav>
 
-        {/* CTA Desktop (preto) */}
+        {/* CTA Desktop */}
         <a
-          href="https://ecofrontend888.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`hidden md:inline-flex ${ctaCls}`}
-        >
-          Acesso Antecipado
-        </a>
-
+  href="https://ecofrontend888.vercel.app"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden md:inline-flex items-center justify-center rounded-full bg-[#007AFF] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]"
+>
+  Acesso Antecipado
+</a>
         {/* Toggle Mobile */}
         <button
           aria-label="Abrir menu"
@@ -150,16 +149,15 @@ const Header: React.FC = () => {
             Opinar
           </ScrollLink>
 
-          {/* CTA Mobile (preto) */}
+          {/* CTA Mobile */}
           <a
-            href="https://ecofrontend888.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className="inline-flex w-fit items-center justify-center rounded-full bg-black px-5 py-2 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition hover:bg-black/90"
-          >
-            Acesso antecipado
-          </a>
+  href="https://ecofrontend888.vercel.app"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden md:inline-flex items-center justify-center rounded-full bg-[#007AFF] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 ease-out hover:bg-[#0066E5] hover:shadow-xl hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]"
+>
+  Acesso Antecipado
+</a>
         </div>
       )}
     </header>
