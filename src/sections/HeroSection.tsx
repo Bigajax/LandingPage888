@@ -171,7 +171,7 @@ const HeroSection: React.FC = () => {
               🕐 7 min/dia
             </span>
             <span className="glass-chip-25 inline-flex items-center rounded-full px-3 py-1.5">
-              🔥 Últimas vagas
+              🔥 Vagas limitada
             </span>
           </div>
 
