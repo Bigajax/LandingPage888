@@ -92,7 +92,7 @@ const HeroSection: React.FC = () => {
               className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-700 glass-chip-25"
               itemProp="applicationCategory"
             >
-              🪞Eco IA Autoconhecimento
+              🌱 Eco IA de Autoconhecimento
             </span>
           </div>
 
@@ -108,8 +108,8 @@ const HeroSection: React.FC = () => {
               lg:text-[56px]
             `}
           >
-            Transforme seus dias com{" "}
-            <span className="whitespace-nowrap">7 minutos</span> de autoconhecimento
+            Reflita sobre seu dia{" "}
+            <span className="whitespace-nowrap">com a</span>Eco
           </h1>
 
           {/* Subtítulo */}
@@ -117,8 +117,8 @@ const HeroSection: React.FC = () => {
             className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-gray-600 sm:text-[17px]"
             itemProp="description"
           >
-            A Eco identifica como você está se sentindo e revela padrões emocionais que
-            transformam sua vida.
+           Uma conversa e pronto: a Eco identifica como você está se sentindo,
+destaca padrões importantes e registra tudo automaticamente.
           </p>
 
           {/* CTAs */}
@@ -140,7 +140,7 @@ const HeroSection: React.FC = () => {
               `}
             >
               <PlayCircle size={18} className="opacity-90" />
-              Começar minha jornada grátis
+               Começar agora grátis
             </a>
 
             <a
@@ -153,7 +153,7 @@ const HeroSection: React.FC = () => {
               `}
               aria-label="Ver como a Eco funciona"
             >
-              Assista em 1 minuto
+              📹 Tour rápido (1 min)
               <ChevronRight
                 size={18}
                 className="text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
@@ -171,7 +171,7 @@ const HeroSection: React.FC = () => {
               🕐 7 min/dia
             </span>
             <span className="glass-chip-25 inline-flex items-center rounded-full px-3 py-1.5">
-              🔥 Vagas limitada
+              👥 +500 já usam
             </span>
           </div>
 
