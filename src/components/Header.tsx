@@ -9,6 +9,7 @@ import EcoBubbleOneEye from "./EcoBubbleOneEye";
 const NAV_LINKS = [
   { label: "Benefícios", href: "#beneficios" },
   { label: "Como funciona", href: "#como-funciona" },
+  { label: "Pensadores", href: "#pensadores" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "FAQ", href: "#faq" },
   { label: "Começar", href: "#comecar" },

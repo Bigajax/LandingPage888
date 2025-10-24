@@ -7,7 +7,7 @@ import HowItWorksSection from "./sections/HowItWorksSection";
 import ForWhoSection from "./sections/ForWhoSection";
 import IntroducingEco from "./sections/IntroducingEco";
 import EmotionalReportSection from "./sections/EmotionalReportSection";
-import MentoresStrip from "./sections/MentoresStrip";
+import MentorsSection from "./sections/MentorsSection";
 import PrinciplesSection from "./sections/PrinciplesSection";
 import CallToActionEco from "./sections/CallToActionEco";
 import Testimonials from "./sections/Testimonials";
@@ -19,7 +19,7 @@ function registerAll() {
   registerComponent(ForWhoSection, { name: "ForWhoSection", props: {} });
   registerComponent(IntroducingEco, { name: "IntroducingEco", props: {} });
   registerComponent(EmotionalReportSection, { name: "EmotionalReportSection", props: {} });
-  registerComponent(MentoresStrip, { name: "MentoresStrip", props: {} });
+  registerComponent(MentorsSection, { name: "MentorsSection", props: {} });
   registerComponent(PrinciplesSection, { name: "PrinciplesSection", props: {} });
   registerComponent(CallToActionEco, { name: "CallToActionEco", props: {} });
   registerComponent(Testimonials, { name: "Testimonials", props: {} });
