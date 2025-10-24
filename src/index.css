@@ -4,13 +4,13 @@
 
 :root {
   --color-surface: #ffffff;
-  --color-surface-soft: #f5f7fa;
-  --color-surface-muted: #e5e7eb;
-  --color-ink: #111827;
-  --color-ink-soft: rgba(17, 24, 39, 0.7);
+  --color-surface-soft: #f6f8fb;
+  --color-surface-muted: #edf0f3;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #50555a;
   --color-brand: #007aff;
-  --shadow-soft: 0 20px 40px -24px rgba(17, 24, 39, 0.2);
-  --shadow-soft-lg: 0 28px 60px -30px rgba(17, 24, 39, 0.22);
+  --shadow-soft: 0 18px 40px -28px rgba(10, 15, 30, 0.25);
+  --shadow-soft-lg: 0 28px 60px -34px rgba(10, 15, 30, 0.28);
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --transition-soft: cubic-bezier(0.4, 0, 0.2, 1);
@@ -18,7 +18,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: 96px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,6 +73,8 @@ html {
   a:hover,
   a:focus-visible {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
 
   :focus-visible {
@@ -81,7 +83,7 @@ html {
   }
 
   section {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 128px;
   }
 }
 

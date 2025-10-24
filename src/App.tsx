@@ -13,9 +13,12 @@ import Footer from "./components/Footer";
 import HeroSection from "./sections/HeroSection";
 import MindMirrorSection from "./sections/MindMirrorSection";
 import HowItWorksSection from "./sections/HowItWorksSection";
+import UseCasesSection from "./sections/UseCasesSection";
+import IntegrationsRow from "./sections/IntegrationsRow";
+import ReportsShowcase from "./sections/ReportsShowcase";
 import Testimonials from "./sections/Testimonials";
-import FAQSection from "./sections/FAQSection";
-import CTASection from "./sections/CTASection";
+import PricingSection from "./sections/PricingSection";
+import FinalCTA from "./sections/FinalCTA";
 
 // Pages
 import ReflexaoPage from "./pages/ReflexaoPage";
@@ -39,9 +42,12 @@ const LandingPage: React.FC = () => (
       <HeroSection />
       <MindMirrorSection />
       <HowItWorksSection />
+      <UseCasesSection />
+      <IntegrationsRow />
+      <ReportsShowcase />
       <Testimonials />
-      <FAQSection />
-      <CTASection />
+      <PricingSection />
+      <FinalCTA />
     </main>
     <Footer />
   </>

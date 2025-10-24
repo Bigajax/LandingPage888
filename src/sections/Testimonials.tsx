@@ -1,68 +1,73 @@
 import React from "react";
 
-import Card from "../components/Card";
 import Section from "../components/Section";
 
 const testimonials = [
   {
     name: "Isabela Rocha",
     role: "Terapeuta integrativa",
-    quote:
-      "Eco virou meu lugar de checagem diária. Em 5 minutos consigo mapear gatilhos dos pacientes e chego às sessões mais presente.",
-    color: "bg-gradient-to-br from-brand-blue/10 to-white",
+    quote: "“Em 7 dias, percebi padrões que antes levavam meses em terapia para emergir.”",
   },
   {
     name: "Thiago Mendes",
     role: "Fundador, Studio Soma",
-    quote:
-      "O app acalma só de abrir. O cuidado com tipografia e espaços me ajuda a focar na emoção, não na interface.",
-    color: "bg-gradient-to-br from-white to-surface-subtle/60",
+    quote: "“É como abrir o app de clima da minha mente — vejo nuvens passando sem me apegar.”",
   },
   {
     name: "Luna Carvalho",
     role: "Pesquisadora cognitiva",
-    quote:
-      "As timelines emocionais me mostraram ciclos que eu não via há anos. É como ter um diário sensorial guiado.",
-    color: "bg-gradient-to-br from-brand-blue/5 to-white",
+    quote: "“As perguntas da ECO me colocam de volta no corpo, sem forçar nada.”",
+  },
+  {
+    name: "João Pereira",
+    role: "Product Lead",
+    quote: "“As timelines emocionais viraram parte do meu weekly review. Objetivo e humano.”",
+  },
+  {
+    name: "Mariana Dias",
+    role: "Psicóloga clínica",
+    quote: "“Pacientes chegam mais presentes — registram e compartilham insights em segundos.”",
   },
 ];
 
-const Avatar: React.FC<{ name: string; color: string }> = ({ name, color }) => {
-  const initials = name
+const getInitials = (name: string) =>
+  name
     .split(" ")
-    .map((part) => part[0])
-    .join("")
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase() ?? "")
     .slice(0, 2)
-    .toUpperCase();
-
-  return (
-    <span className={`flex h-12 w-12 items-center justify-center rounded-full ${color} text-sm font-semibold text-brand-blue`}>
-      {initials}
-    </span>
-  );
-};
+    .join("");
 
 const Testimonials: React.FC = () => {
+  const marqueeItems = [...testimonials, ...testimonials];
+
   return (
     <Section
       id="depoimentos"
-      eyebrow="Prova social"
-      title="Uma comunidade de mentes calmas"
-      description="Profissionais de saúde mental, criadores e pessoas que buscam autoconhecimento encontram em Eco um aliado leve."
+      eyebrow="O que pessoas falam após 7 dias com a ECO"
+      title="Depoimentos reais, ritmo humano"
+      align="center"
     >
-      <div className="grid gap-6 lg:grid-cols-3">
-        {testimonials.map((testimonial) => (
-          <Card key={testimonial.name} className={`h-full space-y-6 bg-white/85 ${testimonial.color}`}>
-            <div className="flex items-center gap-4">
-              <Avatar name={testimonial.name} color="bg-white" />
-              <div>
-                <p className="font-semibold text-ink-base">{testimonial.name}</p>
-                <p className="text-sm text-ink-soft">{testimonial.role}</p>
+      <div className="relative mt-10 overflow-hidden">
+        <div className="flex w-max gap-6 motion-safe:animate-carousel motion-reduce:animate-none">
+          {marqueeItems.map((testimonial, index) => (
+            <figure
+              key={`${testimonial.name}-${index}`}
+              className="w-[320px] shrink-0 rounded-[28px] border border-surface-border bg-white/75 p-6 shadow-[0_24px_50px_-36px_rgba(15,23,42,0.28)] backdrop-blur"
+            >
+              <div className="flex items-center gap-4">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand-blue/20 bg-brand-blue/10 text-sm font-semibold text-brand-blue">
+                  {getInitials(testimonial.name)}
+                </span>
+                <figcaption className="text-left">
+                  <p className="font-semibold text-ink-primary">{testimonial.name}</p>
+                  <p className="text-xs text-ink-secondary">{testimonial.role}</p>
+                </figcaption>
               </div>
-            </div>
-            <p className="text-base text-ink-soft">“{testimonial.quote}”</p>
-          </Card>
-        ))}
+              <blockquote className="mt-4 text-sm text-ink-secondary">{testimonial.quote}</blockquote>
+            </figure>
+          ))}
+        </div>
       </div>
     </Section>
   );

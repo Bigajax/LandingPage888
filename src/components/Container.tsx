@@ -15,7 +15,7 @@ const Container = <T extends React.ElementType = "div">({
   const Component = as ?? "div";
 
   return (
-    <Component className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`.trim()} {...props}>
+    <Component className={`mx-auto w-full max-w-7xl px-6 md:px-8 ${className}`.trim()} {...props}>
       {children}
     </Component>
   );
