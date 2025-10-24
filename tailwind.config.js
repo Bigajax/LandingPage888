@@ -4,33 +4,34 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"SF Pro Text"', '"SF Pro Display"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        purple: {
-          50: '#f8f6ff',
-          100: '#f0ebff',
-          200: '#e4d9ff',
-          300: '#d3bdff',
-          400: '#ba94ff',
-          500: '#a46fff',
-          600: '#9a4eff',
-          700: '#8b38ff',
-          800: '#7626ff',
-          900: '#6517ff',
+        brand: {
+          blue: '#007AFF',
+          navy: '#111827',
         },
-        pink: {
-          50: '#fdf5fb',
-          100: '#fcebf8',
-          200: '#fad7f2',
-          300: '#f7b6e6',
-          400: '#f284d3',
-          500: '#eb57bc',
-          600: '#db3ba3',
-          700: '#c02887',
-          800: '#a1216f',
-          900: '#861f5e',
+        surface: {
+          base: '#FFFFFF',
+          subtle: '#F5F7FA',
+          muted: '#E5E7EB',
         },
+        ink: {
+          base: '#111827',
+          soft: 'rgba(17, 24, 39, 0.7)',
+        },
+      },
+      borderRadius: {
+        xl: '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
+      },
+      boxShadow: {
+        soft: '0 20px 40px -24px rgba(17, 24, 39, 0.2)',
+        'soft-lg': '0 28px 60px -30px rgba(17, 24, 39, 0.22)',
+      },
+      transitionTimingFunction: {
+        subtle: 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
     },
   },
