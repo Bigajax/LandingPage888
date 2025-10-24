@@ -7,11 +7,11 @@ import Container from "./Container";
 import EcoBubbleOneEye from "./EcoBubbleOneEye";
 
 const NAV_LINKS = [
-  { label: "Benefícios", href: "#beneficios" },
+  { label: "Início", href: "#inicio" },
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Começar", href: "#comecar" },
+  { label: "Casos de uso", href: "#casos-de-uso" },
+  { label: "Relatórios", href: "#relatorios" },
+  { label: "Preço", href: "#preco" },
 ];
 
 const Header: React.FC = () => {
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 24);
+    const handler = () => setIsScrolled(window.scrollY > 16);
     handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   const headerBg = isScrolled
-    ? "bg-white/85 backdrop-blur-lg shadow-[0_20px_40px_-28px_rgba(17,24,39,0.25)] border border-surface-muted/60"
+    ? "bg-white/88 backdrop-blur-xl shadow-[0_18px_48px_-24px_rgba(15,23,42,0.35)] border border-surface-border"
     : "bg-white/60 backdrop-blur-md border border-transparent";
 
   return (
@@ -39,42 +39,46 @@ const Header: React.FC = () => {
       <div className="py-4">
         <Container className="relative">
           <div
-            className={`flex items-center justify-between rounded-3xl px-4 py-3 transition-[background,box-shadow,border] duration-200 ease-subtle sm:px-6 ${headerBg}`}
+            className={`flex items-center justify-between rounded-[28px] px-4 py-3 transition-[background,box-shadow,border] duration-200 ease-subtle sm:px-6 ${headerBg}`}
           >
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="flex items-center gap-2 font-semibold tracking-tight text-ink-base"
-                aria-label="Eco, voltar ao início"
+                className="flex items-center gap-2 font-semibold tracking-tight text-ink-primary"
+                aria-label="ECO, voltar ao início"
               >
                 <EcoBubbleOneEye size={28} />
                 <span className="text-lg sm:text-xl">ECO</span>
               </Link>
             </div>
 
-            <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft md:flex" aria-label="Navegação principal">
+            <nav
+              className="hidden items-center gap-9 text-sm font-medium text-ink-secondary lg:flex"
+              aria-label="Navegação principal"
+            >
               {NAV_LINKS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="transition-colors duration-150 hover:text-ink-base focus-visible:text-ink-base"
+                  className="group relative transition-colors duration-150 hover:text-ink-primary focus-visible:text-ink-primary"
                 >
                   {item.label}
+                  <span className="pointer-events-none absolute -bottom-2 left-1/2 hidden h-px w-8 -translate-x-1/2 bg-brand-blue transition-opacity duration-200 group-hover:block" />
                 </a>
               ))}
             </nav>
 
-            <div className="hidden md:flex">
-              <a href="#comecar" className="inline-flex">
-                <Button aria-label="Experimentar agora" className="px-5 py-2.5">
-                  Experimentar agora
+            <div className="hidden lg:flex">
+              <a href="#cta-final" className="inline-flex">
+                <Button aria-label="Experimentar" className="px-5 py-2.5">
+                  Experimentar
                 </Button>
               </a>
             </div>
 
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-surface-muted/60 text-ink-soft transition-colors duration-150 hover:text-ink-base md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-surface-border text-ink-secondary transition-colors duration-150 hover:text-ink-primary lg:hidden"
               onClick={() => setIsOpen((open) => !open)}
               aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={isOpen}
@@ -84,22 +88,22 @@ const Header: React.FC = () => {
           </div>
 
           {isOpen && (
-            <div className="mt-3 rounded-3xl border border-surface-muted/60 bg-white/95 p-6 shadow-soft md:hidden" role="dialog">
-              <nav className="space-y-4 text-base text-ink-soft">
+            <div className="mt-3 rounded-3xl border border-surface-border bg-white/95 p-6 shadow-soft lg:hidden" role="dialog">
+              <nav className="space-y-4 text-base text-ink-secondary">
                 {NAV_LINKS.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="block rounded-xl px-2 py-2 transition-colors duration-150 hover:text-ink-base"
+                    className="block rounded-2xl px-2 py-2 transition-colors duration-150 hover:text-ink-primary"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                   </a>
                 ))}
               </nav>
-              <a href="#comecar" className="mt-6 block">
+              <a href="#cta-final" className="mt-6 block">
                 <Button fullWidth className="py-3">
-                  Experimentar agora
+                  Experimentar
                 </Button>
               </a>
             </div>

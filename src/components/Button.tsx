@@ -12,11 +12,11 @@ const baseStyles =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-blue text-white shadow-[0_12px_30px_rgba(0,122,255,0.24)] motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_18px_36px_rgba(0,122,255,0.25)] motion-safe:active:translate-y-0 focus-visible:shadow-[0_0_0_3px_rgba(0,122,255,0.35)]", // prettier-ignore
+    "bg-brand-blue text-white shadow-[0_12px_32px_rgba(0,122,255,0.22)] motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-brand-hover motion-safe:hover:shadow-[0_18px_40px_rgba(0,122,255,0.25)] motion-safe:active:translate-y-0 focus-visible:shadow-[0_0_0_3px_rgba(0,122,255,0.35)]",
   secondary:
-    "border border-surface-muted text-ink-base bg-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface-subtle motion-safe:hover:shadow-soft focus-visible:shadow-[0_0_0_3px_rgba(0,122,255,0.25)]", // prettier-ignore
+    "border border-surface-border text-ink-primary bg-white motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface-tint motion-safe:hover:shadow-soft focus-visible:shadow-[0_0_0_3px_rgba(0,122,255,0.22)]",
   ghost:
-    "text-ink-soft hover:text-ink-base", // fallback variant if needed
+    "text-ink-secondary hover:text-ink-primary",
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
