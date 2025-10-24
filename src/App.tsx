@@ -11,13 +11,12 @@ import Footer from "./components/Footer";
 
 // Sections
 import HeroSection from "./sections/HeroSection";
-import MentoresStrip from "./sections/MentoresStrip";
+import MindMirrorSection from "./sections/MindMirrorSection";
 import HowItWorksSection from "./sections/HowItWorksSection";
-import ForWhoSection from "./sections/ForWhoSection";
-import IntroducingEco from "./sections/IntroducingEco";
-import EmotionalReportSection from "./sections/EmotionalReportSection";
-import CallToActionEco from "./sections/CallToActionEco";
 import Testimonials from "./sections/Testimonials";
+import MentorsSection from "./sections/MentorsSection";
+import FAQSection from "./sections/FAQSection";
+import CTASection from "./sections/CTASection";
 
 // Pages
 import ReflexaoPage from "./pages/ReflexaoPage";
@@ -37,15 +36,14 @@ function ScrollToTop() {
 const LandingPage: React.FC = () => (
   <>
     <Header />
-    <main id="content" className="min-h-screen">
+    <main id="content" className="min-h-screen bg-white">
       <HeroSection />
-      <MentoresStrip />
+      <MindMirrorSection />
       <HowItWorksSection />
-      <ForWhoSection />
-      <IntroducingEco />
-      <EmotionalReportSection />
-      <CallToActionEco />
+      <MentorsSection />
       <Testimonials />
+      <FAQSection />
+      <CTASection />
     </main>
     <Footer />
   </>

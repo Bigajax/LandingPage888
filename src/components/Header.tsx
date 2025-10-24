@@ -1,166 +1,112 @@
 import React, { useEffect, useState } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import EcoBubbleOneEye from "../components/EcoBubbleOneEye";
+
+import Button from "./Button";
+import Container from "./Container";
+import EcoBubbleOneEye from "./EcoBubbleOneEye";
+
+const NAV_LINKS = [
+  { label: "Benefícios", href: "#beneficios" },
+  { label: "Como funciona", href: "#como-funciona" },
+  { label: "Pensadores", href: "#pensadores" },
+  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Começar", href: "#comecar" },
+];
 
 const Header: React.FC = () => {
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const t = setTimeout(() => setHasAnimated(true), 100);
-    return () => clearTimeout(t);
+    const handler = () => setIsScrolled(window.scrollY > 24);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    setIsOpen(false);
+  }, [location.pathname]);
 
-  const isHome = location.pathname === "/";
-
-  const containerState = scrolled
-    ? "bg-white/80 border-white/60 backdrop-blur-xl shadow-[0_8px_24px_rgba(15,23,42,0.06)]"
-    : "bg-transparent border-transparent backdrop-blur-0 shadow-none";
-
-  const linkCls =
-    "text-[14px] font-medium text-[#6B7280] transition hover:text-[#111827]";
-
-  const ctaCls =
-    "inline-flex items-center gap-2 rounded-full bg-[#007AFF] text-white px-5 py-2.5 text-sm font-semibold " +
-    "shadow-[0_6px_16px_rgba(0,122,255,0.25)] transition-all duration-200 ease-out " +
-    "hover:bg-[#0066E5] hover:shadow-[0_10px_24px_rgba(0,122,255,0.28)] " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007AFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99]";
+  const headerBg = isScrolled
+    ? "bg-white/85 backdrop-blur-lg shadow-[0_20px_40px_-28px_rgba(17,24,39,0.25)] border border-surface-muted/60"
+    : "bg-white/60 backdrop-blur-md border border-transparent";
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 mx-auto w-full px-4 sm:px-6">
-      <div
-        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full border px-4 py-3 md:px-6 md:py-3 transition-all duration-500 ease-out
-          ${hasAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${containerState}`}
-      >
-        {/* Logo ECO + Olho */}
-        {isHome ? (
-          <button
-            aria-label="Voltar ao topo"
-            onClick={() => scroll.scrollToTop({ duration: 500 })}
-            className="flex items-center gap-2 text-lg sm:text-xl font-semibold tracking-tight text-[#111827] transition"
+    <header className="fixed inset-x-0 top-0 z-50" role="banner">
+      <div className="py-4">
+        <Container className="relative">
+          <div
+            className={`flex items-center justify-between rounded-3xl px-4 py-3 transition-[background,box-shadow,border] duration-200 ease-subtle sm:px-6 ${headerBg}`}
           >
-            <EcoBubbleOneEye state="idle" variant="icon" size={20} />
-            ECO
-          </button>
-        ) : (
-          <RouterLink
-            to="/"
-            className="flex items-center gap-2 text-lg sm:text-xl font-semibold tracking-tight text-[#111827] transition"
-          >
-            <EcoBubbleOneEye state="idle" variant="icon" size={20} />
-            ECO
-          </RouterLink>
-        )}
+            <div className="flex items-center gap-3">
+              <Link
+                to="/"
+                className="flex items-center gap-2 font-semibold tracking-tight text-ink-base"
+                aria-label="Eco, voltar ao início"
+              >
+                <EcoBubbleOneEye size={28} />
+                <span className="text-lg sm:text-xl">ECO</span>
+              </Link>
+            </div>
 
-        {/* Menu Desktop */}
-        <nav className="hidden items-center gap-8 md:flex">
-          <ScrollLink
-            to="como-funciona"
-            smooth
-            duration={500}
-            offset={-80}
-            className={`cursor-pointer ${linkCls}`}
-          >
-            Características
-          </ScrollLink>
-          <ScrollLink
-            to="para-quem"
-            smooth
-            duration={500}
-            offset={-80}
-            className={`cursor-pointer ${linkCls}`}
-          >
-            Boletim Informativo
-          </ScrollLink>
-          <ScrollLink
-            to="feedback"
-            smooth
-            duration={500}
-            offset={-80}
-            className={`cursor-pointer ${linkCls}`}
-          >
-            Opinar
-          </ScrollLink>
-        </nav>
+            <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft md:flex" aria-label="Navegação principal">
+              {NAV_LINKS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="transition-colors duration-150 hover:text-ink-base focus-visible:text-ink-base"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
 
-        {/* CTA Desktop */}
-        <a
-          href="https://ecofrontend888.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`hidden md:inline-flex ${ctaCls}`}
-        >
-          Acesso Antecipado
-        </a>
+            <div className="hidden md:flex">
+              <a href="#comecar" className="inline-flex">
+                <Button aria-label="Experimentar agora" className="px-5 py-2.5">
+                  Experimentar agora
+                </Button>
+              </a>
+            </div>
 
-        {/* Toggle Mobile */}
-        <button
-          aria-label="Abrir menu"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="rounded-full p-2 text-[#6B7280] transition hover:text-[#111827] md:hidden"
-        >
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+            <button
+              type="button"
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-surface-muted/60 text-ink-soft transition-colors duration-150 hover:text-ink-base md:hidden"
+              onClick={() => setIsOpen((open) => !open)}
+              aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X aria-hidden size={20} /> : <Menu aria-hidden size={20} />}
+            </button>
+          </div>
+
+          {isOpen && (
+            <div className="mt-3 rounded-3xl border border-surface-muted/60 bg-white/95 p-6 shadow-soft md:hidden" role="dialog">
+              <nav className="space-y-4 text-base text-ink-soft">
+                {NAV_LINKS.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="block rounded-xl px-2 py-2 transition-colors duration-150 hover:text-ink-base"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+              <a href="#comecar" className="mt-6 block">
+                <Button fullWidth className="py-3">
+                  Experimentar agora
+                </Button>
+              </a>
+            </div>
+          )}
+        </Container>
       </div>
-
-      {/* Dropdown Mobile */}
-      {isMenuOpen && (
-        <div className="mx-4 mt-3 flex flex-col gap-4 rounded-2xl border border-white/60 bg-white/90 px-6 py-5 text-[#111827] shadow-[0_16px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl md:hidden">
-          <ScrollLink
-            to="como-funciona"
-            smooth
-            duration={500}
-            offset={-80}
-            onClick={() => setIsMenuOpen(false)}
-            className="cursor-pointer text-[15px] font-medium text-[#6B7280] transition hover:text-[#111827]"
-          >
-            Características
-          </ScrollLink>
-
-          <ScrollLink
-            to="para-quem"
-            smooth
-            duration={500}
-            offset={-80}
-            onClick={() => setIsMenuOpen(false)}
-            className="cursor-pointer text-[15px] font-medium text-[#6B7280] transition hover:text-[#111827]"
-          >
-            Boletim informativo
-          </ScrollLink>
-
-          <ScrollLink
-            to="feedback"
-            smooth
-            duration={500}
-            offset={-80}
-            onClick={() => setIsMenuOpen(false)}
-            className="cursor-pointer text-[15px] font-medium text-[#6B7280] transition hover:text-[#111827]"
-          >
-            Opinar
-          </ScrollLink>
-
-          <a
-            href="https://ecofrontend888.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className={`${ctaCls} w-full justify-center text-[15px] font-semibold`}
-          >
-            Acesso Antecipado
-          </a>
-        </div>
-      )}
     </header>
   );
 };
