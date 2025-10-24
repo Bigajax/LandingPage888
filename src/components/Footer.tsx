@@ -1,97 +1,95 @@
 import React from "react";
 
-const socials = [
-  { label: "Instagram", href: "#", d: "M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6zm4.4-.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" },
-  { label: "LinkedIn", href: "#", d: "M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h3.96v12H3zM10.5 9H14v1.8h.06c.48-.9 1.64-1.86 3.38-1.86 3.62 0 4.29 2.38 4.29 5.47V21H17.7v-5.4c0-1.29-.03-2.95-1.8-2.95-1.81 0-2.09 1.41-2.09 2.86V21H10.5z" },
-  { label: "YouTube", href: "#", d: "M10 7l6 4-6 4zM21.8 6.2a3 3 0 0 0-2.1-2.1C17.8 3.5 12 3.5 12 3.5s-5.8 0-7.7.6a3 3 0 0 0-2.1 2.1C1.5 8.1 1.5 12 1.5 12s0 3.9.7 5.8a3 3 0 0 0 2.1 2.1c1.9.6 7.7.6 7.7.6s5.8 0 7.7-.6a3 3 0 0 0 2.1-2.1c.6-1.9.6-5.8.6-5.8s0-3.9-.6-5.8z" },
+import Container from "./Container";
+import EcoBubbleOneEye from "./EcoBubbleOneEye";
+
+const footerLinks = [
+  {
+    title: "Produto",
+    items: [
+      { label: "Benefícios", href: "#beneficios" },
+      { label: "Como funciona", href: "#como-funciona" },
+      { label: "Depoimentos", href: "#depoimentos" },
+    ],
+  },
+  {
+    title: "Empresa",
+    items: [
+      { label: "Sobre", href: "#" },
+      { label: "Carreiras", href: "#" },
+      { label: "Contato", href: "#" },
+    ],
+  },
 ];
 
-const columns = [
-  { title: "Produto", items: ["Versão beta", "Funcionalidades", "Roadmap", "Preços"] },
-  { title: "Suporte", items: ["Central de ajuda", "Contato", "Guia rápido", "Tutoriais"] },
-  { title: "Empresa", items: ["Sobre", "Blog", "Carreiras", "Imprensa"] },
+const socials = [
+  { label: "Instagram", href: "#", icon: <path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.6a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Zm6.2-7.8a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2Zm3.2 1.2c-.1-2-.6-3.4-1.4-4.2-.8-.8-2.2-1.3-4.2-1.4C13.8 2.5 10.2 2.5 7 2.6c-2 .1-3.4.6-4.2 1.4C2 4.8 1.5 6.2 1.4 8.2 1.3 10.4 1.3 13.6 1.4 16c.1 2 .6 3.4 1.4 4.2.8.8 2.2 1.3 4.2 1.4 2.2.1 5.8.1 9 0 2 0 3.4-.6 4.2-1.4.8-.8 1.3-2.2 1.4-4.2.1-2.4.1-5.6 0-7.8Z" /> },
+  { label: "LinkedIn", href: "#", icon: <path d="M4.6 8.6H8v12H4.6zm1.7-5.8a2 2 0 1 1 0 4.1 2 2 0 0 1 0-4.1ZM9.5 8.6H13v1.8h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.8v7.3h-3.4v-6.5c0-1.6 0-3.6-2.2-3.6-2.2 0-2.5 1.7-2.5 3.5v6.6H9.6Z" /> },
+  { label: "YouTube", href: "#", icon: <path d="M21.8 7.2a2.3 2.3 0 0 0-1.6-1.6C18.4 5 12 5 12 5s-6.4 0-8.2.6A2.3 2.3 0 0 0 2.2 7.2 37 37 0 0 0 1.6 12a37 37 0 0 0 .6 4.8 2.3 2.3 0 0 0 1.6 1.6C5.6 19 12 19 12 19s6.4 0 8.2-.6a2.3 2.3 0 0 0 1.6-1.6 37 37 0 0 0 .6-4.8 37 37 0 0 0-.6-4.8ZM10.2 15.1V8.9l5.2 3.1z" /> },
 ];
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative overflow-hidden border-t border-white/60 bg-[#F9FAFB] px-6 pb-12 pt-16">
-      {/* halo sutil */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 mx-auto h-40 max-w-5xl rounded-full bg-[radial-gradient(60%_80%_at_50%_0%,rgba(148,163,184,0.18),transparent_72%)]" />
-      </div>
-
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12">
-        {/* (REMOVIDO) chips utilitários do topo */}
-
-        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-          {/* Brand + descrição + sociais */}
-          <div className="max-w-md space-y-6">
+    <footer className="border-t border-surface-muted/60 bg-surface-soft/40 py-12" role="contentinfo">
+      <Container className="flex flex-col gap-10">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-sm space-y-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/60 bg-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.08)]">
-                <span className="text-[18px] font-semibold tracking-tight text-[#3B82F6]">E</span>
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-surface-muted/60 bg-white shadow-soft">
+                <EcoBubbleOneEye size={30} />
               </span>
-              <span className="text-2xl font-semibold tracking-tight text-[#111827]">eco</span>
+              <span className="text-xl font-semibold tracking-tight text-ink-base">ECO</span>
             </div>
-
-            <p className="text-sm leading-relaxed text-[#6B7280]">
-              Inteligência emocional que te devolve para dentro, com delicadeza e
-              clareza em cada conversa.
+            <p className="text-sm text-ink-soft">
+              Um espaço calmo para organizar emoções, preservar memórias com contexto e enxergar padrões com clareza.
             </p>
-
             <div className="flex items-center gap-3">
               {socials.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/60 bg-white/70 text-[#6B7280] shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition hover:text-[#111827] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-surface-muted/60 bg-white text-ink-soft transition-colors duration-150 hover:text-brand-blue"
                 >
-                  <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d={item.d} />
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    {item.icon}
                   </svg>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Colunas */}
-          <nav aria-label="Rodapé" className="flex-1">
-            <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
-              {columns.map((col) => (
-                <div key={col.title} className="space-y-3">
-                  <h3 className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
-                    {col.title}
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {col.items.map((item) => (
-                      <li key={item}>
-                        <a
-                          href="#"
-                          className="text-[14px] font-medium text-[#4B5563] transition hover:text-[#111827]"
-                        >
-                          {item}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </nav>
+          <div className="grid flex-1 gap-8 sm:grid-cols-2">
+            {footerLinks.map((column) => (
+              <div key={column.title} className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">
+                  {column.title}
+                </h3>
+                <ul className="space-y-2 text-sm text-ink-soft">
+                  {column.items.map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href} className="transition-colors duration-150 hover:text-ink-base">
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Barra inferior */}
-        <div className="flex flex-col items-start gap-4 border-t border-white/60 pt-6 text-[13px] text-[#6B7280] md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 border-t border-surface-muted/60 pt-6 text-xs text-ink-soft sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Eco. Todos os direitos reservados.</p>
           <div className="flex flex-wrap items-center gap-4">
-            {["Termos", "Privacidade", "Cookies"].map((item) => (
-              <a key={item} href="#" className="transition hover:text-[#111827]">
+            {["Privacidade", "Termos", "Cookies"].map((item) => (
+              <a key={item} href="#" className="transition-colors duration-150 hover:text-ink-base">
                 {item}
               </a>
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };
