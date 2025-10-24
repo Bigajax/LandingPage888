@@ -94,3 +94,9 @@ html {
     box-shadow: var(--shadow-soft-lg);
   }
 }
+
+/* Ajuste visual do selo "Autoconhecimento Guiado" no login */
+span:has(> div[aria-label="ECO em foco"]) {
+  background-color: #ffffff !important;
+  color: inherit;
+}
