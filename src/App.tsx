@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import HeroSection from "./sections/HeroSection";
 import MindMirrorSection from "./sections/MindMirrorSection";
 import HowItWorksSection from "./sections/HowItWorksSection";
+import MentoresStrip from "./sections/MentoresStrip";
 import Testimonials from "./sections/Testimonials";
 import FAQSection from "./sections/FAQSection";
 import CTASection from "./sections/CTASection";
@@ -39,6 +40,7 @@ const LandingPage: React.FC = () => (
       <HeroSection />
       <MindMirrorSection />
       <HowItWorksSection />
+      <MentoresStrip />
       <Testimonials />
       <FAQSection />
       <CTASection />
