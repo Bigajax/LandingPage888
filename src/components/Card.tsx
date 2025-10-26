@@ -9,7 +9,7 @@ const Card: React.FC<CardProps> = ({ as, className = "", children, ...props }) =
 
   return (
     <Component
-      className={`rounded-2xl border border-surface-muted/60 bg-white/90 p-6 sm:p-8 shadow-soft transition duration-200 ease-subtle ${className}`.trim()}
+      className={`rounded-[16px] border border-[var(--line)] bg-white p-6 sm:p-8 transition-all duration-150 ease-subtle hover:border-[rgba(0,0,0,0.1)] focus-within:border-[rgba(0,0,0,0.1)] focus-within:outline focus-within:outline-[rgba(0,122,255,0.25)] focus-within:outline-1 focus-within:outline-offset-2 ${className}`.trim()}
       {...props}
     >
       {children}

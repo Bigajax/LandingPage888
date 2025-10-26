@@ -1,30 +1,32 @@
 import React from "react";
-import { Compass, HeartPulse, PenTool, Sparkles } from "lucide-react";
 
 import Card from "../components/Card";
-import IconBadge from "../components/IconBadge";
 import Section from "../components/Section";
 
-const features = [
+const benefits = [
   {
-    title: "Mapas com significado",
-    description: "Conecte eventos, pessoas e emoções em linhas do tempo suaves que revelam padrões ao longo do dia.",
-    icon: <Compass className="h-5 w-5" strokeWidth={1.5} />,
+    title: "Memórias com contexto",
+    description: "Relacione cada registro a lugares, pessoas e nuances que importam para você.",
   },
   {
-    title: "Bússola emocional",
-    description: "Eco traduz o que você sente em insights acionáveis e envia lembretes gentis para check-ins conscientes.",
-    icon: <HeartPulse className="h-5 w-5" strokeWidth={1.5} />,
+    title: "Mapa emocional",
+    description: "Visualize o ritmo dos sentimentos em uma linha do tempo serena e fácil de navegar.",
   },
   {
-    title: "Reflexões curadas",
-    description: "Perguntas feitas sob medida, com linguagem acolhedora, para te guiar em poucos minutos ao núcleo da questão.",
-    icon: <PenTool className="h-5 w-5" strokeWidth={1.5} />,
+    title: "Reflexões sob medida",
+    description: "Receba perguntas delicadas que guiam sua atenção para o que precisa ser cuidado.",
   },
   {
-    title: "Integração suave",
-    description: "Traga memórias de fotos, voz ou texto. Tudo é organizado automaticamente no seu espelho privado.",
-    icon: <Sparkles className="h-5 w-5" strokeWidth={1.5} />,
+    title: "Respire com intenção",
+    description: "Pausas curtas com respirações guiadas para integrar aprendizados em minutos.",
+  },
+  {
+    title: "Sintonia com o corpo",
+    description: "Notas rápidas sobre sensações físicas ajudam a notar padrões sutis.",
+  },
+  {
+    title: "Exportação transparente",
+    description: "Baixe tudo o que registrou com um toque — seus dados sempre são seus.",
   },
 ];
 
@@ -32,17 +34,16 @@ const MindMirrorSection: React.FC = () => {
   return (
     <Section
       id="beneficios"
-      eyebrow="Espelho da mente"
-      title="Tudo o que você sente, organizado com delicadeza"
-      description="Cada card é pensado para reduzir ruído e ampliar foco. Visualize seu universo emocional em camadas claras e acessíveis."
+      eyebrow="Benefícios"
+      title="Tudo o que importa, sem ruído visual"
+      description="Cada card replica a delicadeza da tela de login: superfícies brancas, linhas finas e tipografia calma."
     >
-      <div className="grid gap-6 sm:grid-cols-2">
-        {features.map((feature) => (
-          <Card key={feature.title} className="h-full space-y-5 bg-white/80">
-            <IconBadge className="h-12 w-12 rounded-2xl">{feature.icon}</IconBadge>
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold text-ink-base">{feature.title}</h3>
-              <p className="text-sm text-ink-soft">{feature.description}</p>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {benefits.map((benefit) => (
+          <Card key={benefit.title} className="h-full">
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-eco-text">{benefit.title}</h3>
+              <p className="text-sm text-eco-subtle">{benefit.description}</p>
             </div>
           </Card>
         ))}

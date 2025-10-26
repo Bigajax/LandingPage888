@@ -5,30 +5,22 @@ export default {
     extend: {
       fontFamily: {
         sans: ['"SF Pro Text"', '"SF Pro Display"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"SF Pro Display"', '"SF Pro Text"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        brand: {
-          blue: '#007AFF',
-          navy: '#111827',
-        },
-        surface: {
-          base: '#FFFFFF',
-          subtle: '#F5F7FA',
-          muted: '#E5E7EB',
-        },
-        ink: {
-          base: '#111827',
-          soft: 'rgba(17, 24, 39, 0.7)',
+        eco: {
+          bg: '#FFFFFF',
+          line: 'rgba(0,0,0,0.06)',
+          muted: '#F5F6F8',
+          text: '#0F172A',
+          subtle: '#475569',
+          brand: '#007AFF',
         },
       },
       borderRadius: {
-        xl: '1rem',
-        '2xl': '1.5rem',
-        '3xl': '2rem',
-      },
-      boxShadow: {
-        soft: '0 20px 40px -24px rgba(17, 24, 39, 0.2)',
-        'soft-lg': '0 28px 60px -30px rgba(17, 24, 39, 0.22)',
+        eco: '0.75rem',
+        'eco-lg': '1rem',
+        'eco-xl': '1.5rem',
       },
       transitionTimingFunction: {
         subtle: 'cubic-bezier(0.4, 0, 0.2, 1)',

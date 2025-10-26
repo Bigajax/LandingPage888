@@ -8,26 +8,26 @@ const testimonials = [
     name: "Isabela Rocha",
     role: "Terapeuta integrativa",
     quote:
-      "Eco virou meu lugar de checagem diária. Em 5 minutos consigo mapear gatilhos dos pacientes e chego às sessões mais presente.",
-    color: "bg-gradient-to-br from-brand-blue/10 to-white",
+      "Eco virou meu lugar de checagem diária. Em poucos minutos noto padrões e chego às sessões mais presente.",
   },
   {
     name: "Thiago Mendes",
     role: "Fundador, Studio Soma",
-    quote:
-      "O app acalma só de abrir. O cuidado com tipografia e espaços me ajuda a focar na emoção, não na interface.",
-    color: "bg-gradient-to-br from-white to-surface-subtle/60",
+    quote: "O cuidado com espaçamento e tipografia me acalma. Posso focar na emoção, não na interface.",
   },
   {
     name: "Luna Carvalho",
     role: "Pesquisadora cognitiva",
-    quote:
-      "As timelines emocionais me mostraram ciclos que eu não via há anos. É como ter um diário sensorial guiado.",
-    color: "bg-gradient-to-br from-brand-blue/5 to-white",
+    quote: "As linhas do tempo emocionais me mostraram ciclos que eu não enxergava há anos.",
+  },
+  {
+    name: "Marina Lopes",
+    role: "Designer de produto",
+    quote: "Os cartões parecem o login: limpos e equilibrados. Dá vontade de registrar sentimentos todos os dias.",
   },
 ];
 
-const Avatar: React.FC<{ name: string; color: string }> = ({ name, color }) => {
+const Avatar: React.FC<{ name: string }> = ({ name }) => {
   const initials = name
     .split(" ")
     .map((part) => part[0])
@@ -36,7 +36,7 @@ const Avatar: React.FC<{ name: string; color: string }> = ({ name, color }) => {
     .toUpperCase();
 
   return (
-    <span className={`flex h-12 w-12 items-center justify-center rounded-full ${color} text-sm font-semibold text-brand-blue`}>
+    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-sm font-semibold text-eco-brand">
       {initials}
     </span>
   );
@@ -46,21 +46,21 @@ const Testimonials: React.FC = () => {
   return (
     <Section
       id="depoimentos"
-      eyebrow="Prova social"
-      title="Uma comunidade de mentes calmas"
-      description="Profissionais de saúde mental, criadores e pessoas que buscam autoconhecimento encontram em Eco um aliado leve."
+      eyebrow="Depoimentos"
+      title="Uma comunidade que respira com Eco"
+      description="Pessoas reais relatam como a experiência minimalista reduz ansiedade e traz foco emocional."
     >
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         {testimonials.map((testimonial) => (
-          <Card key={testimonial.name} className={`h-full space-y-6 bg-white/85 ${testimonial.color}`}>
-            <div className="flex items-center gap-4">
-              <Avatar name={testimonial.name} color="bg-white" />
+          <Card key={testimonial.name} className="h-full space-y-5">
+            <div className="flex items-center gap-3">
+              <Avatar name={testimonial.name} />
               <div>
-                <p className="font-semibold text-ink-base">{testimonial.name}</p>
-                <p className="text-sm text-ink-soft">{testimonial.role}</p>
+                <p className="font-semibold text-eco-text">{testimonial.name}</p>
+                <p className="text-sm text-eco-subtle">{testimonial.role}</p>
               </div>
             </div>
-            <p className="text-base text-ink-soft">“{testimonial.quote}”</p>
+            <p className="text-base text-eco-subtle">“{testimonial.quote}”</p>
           </Card>
         ))}
       </div>
