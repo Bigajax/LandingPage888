@@ -10,13 +10,14 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 // Sections
-import HeroSection from "./sections/HeroSection";
-import MindMirrorSection from "./sections/MindMirrorSection";
-import HowItWorksSection from "./sections/HowItWorksSection";
-import MentoresStrip from "./sections/MentoresStrip";
-import Testimonials from "./sections/Testimonials";
-import FAQSection from "./sections/FAQSection";
-import CTASection from "./sections/CTASection";
+import EcoHeroSection from "./sections/EcoHeroSection";
+import MultiPlatformSection from "./sections/MultiPlatformSection";
+import DesignScienceSection from "./sections/DesignScienceSection";
+import EvolutionMemoriesSection from "./sections/EvolutionMemoriesSection";
+import RespirationReflectionSection from "./sections/RespirationReflectionSection";
+import DataScienceSection from "./sections/DataScienceSection";
+import PrivacySection from "./sections/PrivacySection";
+import FinalCTASection from "./sections/FinalCTASection";
 
 // Pages
 import ReflexaoPage from "./pages/ReflexaoPage";
@@ -37,13 +38,14 @@ const LandingPage: React.FC = () => (
   <>
     <Header />
     <main id="content" className="min-h-screen bg-white">
-      <HeroSection />
-      <MindMirrorSection />
-      <HowItWorksSection />
-      <MentoresStrip />
-      <Testimonials />
-      <FAQSection />
-      <CTASection />
+      <EcoHeroSection />
+      <MultiPlatformSection />
+      <DesignScienceSection />
+      <EvolutionMemoriesSection />
+      <RespirationReflectionSection />
+      <DataScienceSection />
+      <PrivacySection />
+      <FinalCTASection />
     </main>
     <Footer />
   </>

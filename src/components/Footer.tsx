@@ -5,19 +5,19 @@ import EcoBubbleOneEye from "./EcoBubbleOneEye";
 
 const footerLinks = [
   {
-    title: "Produto",
+    title: "Experiência",
     items: [
-      { label: "Benefícios", href: "#beneficios" },
-      { label: "Como funciona", href: "#como-funciona" },
-      { label: "Depoimentos", href: "#depoimentos" },
+      { label: "Hero", href: "#experiencia" },
+      { label: "Plataformas", href: "#multiplataforma" },
+      { label: "Design", href: "#design" },
     ],
   },
   {
-    title: "Empresa",
+    title: "Profundidade",
     items: [
-      { label: "Sobre", href: "#" },
-      { label: "Carreiras", href: "#" },
-      { label: "Contato", href: "#" },
+      { label: "Memórias", href: "#memorias" },
+      { label: "Respirar", href: "#respirar" },
+      { label: "Dados", href: "#dados" },
     ],
   },
 ];
