@@ -10,21 +10,21 @@ const CTASection: React.FC = () => {
       id="comecar"
       align="center"
       className="py-20"
-      eyebrow="Comece agora"
-      title="Prepare-se para um cotidiano emocional mais leve"
-      description="Junte-se ao beta fechado e receba convites exclusivos, templates de reflexão e trilhas de respiração guiada."
+      eyebrow="Convite"
+      title="Pronta para te ouvir quando você estiver pronta para sentir"
+      description="Comece uma sessão com a Eco agora mesmo e descubra como a clareza emocional muda a forma como você vive."
     >
       <div className="mx-auto max-w-3xl">
-        <Card className="flex flex-col items-center gap-6 bg-white/90 text-center shadow-soft-lg">
-          <p className="text-base text-ink-soft">
-            Leva menos de 3 minutos para criar sua conta. Você pode exportar todos os dados sempre que quiser.
+        <Card className="flex flex-col items-center gap-6 bg-white/95 text-center shadow-soft-lg">
+          <p className="text-base text-ink-soft sm:text-lg">
+            Gratuito para usar. Melhor com Premium.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button className="px-8 py-3" aria-label="Experimentar agora">
-              Experimentar agora
+            <Button className="px-8 py-3" aria-label="Começar agora">
+              Começar agora
             </Button>
             <Button variant="secondary" className="px-8 py-3">
-              Agendar demonstração
+              Conhecer planos
             </Button>
           </div>
         </Card>
