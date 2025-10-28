@@ -11,11 +11,13 @@ import Footer from "./components/Footer";
 
 // Sections
 import HeroSection from "./sections/HeroSection";
-import MindMirrorSection from "./sections/MindMirrorSection";
-import HowItWorksSection from "./sections/HowItWorksSection";
-import MentoresStrip from "./sections/MentoresStrip";
-import Testimonials from "./sections/Testimonials";
-import FAQSection from "./sections/FAQSection";
+import StorytellingSection from "./sections/StorytellingSection";
+import ExperienceSection from "./sections/ExperienceSection";
+import MethodSection from "./sections/MethodSection";
+import ReflectionSection from "./sections/ReflectionSection";
+import TrustSection from "./sections/TrustSection";
+import ReturnSection from "./sections/ReturnSection";
+import MicrocopySection from "./sections/MicrocopySection";
 import CTASection from "./sections/CTASection";
 
 // Pages
@@ -38,11 +40,13 @@ const LandingPage: React.FC = () => (
     <Header />
     <main id="content" className="min-h-screen bg-white">
       <HeroSection />
-      <MindMirrorSection />
-      <HowItWorksSection />
-      <MentoresStrip />
-      <Testimonials />
-      <FAQSection />
+      <StorytellingSection />
+      <ExperienceSection />
+      <MethodSection />
+      <ReflectionSection />
+      <TrustSection />
+      <ReturnSection />
+      <MicrocopySection />
       <CTASection />
     </main>
     <Footer />
