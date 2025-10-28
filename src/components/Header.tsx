@@ -7,10 +7,13 @@ import Container from "./Container";
 import EcoBubbleOneEye from "./EcoBubbleOneEye";
 
 const NAV_LINKS = [
-  { label: "Benefícios", href: "#beneficios" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Experiência", href: "#experiencia" },
+  { label: "Plataformas", href: "#multiplataforma" },
+  { label: "Design", href: "#design" },
+  { label: "Memórias", href: "#memorias" },
+  { label: "Respirar", href: "#respirar" },
+  { label: "Dados", href: "#dados" },
+  { label: "Privacidade", href: "#privacidade" },
   { label: "Começar", href: "#comecar" },
 ];
 
