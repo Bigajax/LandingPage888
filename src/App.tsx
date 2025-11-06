@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react"; // 👈 importa aqui
 // ⚠️ side-effect: registra os Code Components (crie src/plasmic-register.tsx)
 import "./plasmic-register";
 
-import Header from "./components/Header";
+import SoftHeader from "./components/SoftHeader";
 import Footer from "./components/Footer";
 
 // Sections
@@ -20,6 +20,7 @@ import CTASection from "./sections/CTASection";
 
 // Pages
 import ReflexaoPage from "./pages/ReflexaoPage";
+import LoginPage from "./pages/LoginPage";
 
 // Plasmic preview + host
 import PlasmicPage from "./PlasmicPage";
@@ -35,8 +36,8 @@ function ScrollToTop() {
 
 const LandingPage: React.FC = () => (
   <>
-    <Header />
-    <main id="content" className="min-h-screen bg-white">
+    <SoftHeader />
+    <main id="content" className="min-h-screen bg-eco-bg">
       <HeroSection />
       <MindMirrorSection />
       <HowItWorksSection />
@@ -56,6 +57,7 @@ const App: React.FC = () => {
       <Suspense fallback={<div className="p-8 text-center text-zinc-500">Carregando…</div>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/reflexao" element={<ReflexaoPage />} />
           <Route path="/plasmic" element={<PlasmicPage />} />
           <Route path="/plasmic-host" element={<PlasmicHost />} />
