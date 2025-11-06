@@ -7,18 +7,21 @@ import Section from "../components/Section";
 
 const steps = [
   {
-    title: "1. Descarregue o que sente",
-    description: "Grave voz, escreva ou faça upload de fotos. Eco reconhece emoções automaticamente, sem julgamento.",
+    number: "1",
+    title: "Descarregue o que sente",
+    description: "Fale, escreva ou grave; a Eco escuta sem julgar.",
     icon: <MessageCircle className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
-    title: "2. Veja o espelho",
-    description: "O algoritmo organiza lembranças em mapas calmos com cores que respeitam sua experiência.",
+    number: "2",
+    title: "Veja o espelho",
+    description: "Memórias e padrões se revelam em mapas claros.",
     icon: <NotebookPen className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
-    title: "3. Integre no seu ritmo",
-    description: "Receba convites suaves para pausar, respirar e integrar aprendizados sem notificações invasivas.",
+    number: "3",
+    title: "Integre no seu ritmo",
+    description: "Reflita, respire e siga leve.",
     icon: <Clock className="h-5 w-5" strokeWidth={1.5} />,
   },
 ];
@@ -27,17 +30,27 @@ const HowItWorksSection: React.FC = () => {
   return (
     <Section
       id="como-funciona"
-      eyebrow="Como funciona"
-      title="Três passos para clareza emocional"
-      description="Eco cria um ciclo de reflexão rápido e acolhedor — inspirado em terapias somáticas, com a suavidade do design Apple."
+      eyebrow="🧭 Como funciona"
+      title="Três passos para clareza que fica."
+      description="Um ciclo leve de reflexão inspirado na filosofia e no design calmo."
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {steps.map((step) => (
-          <Card key={step.title} className="h-full space-y-5 bg-white/85">
-            <IconBadge className="h-12 w-12 rounded-2xl">{step.icon}</IconBadge>
+          <Card
+            key={step.title}
+            className="h-full space-y-5 border-eco-border/40 bg-white/70 shadow-eco-soft transition-all duration-300 hover:shadow-eco-medium"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-eco-babyBlue/20 text-lg font-light text-eco-babyBlue">
+                {step.number}
+              </div>
+              <IconBadge className="h-10 w-10 rounded-xl bg-eco-babySoft/20 text-eco-babyBlue">
+                {step.icon}
+              </IconBadge>
+            </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-ink-base">{step.title}</h3>
-              <p className="text-sm text-ink-soft">{step.description}</p>
+              <h3 className="text-lg font-normal text-eco-text">{step.title}</h3>
+              <p className="text-sm font-light leading-relaxed text-eco-textSoft">{step.description}</p>
             </div>
           </Card>
         ))}

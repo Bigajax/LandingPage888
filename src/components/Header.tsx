@@ -9,9 +9,8 @@ import EcoBubbleOneEye from "./EcoBubbleOneEye";
 const NAV_LINKS = [
   { label: "Benefícios", href: "#beneficios" },
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Filosofia", href: "#filosofia" },
   { label: "FAQ", href: "#faq" },
-  { label: "Começar", href: "#comecar" },
 ];
 
 const Header: React.FC = () => {
@@ -31,8 +30,8 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   const headerBg = isScrolled
-    ? "bg-white/85 backdrop-blur-lg shadow-[0_20px_40px_-28px_rgba(17,24,39,0.25)] border border-surface-muted/60"
-    : "bg-white/60 backdrop-blur-md border border-transparent";
+    ? "bg-white/60 backdrop-blur-lg shadow-eco-soft border border-eco-border/40"
+    : "bg-white/50 backdrop-blur border border-transparent";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50" role="banner">
@@ -44,20 +43,20 @@ const Header: React.FC = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="flex items-center gap-2 font-semibold tracking-tight text-ink-base"
+                className="flex items-center gap-2 font-light tracking-tight text-eco-text transition-all duration-300 hover:opacity-80"
                 aria-label="Eco, voltar ao início"
               >
-                <EcoBubbleOneEye size={28} />
-                <span className="text-lg sm:text-xl">ECO</span>
+                <EcoBubbleOneEye size={26} />
+                <span className="text-lg font-light sm:text-xl">ECO</span>
               </Link>
             </div>
 
-            <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft md:flex" aria-label="Navegação principal">
+            <nav className="hidden items-center gap-8 text-sm font-normal text-eco-textSoft md:flex" aria-label="Navegação principal">
               {NAV_LINKS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="transition-colors duration-150 hover:text-ink-base focus-visible:text-ink-base"
+                  className="transition-all duration-300 hover:text-eco-text focus-visible:text-eco-text"
                 >
                   {item.label}
                 </a>
@@ -66,7 +65,10 @@ const Header: React.FC = () => {
 
             <div className="hidden md:flex">
               <a href="#comecar" className="inline-flex">
-                <Button aria-label="Experimentar agora" className="px-5 py-2.5">
+                <Button
+                  aria-label="Experimentar agora"
+                  className="bg-eco-babyBlue px-5 py-2.5 text-white transition-all duration-300 hover:scale-102 hover:bg-eco-babySoft hover:shadow-eco-soft"
+                >
                   Experimentar agora
                 </Button>
               </a>
@@ -74,7 +76,7 @@ const Header: React.FC = () => {
 
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-surface-muted/60 text-ink-soft transition-colors duration-150 hover:text-ink-base md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-eco-border/60 text-eco-textSoft transition-all duration-300 hover:text-eco-text md:hidden"
               onClick={() => setIsOpen((open) => !open)}
               aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={isOpen}
@@ -84,13 +86,13 @@ const Header: React.FC = () => {
           </div>
 
           {isOpen && (
-            <div className="mt-3 rounded-3xl border border-surface-muted/60 bg-white/95 p-6 shadow-soft md:hidden" role="dialog">
-              <nav className="space-y-4 text-base text-ink-soft">
+            <div className="mt-3 rounded-3xl border border-eco-border/60 bg-white/95 p-6 shadow-eco-soft md:hidden" role="dialog">
+              <nav className="space-y-4 text-base text-eco-textSoft">
                 {NAV_LINKS.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="block rounded-xl px-2 py-2 transition-colors duration-150 hover:text-ink-base"
+                    className="block rounded-xl px-2 py-2 transition-all duration-300 hover:text-eco-text"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -98,7 +100,10 @@ const Header: React.FC = () => {
                 ))}
               </nav>
               <a href="#comecar" className="mt-6 block">
-                <Button fullWidth className="py-3">
+                <Button
+                  fullWidth
+                  className="bg-eco-babyBlue py-3 text-white transition-all duration-300 hover:bg-eco-babySoft hover:shadow-eco-soft"
+                >
                   Experimentar agora
                 </Button>
               </a>
