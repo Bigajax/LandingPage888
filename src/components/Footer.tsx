@@ -9,7 +9,7 @@ const footerLinks = [
     items: [
       { label: "Benefícios", href: "#beneficios" },
       { label: "Como funciona", href: "#como-funciona" },
-      { label: "Depoimentos", href: "#depoimentos" },
+      { label: "Filosofia", href: "#filosofia" },
     ],
   },
   {
@@ -17,7 +17,23 @@ const footerLinks = [
     items: [
       { label: "Sobre", href: "#" },
       { label: "Carreiras", href: "#" },
-      { label: "Contato", href: "#" },
+      { label: "Blog", href: "#" },
+    ],
+  },
+  {
+    title: "Suporte",
+    items: [
+      { label: "FAQ", href: "#faq" },
+      { label: "Documentação", href: "#" },
+      { label: "Status", href: "#" },
+    ],
+  },
+  {
+    title: "Contato",
+    items: [
+      { label: "Email", href: "mailto:contato@eco.app" },
+      { label: "Twitter", href: "#" },
+      { label: "Instagram", href: "#" },
     ],
   },
 ];
@@ -30,17 +46,17 @@ const socials = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-surface-muted/60 bg-surface-soft/40 py-12" role="contentinfo">
+    <footer className="border-t border-white/10 bg-eco-softBlack py-16" role="contentinfo">
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm space-y-6">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-surface-muted/60 bg-white shadow-soft">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
                 <EcoBubbleOneEye size={30} />
               </span>
-              <span className="text-xl font-semibold tracking-tight text-ink-base">ECO</span>
+              <span className="text-xl font-light tracking-tight text-eco-warmGray">ECO</span>
             </div>
-            <p className="text-sm text-ink-soft">
+            <p className="text-sm font-light leading-relaxed text-white/60">
               Um espaço calmo para organizar emoções, preservar memórias com contexto e enxergar padrões com clareza.
             </p>
             <div className="flex items-center gap-3">
@@ -49,7 +65,7 @@ const Footer: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-surface-muted/60 bg-white text-ink-soft transition-colors duration-150 hover:text-brand-blue"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/60 transition-all duration-300 hover:border-eco-babyBlue/40 hover:bg-eco-babyBlue/10 hover:text-eco-babyBlue"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     {item.icon}
@@ -59,16 +75,16 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid flex-1 gap-8 sm:grid-cols-2">
+          <div className="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {footerLinks.map((column) => (
               <div key={column.title} className="space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft">
+                <h3 className="text-xs font-normal uppercase tracking-[0.18em] text-white/40">
                   {column.title}
                 </h3>
-                <ul className="space-y-2 text-sm text-ink-soft">
+                <ul className="space-y-2 text-sm font-light text-white/60">
                   {column.items.map((item) => (
                     <li key={item.label}>
-                      <a href={item.href} className="transition-colors duration-150 hover:text-ink-base">
+                      <a href={item.href} className="transition-all duration-300 hover:text-eco-warmGray">
                         {item.label}
                       </a>
                     </li>
@@ -79,11 +95,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-surface-muted/60 pt-6 text-xs text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-white/10 pt-6 text-xs font-light text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Eco. Todos os direitos reservados.</p>
           <div className="flex flex-wrap items-center gap-4">
             {["Privacidade", "Termos", "Cookies"].map((item) => (
-              <a key={item} href="#" className="transition-colors duration-150 hover:text-ink-base">
+              <a key={item} href="#" className="transition-all duration-300 hover:text-eco-warmGray">
                 {item}
               </a>
             ))}

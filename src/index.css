@@ -3,17 +3,38 @@
 @tailwind utilities;
 
 :root {
+  /* ECO Soft Minimal v2 Tokens */
+  --eco-baby-blue: #6EC8FF;
+  --eco-baby-soft: #A0DCFF;
+  --eco-off-white: #FAF9F7;
+  --eco-text: #38322A;
+  --eco-text-soft: rgba(56, 50, 42, 0.7);
+  --eco-earth: #A7846C;
+  --eco-soft-black: #0B0B0B;
+  --eco-border: #E8E3DD;
+  --eco-warm-gray: #F3EEE7;
+
+  /* Original tokens (maintained for backward compatibility) */
   --color-surface: #ffffff;
   --color-surface-soft: #f5f7fa;
   --color-surface-muted: #e5e7eb;
   --color-ink: #111827;
   --color-ink-soft: rgba(17, 24, 39, 0.7);
   --color-brand: #007aff;
+
+  /* Shadows */
   --shadow-soft: 0 20px 40px -24px rgba(17, 24, 39, 0.2);
   --shadow-soft-lg: 0 28px 60px -30px rgba(17, 24, 39, 0.22);
+  --shadow-eco-soft: 0 4px 16px -4px rgba(56, 50, 42, 0.08);
+  --shadow-eco-medium: 0 8px 24px -6px rgba(56, 50, 42, 0.12);
+
+  /* Border radius */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
+
+  /* Transitions */
   --transition-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration-eco: 300ms;
 }
 
 html {
@@ -46,8 +67,8 @@ html {
   body {
     font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
       "Inter", "Segoe UI", sans-serif;
-    color: var(--color-ink);
-    background-color: var(--color-surface);
+    color: var(--eco-text);
+    background-color: var(--eco-off-white);
     line-height: 1.6;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -65,9 +86,9 @@ html {
   }
 
   a {
-    color: var(--color-brand);
+    color: var(--eco-baby-blue);
     text-decoration: none;
-    transition: color 180ms var(--transition-soft);
+    transition: color var(--transition-duration-eco) var(--transition-soft);
   }
 
   a:hover,
@@ -76,7 +97,7 @@ html {
   }
 
   :focus-visible {
-    outline: 2px solid rgba(0, 122, 255, 0.9);
+    outline: 2px solid var(--eco-baby-blue);
     outline-offset: 3px;
   }
 
@@ -92,5 +113,13 @@ html {
 
   .shadow-soft-lg {
     box-shadow: var(--shadow-soft-lg);
+  }
+
+  .shadow-eco-soft {
+    box-shadow: var(--shadow-eco-soft);
+  }
+
+  .shadow-eco-medium {
+    box-shadow: var(--shadow-eco-medium);
   }
 }

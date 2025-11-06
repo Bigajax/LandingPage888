@@ -8,6 +8,7 @@ import "./plasmic-register";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AnnouncementBar from "./components/AnnouncementBar";
 
 // Sections
 import HeroSection from "./sections/HeroSection";
@@ -36,7 +37,8 @@ function ScrollToTop() {
 const LandingPage: React.FC = () => (
   <>
     <Header />
-    <main id="content" className="min-h-screen bg-white">
+    <AnnouncementBar />
+    <main id="content" className="min-h-screen bg-eco-offWhite">
       <HeroSection />
       <MindMirrorSection />
       <HowItWorksSection />

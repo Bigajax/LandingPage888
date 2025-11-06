@@ -8,22 +8,22 @@ import Section from "../components/Section";
 const features = [
   {
     title: "Mapas com significado",
-    description: "Conecte eventos, pessoas e emoções em linhas do tempo suaves que revelam padrões ao longo do dia.",
+    description: "Eventos e emoções conectados em linhas calmas.",
     icon: <Compass className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
     title: "Bússola emocional",
-    description: "Eco traduz o que você sente em insights acionáveis e envia lembretes gentis para check-ins conscientes.",
+    description: "Insights práticos para check-ins conscientes.",
     icon: <HeartPulse className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
     title: "Reflexões curadas",
-    description: "Perguntas feitas sob medida, com linguagem acolhedora, para te guiar em poucos minutos ao núcleo da questão.",
+    description: "Perguntas sob medida para o momento.",
     icon: <PenTool className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
     title: "Integração suave",
-    description: "Traga memórias de fotos, voz ou texto. Tudo é organizado automaticamente no seu espelho privado.",
+    description: "Voz, texto ou imagem. Tudo se organiza sem esforço.",
     icon: <Sparkles className="h-5 w-5" strokeWidth={1.5} />,
   },
 ];
@@ -32,17 +32,22 @@ const MindMirrorSection: React.FC = () => {
   return (
     <Section
       id="beneficios"
-      eyebrow="Espelho da mente"
-      title="Tudo o que você sente, organizado com delicadeza"
-      description="Cada card é pensado para reduzir ruído e ampliar foco. Visualize seu universo emocional em camadas claras e acessíveis."
+      eyebrow="🌸 Espelho da Mente"
+      title="Tudo o que você sente, em ordem e sem pressa."
+      description="A Eco transforma emoções em estrutura, sem perder o toque humano. Cada card é um reflexo do seu universo interno."
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {features.map((feature) => (
-          <Card key={feature.title} className="h-full space-y-5 bg-white/80">
-            <IconBadge className="h-12 w-12 rounded-2xl">{feature.icon}</IconBadge>
+          <Card
+            key={feature.title}
+            className="h-full space-y-5 border-eco-border/40 bg-white/70 shadow-eco-soft transition-all duration-300 hover:shadow-eco-medium"
+          >
+            <IconBadge className="h-12 w-12 rounded-2xl bg-eco-babySoft/20 text-eco-babyBlue">
+              {feature.icon}
+            </IconBadge>
             <div className="space-y-2">
-              <h3 className="text-xl font-semibold text-ink-base">{feature.title}</h3>
-              <p className="text-sm text-ink-soft">{feature.description}</p>
+              <h3 className="text-xl font-normal text-eco-text">{feature.title}</h3>
+              <p className="text-sm font-light leading-relaxed text-eco-textSoft">{feature.description}</p>
             </div>
           </Card>
         ))}
