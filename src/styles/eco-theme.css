@@ -21,6 +21,8 @@
   --eco-clay: #A7846C;         /* Argila - elementos interativos */
   --eco-clay-light: #C9A88A;   /* Argila clara - hover states */
   --eco-gold: #D4C5B0;         /* Dourado pálido - destaques sutis */
+  --eco-baby-blue: #A7D8DE;    /* Azul bebê - botões primários */
+  --eco-baby-blue-light: #C2E7ED; /* Azul bebê claro - hover states */
 
   /* Texto */
   --eco-ink: #38322A;          /* Carvão natural - texto principal */
@@ -145,6 +147,27 @@
 
   .gradient-eco-hover {
     background: linear-gradient(135deg, var(--eco-clay-light) 0%, var(--eco-gold) 100%);
+  }
+
+  /* Gradiente azul bebê (botões primários) */
+  .gradient-baby-blue {
+    background: linear-gradient(135deg, var(--eco-baby-blue) 0%, var(--eco-baby-blue-light) 100%);
+  }
+
+  .gradient-baby-blue-hover {
+    background: linear-gradient(135deg, var(--eco-baby-blue-light) 0%, #D8F0F4 100%);
+  }
+
+  /* Botão azul bebê (classe completa) */
+  .btn-baby-blue {
+    background: linear-gradient(135deg, var(--eco-baby-blue) 0%, var(--eco-baby-blue-light) 100%);
+    transition: all var(--duration-base) var(--ease-calm);
+  }
+
+  .btn-baby-blue:hover {
+    background: linear-gradient(135deg, var(--eco-baby-blue-light) 0%, #D8F0F4 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft-hover);
   }
 
   /* Texto orgânico */

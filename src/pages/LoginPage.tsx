@@ -114,7 +114,7 @@ const LoginPage: React.FC = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full gradient-eco px-6 py-3.5 rounded-pill text-white font-medium shadow-eco-soft hover-lift transition-all duration-300 ease-calm focus-eco"
+              className="w-full btn-baby-blue px-6 py-3.5 rounded-pill text-white font-medium shadow-eco-soft focus-eco"
             >
               Entrar
             </button>

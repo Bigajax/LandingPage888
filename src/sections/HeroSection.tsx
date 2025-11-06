@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
 
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <a href="#comecar" className="inline-flex focus-eco">
-                <button className="gradient-eco px-8 py-3.5 rounded-pill text-white font-medium shadow-eco-soft hover-lift transition-all duration-300 ease-calm" aria-label="Experimentar agora">
+                <button className="btn-baby-blue px-8 py-3.5 rounded-pill text-white font-medium shadow-eco-soft" aria-label="Experimentar agora">
                   Experimentar agora
                 </button>
               </a>

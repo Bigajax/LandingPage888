@@ -69,7 +69,7 @@ const SoftHeader: React.FC = () => {
             <div className="hidden md:flex">
               <a href="#comecar" className="inline-flex focus-eco">
                 <button
-                  className="gradient-eco px-6 py-2.5 rounded-pill text-white font-medium text-sm shadow-eco-soft hover-lift hover:gradient-eco-hover transition-all duration-300 ease-calm focus-eco"
+                  className="btn-baby-blue px-6 py-2.5 rounded-pill text-white font-medium text-sm shadow-eco-soft focus-eco"
                   aria-label="Experimentar agora"
                 >
                   Experimentar agora
@@ -108,7 +108,7 @@ const SoftHeader: React.FC = () => {
                 ))}
               </nav>
               <a href="#comecar" className="mt-6 block">
-                <button className="w-full gradient-eco px-6 py-3.5 rounded-pill text-white font-medium shadow-eco-soft hover-lift transition-all duration-300 ease-calm focus-eco">
+                <button className="w-full btn-baby-blue px-6 py-3.5 rounded-pill text-white font-medium shadow-eco-soft focus-eco">
                   Experimentar agora
                 </button>
               </a>

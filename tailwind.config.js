@@ -30,6 +30,8 @@ export default {
           clay: '#A7846C',         // Argila
           'clay-light': '#C9A88A', // Argila clara
           gold: '#D4C5B0',         // Dourado pálido
+          'baby-blue': '#A7D8DE',  // Azul bebê - botões primários
+          'baby-blue-light': '#C2E7ED', // Azul bebê claro - hover
           ink: '#38322A',          // Carvão natural
           'ink-soft': 'rgba(56, 50, 42, 0.7)',
           'ink-subtle': 'rgba(56, 50, 42, 0.5)',
