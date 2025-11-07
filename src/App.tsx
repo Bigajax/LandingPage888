@@ -11,9 +11,11 @@ import Footer from "./components/Footer";
 
 // Sections
 import HeroSection from "./sections/HeroSection";
-import MindMirrorSection from "./sections/MindMirrorSection";
+import MomentsSection from "./sections/MomentsSection";
+import BenefitsSection from "./sections/BenefitsSection";
 import HowItWorksSection from "./sections/HowItWorksSection";
-import MentoresStrip from "./sections/MentoresStrip";
+import WhyAISection from "./sections/WhyAISection";
+import PricingSection from "./sections/PricingSection";
 import Testimonials from "./sections/Testimonials";
 import FAQSection from "./sections/FAQSection";
 import CTASection from "./sections/CTASection";
@@ -38,9 +40,11 @@ const LandingPage: React.FC = () => (
     <Header />
     <main id="content" className="min-h-screen bg-white">
       <HeroSection />
-      <MindMirrorSection />
+      <MomentsSection />
+      <BenefitsSection />
       <HowItWorksSection />
-      <MentoresStrip />
+      <WhyAISection />
+      <PricingSection />
       <Testimonials />
       <FAQSection />
       <CTASection />

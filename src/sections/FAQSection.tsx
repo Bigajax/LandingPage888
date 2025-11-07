@@ -5,24 +5,24 @@ import Section from "../components/Section";
 
 const faqs = [
   {
-    question: "Como Eco cuida da minha privacidade?",
+    question: "A Eco substitui terapia?",
     answer:
-      "Todo o conteúdo é criptografado de ponta a ponta e processado localmente sempre que possível. Só você tem acesso às suas memórias.",
+      "Não. A Eco complementa processos terapêuticos ajudando você a registrar emoções entre as sessões e chegar com mais clareza ao encontro humano.",
   },
   {
-    question: "Quanto custa depois do período de testes?",
+    question: "Minhas memórias são privadas?",
     answer:
-      "Durante o beta aberto, Eco é gratuito. Após o lançamento, haverá planos mensais com cancelamento instantâneo e descontos anuais.",
+      "Sim. Todo conteúdo é criptografado e você decide quando exportar ou apagar registros. Nada é usado para treinar modelos externos.",
   },
   {
-    question: "Como começo a usar?",
+    question: "Ela aprende sobre mim com o tempo?",
     answer:
-      "Clique em 'Experimentar agora', crie sua conta com e-mail ou Apple ID e complete o onboarding guiado de 3 minutos.",
+      "Aprende apenas com o que você escolhe compartilhar. Assim, devolve perguntas e insights cada vez mais alinhados ao seu contexto emocional.",
   },
   {
-    question: "Posso cancelar quando quiser?",
+    question: "O que é um relatório emocional?",
     answer:
-      "Sim. Você pode cancelar a assinatura dentro do app, sem ligações ou questionários. O acesso permanece até o final do ciclo vigente.",
+      "Um painel que traduz suas conversas em mapas de intensidade, temas recorrentes e evolução ao longo das semanas.",
   },
 ];
 
@@ -36,9 +36,9 @@ const FAQSection: React.FC = () => {
   return (
     <Section
       id="faq"
-      eyebrow="Perguntas rápidas"
-      title="Respostas objetivas, sem rodeios"
-      description="Ficou com alguma dúvida? Estamos construindo junto com a comunidade e queremos transparência total."
+      eyebrow="FAQ"
+      title="Entendendo a Eco"
+      description="Perguntas essenciais sobre privacidade, funcionamento e integração com a sua jornada emocional."
     >
       <div className="divide-y divide-surface-muted/60 rounded-3xl border border-surface-muted/60 bg-white/80 shadow-soft">
         {faqs.map((faq, index) => {

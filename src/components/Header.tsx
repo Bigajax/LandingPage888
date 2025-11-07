@@ -7,11 +7,12 @@ import Container from "./Container";
 import EcoBubbleOneEye from "./EcoBubbleOneEye";
 
 const NAV_LINKS = [
-  { label: "Benefícios", href: "#beneficios" },
+  { label: "Início", href: "#inicio" },
   { label: "Como funciona", href: "#como-funciona" },
+  { label: "Momentos", href: "#momentos" },
+  { label: "Planos", href: "#planos" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "FAQ", href: "#faq" },
-  { label: "Começar", href: "#comecar" },
 ];
 
 const Header: React.FC = () => {
@@ -64,10 +65,16 @@ const Header: React.FC = () => {
               ))}
             </nav>
 
-            <div className="hidden md:flex">
+            <div className="hidden items-center gap-3 md:flex">
+              <a
+                href="/reflexao"
+                className="text-sm font-medium text-ink-soft transition-colors duration-150 hover:text-ink-base"
+              >
+                Entrar
+              </a>
               <a href="#comecar" className="inline-flex">
-                <Button aria-label="Experimentar agora" className="px-5 py-2.5">
-                  Experimentar agora
+                <Button aria-label="Fazer minha primeira reflexão" className="px-5 py-2.5">
+                  Fazer minha primeira reflexão
                 </Button>
               </a>
             </div>
@@ -96,10 +103,17 @@ const Header: React.FC = () => {
                     {item.label}
                   </a>
                 ))}
+                <a
+                  href="/reflexao"
+                  className="block rounded-xl px-2 py-2 transition-colors duration-150 hover:text-ink-base"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Entrar
+                </a>
               </nav>
               <a href="#comecar" className="mt-6 block">
                 <Button fullWidth className="py-3">
-                  Experimentar agora
+                  Fazer minha primeira reflexão
                 </Button>
               </a>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, MessageCircle, NotebookPen } from "lucide-react";
+import { MessageCircle, ScanFace, Sparkles } from "lucide-react";
 
 import Card from "../components/Card";
 import IconBadge from "../components/IconBadge";
@@ -7,19 +7,19 @@ import Section from "../components/Section";
 
 const steps = [
   {
-    title: "1. Descarregue o que sente",
-    description: "Grave voz, escreva ou faça upload de fotos. Eco reconhece emoções automaticamente, sem julgamento.",
+    title: "1️⃣ Você fala",
+    description: "Por texto ou voz, descarregue o que está sentindo. Nenhum detalhe é pequeno demais.",
     icon: <MessageCircle className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
-    title: "2. Veja o espelho",
-    description: "O algoritmo organiza lembranças em mapas calmos com cores que respeitam sua experiência.",
-    icon: <NotebookPen className="h-5 w-5" strokeWidth={1.5} />,
+    title: "2️⃣ A Eco reflete",
+    description: "Ela identifica emoções, padrões e significados sutis, devolvendo perguntas que expandem sua percepção.",
+    icon: <ScanFace className="h-5 w-5" strokeWidth={1.5} />,
   },
   {
-    title: "3. Integre no seu ritmo",
-    description: "Receba convites suaves para pausar, respirar e integrar aprendizados sem notificações invasivas.",
-    icon: <Clock className="h-5 w-5" strokeWidth={1.5} />,
+    title: "3️⃣ Você entende",
+    description: "O que era ruído vira insight e próximos passos. Tudo armazenado com contexto e sensibilidade.",
+    icon: <Sparkles className="h-5 w-5" strokeWidth={1.5} />,
   },
 ];
 
@@ -27,9 +27,9 @@ const HowItWorksSection: React.FC = () => {
   return (
     <Section
       id="como-funciona"
-      eyebrow="Como funciona"
-      title="Três passos para clareza emocional"
-      description="Eco cria um ciclo de reflexão rápido e acolhedor — inspirado em terapias somáticas, com a suavidade do design Apple."
+      eyebrow="O Fluxo"
+      title="Como a Eco transforma emoções em clareza"
+      description="Em três movimentos, a experiência vai da descarga emocional até a integração consciente."
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {steps.map((step) => (
