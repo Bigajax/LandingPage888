@@ -24,11 +24,11 @@ const WhyAISection: React.FC = () => {
       eyebrow="Elefante na sala"
       title="Por que uma IA, e não um humano?"
       description="Porque clareza emocional precisa estar disponível no exato momento em que a emoção acontece."
-      className="bg-surface-soft/40"
+      className="bg-[rgba(243,238,231,0.55)]"
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {reasons.map((reason) => (
-          <Card key={reason.title} className="h-full space-y-3 bg-white/90">
+          <Card key={reason.title} className="h-full space-y-3">
             <h3 className="text-lg font-semibold text-ink-base">{reason.title}</h3>
             <p className="text-sm text-ink-soft">{reason.description}</p>
           </Card>

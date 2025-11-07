@@ -55,7 +55,7 @@ const BenefitsSection: React.FC = () => {
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map((benefit) => (
-          <Card key={benefit.title} className="h-full space-y-4 bg-white/85">
+          <Card key={benefit.title} className="h-full space-y-4">
             <span className="text-3xl" aria-hidden>
               {benefit.icon}
             </span>

@@ -9,13 +9,13 @@ const CTASection: React.FC = () => {
     <Section
       id="comecar"
       align="center"
-      className="py-20"
+      className="bg-[radial-gradient(circle_at_top,#f3eee7,rgba(250,249,247,0.65))] py-20"
       eyebrow="O começo de dentro"
       title="O ponto de partida é dentro."
-      description="Faça sua primeira reflexão agora — leva menos de 2 minutos. Sem conta. Sem login. Só você e o espelho."
+      description="Faça sua primeira reflexão agora – leva menos de 2 minutos. Sem conta. Sem login. Só você e o espelho."
     >
       <div className="mx-auto max-w-3xl">
-        <Card className="flex flex-col items-center gap-6 bg-white/90 text-center shadow-soft-lg">
+        <Card className="flex flex-col items-center gap-6 text-center shadow-soft-lg">
           <Button className="px-8 py-3" aria-label="Fazer minha primeira reflexão">
             Fazer Minha Primeira Reflexão
           </Button>

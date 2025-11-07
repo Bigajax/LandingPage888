@@ -38,7 +38,7 @@ function ScrollToTop() {
 const LandingPage: React.FC = () => (
   <>
     <Header />
-    <main id="content" className="min-h-screen bg-white">
+    <main id="content" className="min-h-screen bg-surface-base">
       <HeroSection />
       <MomentsSection />
       <BenefitsSection />

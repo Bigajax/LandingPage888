@@ -4,21 +4,22 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"SF Pro Text"', '"SF Pro Display"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Inter"', '"SF Pro Text"', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       colors: {
         brand: {
-          blue: '#007AFF',
-          navy: '#111827',
+          blue: '#6EC8FF',
+          clay: '#A7846C',
         },
         surface: {
-          base: '#FFFFFF',
-          subtle: '#F5F7FA',
-          muted: '#E5E7EB',
+          base: '#FAF9F7',
+          subtle: '#F3EEE7',
+          muted: 'rgba(56, 50, 42, 0.16)',
         },
         ink: {
-          base: '#111827',
-          soft: 'rgba(17, 24, 39, 0.7)',
+          base: '#38322A',
+          soft: 'rgba(56, 50, 42, 0.72)',
         },
       },
       borderRadius: {
@@ -27,8 +28,8 @@ export default {
         '3xl': '2rem',
       },
       boxShadow: {
-        soft: '0 20px 40px -24px rgba(17, 24, 39, 0.2)',
-        'soft-lg': '0 28px 60px -30px rgba(17, 24, 39, 0.22)',
+        soft: '0 28px 65px -40px rgba(56, 50, 42, 0.28)',
+        'soft-lg': '0 38px 90px -48px rgba(56, 50, 42, 0.45)',
       },
       transitionTimingFunction: {
         subtle: 'cubic-bezier(0.4, 0, 0.2, 1)',

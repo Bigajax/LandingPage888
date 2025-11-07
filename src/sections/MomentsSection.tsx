@@ -36,7 +36,7 @@ const MomentsSection: React.FC = () => {
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {moments.map((moment) => (
-          <Card key={moment.title} className="h-full space-y-4 bg-white/85">
+          <Card key={moment.title} className="h-full space-y-4">
             <span className="text-3xl" aria-hidden>
               {moment.icon}
             </span>

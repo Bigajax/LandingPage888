@@ -41,8 +41,8 @@ const PricingSection: React.FC = () => {
         {plans.map((plan) => (
           <Card
             key={plan.name}
-            className={`h-full space-y-5 border border-surface-muted/60 bg-white/85 p-6 text-left shadow-soft ${
-              plan.highlight ? "ring-2 ring-brand-blue/60 shadow-[0_18px_38px_rgba(0,122,255,0.22)]" : ""
+            className={`h-full space-y-5 rounded-[32px] border border-[rgba(56,50,42,0.14)] p-6 text-left ${
+              plan.highlight ? "ring-2 ring-brand-blue/60 shadow-[0_25px_60px_-35px_rgba(56,50,42,0.55)]" : ""
             }`}
           >
             <div className="space-y-2">
@@ -53,7 +53,7 @@ const PricingSection: React.FC = () => {
             <ul className="space-y-2 text-sm text-ink-soft">
               {plan.benefits.map((benefit) => (
                 <li key={benefit} className="flex items-center gap-2">
-                  <span aria-hidden className="text-brand-blue">•</span>
+                  <span aria-hidden className="text-brand-clay">•</span>
                   <span className="capitalize">{benefit}</span>
                 </li>
               ))}

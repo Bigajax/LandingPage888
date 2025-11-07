@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
@@ -7,7 +7,7 @@ import Container from "./Container";
 import EcoBubbleOneEye from "./EcoBubbleOneEye";
 
 const NAV_LINKS = [
-  { label: "Início", href: "#inicio" },
+  { label: "InÃ­cio", href: "#inicio" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Momentos", href: "#momentos" },
   { label: "Planos", href: "#planos" },
@@ -32,8 +32,8 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   const headerBg = isScrolled
-    ? "bg-white/85 backdrop-blur-lg shadow-[0_20px_40px_-28px_rgba(17,24,39,0.25)] border border-surface-muted/60"
-    : "bg-white/60 backdrop-blur-md border border-transparent";
+    ? "bg-[rgba(243,238,231,0.92)] backdrop-blur-2xl shadow-[0_25px_55px_-35px_rgba(56,50,42,0.45)] border border-[rgba(56,50,42,0.14)]"
+    : "bg-[rgba(250,249,247,0.7)] backdrop-blur-xl border border-transparent";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50" role="banner">
@@ -46,14 +46,14 @@ const Header: React.FC = () => {
               <Link
                 to="/"
                 className="flex items-center gap-2 font-semibold tracking-tight text-ink-base"
-                aria-label="Eco, voltar ao início"
+                aria-label="Eco, voltar ao inÃ­cio"
               >
                 <EcoBubbleOneEye size={28} />
                 <span className="text-lg sm:text-xl">ECO</span>
               </Link>
             </div>
 
-            <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft md:flex" aria-label="Navegação principal">
+            <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft/90 md:flex" aria-label="NavegaÃ§Ã£o principal">
               {NAV_LINKS.map((item) => (
                 <a
                   key={item.href}
@@ -73,15 +73,15 @@ const Header: React.FC = () => {
                 Entrar
               </a>
               <a href="#comecar" className="inline-flex">
-                <Button aria-label="Fazer minha primeira reflexão" className="px-5 py-2.5">
-                  Fazer minha primeira reflexão
+                <Button aria-label="Fazer minha primeira reflexÃ£o" className="px-5 py-2.5">
+                  Fazer minha primeira reflexÃ£o
                 </Button>
               </a>
             </div>
 
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-surface-muted/60 text-ink-soft transition-colors duration-150 hover:text-ink-base md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(56,50,42,0.15)] text-ink-soft transition-colors duration-150 hover:text-ink-base md:hidden"
               onClick={() => setIsOpen((open) => !open)}
               aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={isOpen}
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
           </div>
 
           {isOpen && (
-            <div className="mt-3 rounded-3xl border border-surface-muted/60 bg-white/95 p-6 shadow-soft md:hidden" role="dialog">
+            <div className="mt-3 rounded-3xl border border-[rgba(56,50,42,0.18)] bg-[rgba(250,249,247,0.96)] p-6 shadow-soft md:hidden" role="dialog">
               <nav className="space-y-4 text-base text-ink-soft">
                 {NAV_LINKS.map((item) => (
                   <a
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
               </nav>
               <a href="#comecar" className="mt-6 block">
                 <Button fullWidth className="py-3">
-                  Fazer minha primeira reflexão
+                  Fazer minha primeira reflexÃ£o
                 </Button>
               </a>
             </div>
@@ -125,3 +125,5 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+

@@ -40,7 +40,7 @@ const FAQSection: React.FC = () => {
       title="Entendendo a Eco"
       description="Perguntas essenciais sobre privacidade, funcionamento e integração com a sua jornada emocional."
     >
-      <div className="divide-y divide-surface-muted/60 rounded-3xl border border-surface-muted/60 bg-white/80 shadow-soft">
+      <div className="divide-y divide-[rgba(56,50,42,0.12)] rounded-3xl border border-[rgba(56,50,42,0.12)] bg-[rgba(250,249,247,0.8)] shadow-soft backdrop-blur">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
           const contentId = `faq-panel-${index}`;
@@ -57,7 +57,7 @@ const FAQSection: React.FC = () => {
                 onClick={() => toggle(index)}
               >
                 <span>{faq.question}</span>
-                <span className={`flex h-9 w-9 items-center justify-center rounded-full border border-surface-muted/60 text-brand-blue transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}>
+                <span className={`flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(56,50,42,0.15)] text-brand-blue transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}>
                   <ChevronDown className="h-4 w-4" aria-hidden />
                 </span>
               </button>

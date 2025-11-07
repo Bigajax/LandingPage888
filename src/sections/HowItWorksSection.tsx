@@ -33,7 +33,7 @@ const HowItWorksSection: React.FC = () => {
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {steps.map((step) => (
-          <Card key={step.title} className="h-full space-y-5 bg-white/85">
+          <Card key={step.title} className="h-full space-y-5">
             <IconBadge className="h-12 w-12 rounded-2xl">{step.icon}</IconBadge>
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-ink-base">{step.title}</h3>
